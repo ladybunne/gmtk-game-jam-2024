@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=6 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
+[ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
+[ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
+[ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ejdv8"]
 radius = 200.0
@@ -9,16 +12,57 @@ radius = 200.0
 script = ExtResource("1_k4d5n")
 polygon = NodePath("Polygon2D")
 shot_timer = NodePath("ShotTimer")
-firing_point = NodePath("FiringPoint")
+firing_point = NodePath("Polygon2D/FiringPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ejdv8")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+rotation = 6.28319
+scale = Vector2(0.8, 0.8)
 color = Color(0.678, 0.847, 0.902, 1)
-polygon = PackedVector2Array(0, -32, 32, 32, 0, 16, -32, 32)
+polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
+
+[node name="FiringPoint" type="Node2D" parent="Polygon2D"]
+position = Vector2(32, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
 
-[node name="FiringPoint" type="Node2D" parent="."]
-position = Vector2(0, -32)
+[node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite")]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+script = ExtResource("2_8oltv")
+tower = NodePath("..")
+HandleSprite = NodePath("../HandleSprite")
+handleTex = ExtResource("2_l3qcl")
+handleTexBad = ExtResource("4_105yb")
+
+[node name="HandleSprite" type="NinePatchRect" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("2_l3qcl")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16

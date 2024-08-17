@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Tower
+
 @export_group("Internal")
 @export var polygon: Polygon2D
 @export var shot_timer: Timer
@@ -22,20 +24,26 @@ enum TargetingMode {
 			recolor()
 			
 
+@onready var sprite: Node2D = find_child("Polygon2D")
+@onready var handle: Control = find_child("Handle")
+var currentCost
+
 func _ready() -> void:
 	body_entered.connect(enemy_entered)
 	body_exited.connect(enemy_exited)
 	recolor()
+	currentCost = handle.GetCost()
+
 
 func _process(delta: float) -> void:
 	if target != null:
-		rotation = rotation + get_angle_to(target.position) + 0.5 * PI
+		sprite.look_at(target.position)
 		queue_redraw()
 
 	
 func _draw() -> void:
 	if target != null:
-		draw_line(firing_point.position,to_local(target.position), polygon.color, 2)
+		draw_line(to_local(firing_point.global_position),to_local(target.position), polygon.color, 2)
 
 func recolor():
 	match targeting_mode:
