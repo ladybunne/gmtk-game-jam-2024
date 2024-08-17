@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 	
 func _draw() -> void:
 	if target != null:
-		draw_line(firing_point.position, target.position, polygon.color, 2)
+		draw_line(firing_point.position,to_local(target.position), polygon.color, 2)
 
 func recolor():
 	match targeting_mode:
