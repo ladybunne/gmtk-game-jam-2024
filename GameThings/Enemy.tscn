@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=5 format=3 uid="uid://0wjxf4s3ct76"]
 
 [ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
 [ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="1_eo6st"]
+[ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_ejndl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 4.0
@@ -10,9 +11,28 @@ radius = 4.0
 collision_mask = 0
 script = ExtResource("1_6ags1")
 
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_ejndl")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("1_eo6st")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_st7nf")
+
+[node name="LeftEye" type="Polygon2D" parent="."]
+position = Vector2(7, -3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-15, -9, -15, 5, -11, 1, -11, -14)
+
+[node name="RightEye" type="Polygon2D" parent="."]
+position = Vector2(19, -3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-15, -9, -15, 5, -11, 1, -11, -14)
+
+[node name="Mouth" type="Polygon2D" parent="."]
+position = Vector2(13, 22)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-29, -16, -26, -9, -21, -5, -13, -4, -4, -5, 1, -9, 4, -16)

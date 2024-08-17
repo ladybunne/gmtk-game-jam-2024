@@ -3,6 +3,7 @@ extends Area2D
 @export_group("Internal")
 @export var polygon: Polygon2D
 @export var shot_timer: Timer
+@export var firing_point: Node2D
 @export_group("")
 
 enum TargetingMode {
@@ -14,7 +15,12 @@ enum TargetingMode {
 
 @export var enemies_in_range: Array[Enemy]
 @export var target: Enemy
-@export var targeting_mode: TargetingMode = TargetingMode.FIRST
+@export var targeting_mode: TargetingMode = TargetingMode.FIRST :
+	set(p_targeting_mode):
+		targeting_mode = p_targeting_mode
+		if polygon != null:
+			recolor()
+			
 
 func _ready() -> void:
 	body_entered.connect(enemy_entered)
@@ -25,6 +31,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if target != null:
 		rotation = rotation + get_angle_to(target.position) + 0.5 * PI
+	
+func _draw() -> void:
+	if target != null:
+		draw_line(position )
 
 func recolor():
 	match targeting_mode:
@@ -42,9 +52,7 @@ func retarget():
 	for enemy in enemies_in_range:
 		if target == null:
 			target = enemy
-			print("set to %s" % enemy)
 		else:
-			print("comparing %s and %s" % [enemy, target])
 			match targeting_mode:
 				TargetingMode.FIRST:
 					target = first(enemy, target)
@@ -75,6 +83,7 @@ func enemy_exited(body: Node2D):
 	
 	retarget()
 
+# This needs to not do "as the crow flies" - maybe do lifetime of entity?
 func first(new: Enemy, old: Enemy):
 	return new if new.distance_from_spawner() > old.distance_from_spawner() else old
 
