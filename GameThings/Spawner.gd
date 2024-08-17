@@ -1,0 +1,21 @@
+extends Node2D
+
+@export_group("Internal")
+@export var next_spawn_timer: Timer
+@export var next_wave_timer: Timer
+@export_group("")
+
+@export var enemy_to_spawn: PackedScene
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	next_spawn_timer.timeout.connect(spawn_enemy)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func spawn_enemy():
+	var new_enemy = enemy_to_spawn.instantiate()
+	new_enemy.position = position
+	get_parent().add_child(new_enemy)

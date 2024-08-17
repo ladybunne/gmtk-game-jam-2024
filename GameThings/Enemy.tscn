@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=4 format=3 uid="uid://0wjxf4s3ct76"]
 
+[ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
 [ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="1_eo6st"]
 
-[node name="Enemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
+radius = 20.0
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_6ags1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_eo6st")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_st7nf")
