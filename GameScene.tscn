@@ -4,4 +4,4 @@
 
 [node name="GameScene" type="Node"]
 
-[node name="Ui" parent="." instance=ExtResource("1_4wb6o")]
+[node name="UI" parent="." instance=ExtResource("1_4wb6o")]
