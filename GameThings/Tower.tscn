@@ -5,12 +5,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ejdv8"]
 radius = 200.0
 
-[node name="Tower" type="Area2D" node_paths=PackedStringArray("polygon", "shot_timer")]
+[node name="Tower" type="Area2D" node_paths=PackedStringArray("polygon", "shot_timer", "firing_point")]
 script = ExtResource("1_k4d5n")
 polygon = NodePath("Polygon2D")
 shot_timer = NodePath("ShotTimer")
-targeting_mode = null
-firing_point = null
+firing_point = NodePath("FiringPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ejdv8")
