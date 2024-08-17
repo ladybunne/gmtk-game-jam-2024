@@ -1,4 +1,4 @@
-extends Node2D
+class_name Level extends TileMapLayer
 
 
 @export var tile_map_layer: TileMapLayer

@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://w6fk256glcoe"]
+[gd_scene load_steps=3 format=3 uid="uid://w6fk256glcoe"]
 
 [ext_resource type="Script" path="res://GameThings/Level.gd" id="1_4bqo3"]
 [ext_resource type="TileSet" uid="uid://bxu7rt05x3aw8" path="res://Assets/Tilesets/LevelTileSet.tres" id="1_ibe44"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_map_layer")]
-script = ExtResource("1_4bqo3")
-tile_map_layer = NodePath("TileMapLayer")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAACAAIAAAADAAMAAAACAAMAAAADAAAAAAACAAQAAAADAAAAAAACAAUAAAADAAAAAAACAAYAAAADAAAAAAACAAcAAAACAAIAAAADAAcAAAACAAAAAAAEAAcAAAACAAAAAAAFAAcAAAABAAIAAAAFAAYAAAADAAAAAAAFAAUAAAADAAAAAAAFAAQAAAADAAAAAAAFAAMAAAADAAIAAAAGAAMAAAACAAAAAAAHAAMAAAACAAAAAAAIAAMAAAAAAAIAAAAIAAQAAAADAAAAAAAIAAUAAAADAAAAAAAIAAYAAAABAAMAAAA=")
+[node name="Level" type="TileMapLayer"]
 tile_set = ExtResource("1_ibe44")
+script = ExtResource("1_4bqo3")

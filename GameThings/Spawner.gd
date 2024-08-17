@@ -1,4 +1,4 @@
-extends Node2D
+class_name Spawner extends Node2D
 
 @export_group("Internal")
 @export var next_spawn_timer: Timer
@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	pass
 
 func spawn_enemy():
-	var new_enemy = enemy_to_spawn.instantiate()
+	var new_enemy: Enemy = enemy_to_spawn.instantiate() as Enemy
 	new_enemy.position = position
+	new_enemy.spawner = self
 	get_parent().add_child(new_enemy)

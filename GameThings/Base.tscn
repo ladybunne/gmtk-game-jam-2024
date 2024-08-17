@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bfokkaff6tm36" path="res://Assets/Sprites/base.png" id="1_t4542"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18w4u"]
+size = Vector2(8, 8)
 
-[node name="Base" type="StaticBody2D"]
+[node name="Base" type="Area2D"]
 script = ExtResource("1_hxo7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
