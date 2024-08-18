@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://crl1o75ydnsjk"]
 
-[ext_resource type="Script" path="res://Scenes/UI/SpeedControl.gd" id="1_hpu33"]
-[ext_resource type="Theme" uid="uid://0wid4bcxqwwa" path="res://Assets/Themes/SpeedButton.tres" id="3_6cl46"]
+[ext_resource type="Script" path="res://Scenes/UI/SpeedControlUI.gd" id="1_2iy8r"]
+[ext_resource type="Theme" uid="uid://0wid4bcxqwwa" path="res://Assets/Themes/SpeedButton.tres" id="2_vhyt6"]
 
-[node name="SpeedControl" type="CanvasLayer"]
-script = ExtResource("1_hpu33")
+[node name="SpeedControlUI" type="CanvasLayer"]
+script = ExtResource("1_2iy8r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 2
@@ -22,26 +22,26 @@ layout_mode = 2
 [node name="One" type="Button" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme = ExtResource("3_6cl46")
+theme = ExtResource("2_vhyt6")
 text = "1x"
 
 [node name="Two" type="Button" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme = ExtResource("3_6cl46")
+theme = ExtResource("2_vhyt6")
 theme_override_font_sizes/font_size = 24
 text = "2x"
 
 [node name="Three" type="Button" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme = ExtResource("3_6cl46")
+theme = ExtResource("2_vhyt6")
 theme_override_font_sizes/font_size = 24
 text = "3x"
 
 [node name="Four" type="Button" parent="MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme = ExtResource("3_6cl46")
+theme = ExtResource("2_vhyt6")
 theme_override_font_sizes/font_size = 24
 text = "4x"
