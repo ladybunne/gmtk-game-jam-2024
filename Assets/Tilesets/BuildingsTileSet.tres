@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://ch063lv32rl54"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dwfm3siaykes6"]
 
 [ext_resource type="PackedScene" uid="uid://u2q37unjbsb" path="res://GameThings/Spawner.tscn" id="1_t0ico"]
 [ext_resource type="PackedScene" uid="uid://cwem31dqdtony" path="res://GameThings/Base.tscn" id="2_pul3c"]
