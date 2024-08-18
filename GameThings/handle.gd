@@ -38,11 +38,21 @@ func GetCost():
 	return get_rect().get_area() * GameManager.areaToBuildResourceRatio
 
 func GetOverlapping():
+	#check towers
 	var towers = get_tree().get_nodes_in_group("Tower") as Array[Tower]
 	for t in towers:
 		if t != tower: #not self
 			if t.handle.get_global_rect().intersects(get_global_rect()):
 				return true
+				
+	#check path
+	var map = get_tree().get_first_node_in_group("Tilemap") as TileMapLayer
+	var coords = map.get_used_cells()
+	for coord in coords:
+		for point in map.get_cell_tile_data(coord).get_collision_polygon_points(0,0):
+			if get_global_rect().has_point(map.to_global(map.map_to_local(coord)+point)):
+				return true
+			
 	return false
 	
 @export var tower: Tower
@@ -53,12 +63,15 @@ func GetOverlapping():
 
 @export var rangeHitboxes: Array[CollisionShape2D]
 
+@onready var rangeOutline: Control = %RadiusOutline
+@onready var baseSprite: Control = %BaseSprite
+
 func _process(delta: float) -> void:
 	if resizing:
 		if (scaleType % 3 == 0):
-			scale.x = max(abs(get_global_mouse_position() - get_global_rect().get_center()).x / size.x*2,1)
+			scale.x = max(abs(get_global_mouse_position() - get_global_rect().get_center()).x / size.x*2,0.5)
 		if (scaleType % 5 == 0):
-			scale.y = max(abs(get_global_mouse_position() - get_global_rect().get_center()).y / size.y*2,1)
+			scale.y = max(abs(get_global_mouse_position() - get_global_rect().get_center()).y / size.y*2,0.5)
 		ResourceBar.previewBar.value = GameManager.buildResource - (GetCost() - tower.currentCost)
 		if GetOverlapping() or GameManager.buildResource < GetCost() - tower.currentCost:
 			HandleSprite.texture = handleTexBad
@@ -67,11 +80,25 @@ func _process(delta: float) -> void:
 		
 	else:
 		HandleSprite.texture = handleTex
+			
+	if has_focus():
+		HandleSprite.show()
+	else:
+		HandleSprite.hide()
 		
+	if get_global_rect().has_point(get_global_mouse_position()):
+		rangeOutline.show()
+	else: 
+		rangeOutline.hide()
+		
+	baseSprite.size = size*scale
+	baseSprite.position = position + (size/2) - (baseSprite.size/2)
+	
 	HandleSprite.global_position = global_position
-	HandleSprite.size = size * scale
+	HandleSprite.size = size * scale	
 	
-	
+	rangeOutline.size = scale * size + Vector2(towerRange,towerRange) * 2
+	rangeOutline.position = position + (size/2) - (rangeOutline.size/2)
 	
 	rangeHitboxes[0].shape.height = scale.y * size.y + towerRange*2
 	rangeHitboxes[0].shape.radius = towerRange

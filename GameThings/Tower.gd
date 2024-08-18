@@ -71,7 +71,7 @@ func _draw() -> void:
 func recolor():
 	match targeting_mode:
 		TargetingMode.FIRST:
-			polygon.color = Color.LIGHT_BLUE
+			polygon.color = Color.SLATE_BLUE
 		TargetingMode.LAST:
 			polygon.color = Color.LIGHT_CORAL
 		TargetingMode.CLOSE:
