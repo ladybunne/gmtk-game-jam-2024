@@ -27,9 +27,8 @@ func _gui_input(event: InputEvent) -> void:
 			oldScale = scale
 			
 		if event.button_index == MOUSE_BUTTON_LEFT and !event.pressed:
-			if GameManager.buildResource > GetCost() - tower.currentCost:
+			if !GetOverlapping() and GameManager.buildResource > GetCost() - tower.currentCost:
 				GameManager.buildResource -= GetCost() - tower.currentCost
-				print(GameManager.buildResource)
 				tower.currentCost = GetCost()
 			else:
 				scale = oldScale
@@ -38,6 +37,14 @@ func _gui_input(event: InputEvent) -> void:
 func GetCost():
 	return get_rect().get_area() * GameManager.areaToBuildResourceRatio
 
+func GetOverlapping():
+	var towers = get_tree().get_nodes_in_group("Tower") as Array[Tower]
+	for t in towers:
+		if t != tower: #not self
+			if t.handle.get_global_rect().intersects(get_global_rect()):
+				return true
+	return false
+	
 @export var tower: Tower
 @export var HandleSprite: NinePatchRect
 
@@ -51,10 +58,11 @@ func _process(delta: float) -> void:
 		if (scaleType % 5 == 0):
 			scale.y = max(abs(get_global_mouse_position() - get_global_rect().get_center()).y / size.y*2,1)
 		ResourceBar.previewBar.value = GameManager.buildResource - (GetCost() - tower.currentCost)
-		if GameManager.buildResource < GetCost() - tower.currentCost:
+		if GetOverlapping() or GameManager.buildResource < GetCost() - tower.currentCost:
 			HandleSprite.texture = handleTexBad
 		else:
 			HandleSprite.texture = handleTex
+		
 	else:
 		HandleSprite.texture = handleTex
 		
