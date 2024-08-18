@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @export var speed: float = 100
-
+@export var health: float = 100
 var spawner: Spawner
 
 # I guess this is the better way of doing this?
@@ -51,3 +51,8 @@ func distance_to_base():
 		current_pos = i
 	return result
 	
+func take_damage(damage: float):
+	health -= damage
+
+func show_damage():
+	pass

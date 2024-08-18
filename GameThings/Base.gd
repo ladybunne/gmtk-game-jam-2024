@@ -1,5 +1,7 @@
 extends Area2D
 
+var health: int = 100
+
 func _ready() -> void:
 	body_entered.connect(enemy_entered)
 

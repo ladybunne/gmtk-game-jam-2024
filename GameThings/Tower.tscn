@@ -6,27 +6,29 @@
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ejdv8"]
+resource_local_to_scene = true
 radius = 200.0
 
-[node name="Tower" type="Area2D" node_paths=PackedStringArray("polygon", "shot_timer", "firing_point") groups=["Tower"]]
+[node name="Tower" type="Area2D" groups=["Tower"]]
 script = ExtResource("1_k4d5n")
-polygon = NodePath("Polygon2D")
-shot_timer = NodePath("ShotTimer")
-firing_point = NodePath("Polygon2D/FiringPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("CircleShape2D_ejdv8")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+unique_name_in_owner = true
 rotation = 6.28319
 scale = Vector2(0.8, 0.8)
 color = Color(0.678, 0.847, 0.902, 1)
 polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
 
 [node name="FiringPoint" type="Node2D" parent="Polygon2D"]
+unique_name_in_owner = true
 position = Vector2(32, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite")]
 modulate = Color(1, 1, 1, 0)
