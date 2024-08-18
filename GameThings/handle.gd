@@ -81,12 +81,12 @@ func _process(delta: float) -> void:
 	else:
 		HandleSprite.texture = handleTex
 			
-	if has_focus():
+	if has_focus() or resizing:
 		HandleSprite.show()
 	else:
 		HandleSprite.hide()
 		
-	if get_global_rect().has_point(get_global_mouse_position()):
+	if get_global_rect().has_point(get_global_mouse_position()) or resizing:
 		rangeOutline.show()
 	else: 
 		rangeOutline.hide()

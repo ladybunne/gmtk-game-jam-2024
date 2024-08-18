@@ -5,18 +5,24 @@
 [ext_resource type="Texture2D" uid="uid://cibwiiomnilr2" path="res://Assets/Sprites/barProgress.png" id="3_8mi7g"]
 [ext_resource type="Texture2D" uid="uid://b87ge5byu3q03" path="res://Assets/Sprites/barProgress2.png" id="4_2nsox"]
 [ext_resource type="Script" path="res://Scenes/UI/ResourceBar.gd" id="4_4iij1"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/SpeedControlUI.tscn" id="6_4y3xo"]
+[ext_resource type="PackedScene" uid="uid://dxr8eyrr3byde" path="res://Scenes/UI/SpeedControlUI.tscn" id="6_4y3xo"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 
 [node name="UI" type="Node"]
 
-[node name="BuildResourceBar" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ResourceBarUI" type="CanvasLayer" parent="."]
 
-[node name="NinePatchRect" type="NinePatchRect" parent="BuildResourceBar"]
+[node name="BuildResourceBar" type="Control" parent="ResourceBarUI"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = -600.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="ResourceBarUI/BuildResourceBar"]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0
@@ -28,7 +34,7 @@ patch_margin_top = 4
 patch_margin_right = 8
 patch_margin_bottom = 4
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="BuildResourceBar"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ResourceBarUI/BuildResourceBar"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 400.0
@@ -47,7 +53,7 @@ tint_progress = Color(1, 1, 1, 0.686275)
 script = ExtResource("4_4iij1")
 preview = true
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="BuildResourceBar"]
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="ResourceBarUI/BuildResourceBar"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 400.0
@@ -65,7 +71,7 @@ texture_progress = ExtResource("4_2nsox")
 tint_progress = Color(1, 1, 1, 0.501961)
 script = ExtResource("4_4iij1")
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="BuildResourceBar"]
+[node name="NinePatchRect2" type="NinePatchRect" parent="ResourceBarUI/BuildResourceBar"]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://crl1o75ydnsjk"]
+[gd_scene load_steps=3 format=3 uid="uid://dxr8eyrr3byde"]
 
 [ext_resource type="Script" path="res://Scenes/UI/SpeedControlUI.gd" id="1_2iy8r"]
 [ext_resource type="Theme" uid="uid://0wid4bcxqwwa" path="res://Assets/Themes/SpeedButton.tres" id="2_vhyt6"]
