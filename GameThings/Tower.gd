@@ -43,15 +43,11 @@ func _ready() -> void:
 	shot_timer.timeout.connect(shoot)
 	shot_timer.start()
 
-
-
-
 func _process(delta: float) -> void:
 	GetEnemiesInRange()
 	retarget()
 	if target != null:
 		sprite.look_at(target.position)
-		queue_redraw()
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
@@ -64,7 +60,7 @@ func _process(delta: float) -> void:
 			shoot()
 			buffer_shot = false
 	retarget()
-
+	queue_redraw()
 
 func _draw() -> void:
 	if target != null:

@@ -8,6 +8,7 @@ var spawner: Spawner
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 
 func _ready() -> void:
+	%ProgressBar.max_value = health
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -30,6 +31,7 @@ func _physics_process(delta: float) -> void:
 
 	velocity = current_agent_position.direction_to(next_path_position) * speed
 	move_and_slide()
+	update_healthbar()
 
 func distance_to_base():
 	# Ughhhhh.
@@ -70,3 +72,8 @@ func show_damage(damage: float, direction: Vector2):
 
 func kill_particle(particle: CPUParticles2D):
 	Callable(particle.queue_free).call_deferred()
+
+func update_healthbar():
+	var max_health = 50.0
+	%ProgressBar.visible = health < max_health
+	%ProgressBar.value = health
