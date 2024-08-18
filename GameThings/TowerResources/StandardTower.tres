@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_y1js6")
 damage = 5.0
-cooldown = 3.0
+cooldown = 0.2
 target_range = 200.0
 splash_range = 5.0
 ammo_capacity = 10.0

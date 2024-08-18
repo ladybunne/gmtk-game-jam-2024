@@ -40,6 +40,8 @@ func _ready() -> void:
 	currentCost = handle.GetCost()
 	change_target_collider_radius(tower_data.target_range)
 	shot_timer.timeout.connect(shoot)
+	shot_timer.start()
+
 
 
 
@@ -56,6 +58,7 @@ func _process(delta: float) -> void:
 			if volley_timer <=0:
 				reshoot.emit()
 				volley_timer = tower_data.rate_of_fire
+				print("volley!")
 		if buffer_shot && !shooting_volley:
 			shoot()
 			buffer_shot = false
@@ -131,17 +134,18 @@ func shoot(override_standard:bool = false):
 		typeToUse = tower_data.type
 
 	if target != null:
-		match tower_data.type:
+		match typeToUse:
 			TowerData.TowerType.Standard:
-				target.take_damage(tower_data.damage)
-				pass
+				target.take_damage(tower_data.damage, (target.position - position).normalized())
 			TowerData.TowerType.Capacity:
 				#continuously shoot (changing targets as enemies die) until ammo reaches 0
 				shooting_volley = true
-				pass
+				damage_volley()
 			TowerData.TowerType.Splash:
 				#radius around target is affected
 				pass
+			_:
+				print("how did we have NO TowerType?")
 		if !override_standard:
 			shot_timer.start(tower_data.cooldown)
 	else:
