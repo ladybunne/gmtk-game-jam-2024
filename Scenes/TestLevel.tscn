@@ -67,7 +67,7 @@ tower_data = SubResource("Resource_dru6i")
 targeting_mode = 1
 
 [node name="CloseTower" parent="." instance=ExtResource("4_cgdvt")]
-position = Vector2(672, 288)
+position = Vector2(704, 256)
 tower_data = SubResource("Resource_bn7qd")
 targeting_mode = 2
 
