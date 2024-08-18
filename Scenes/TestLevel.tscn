@@ -9,19 +9,19 @@
 [sub_resource type="Resource" id="Resource_hhpmj"]
 resource_local_to_scene = true
 script = ExtResource("5_y5u2a")
-damage = 5.0
+damage = 2.0
 cooldown = 3.0
 target_range = 75.0
 splash_range = 5.0
 ammo_capacity = 10.0
-rate_of_fire = 0.1
-type = 0
+rate_of_fire = 0.05
+type = 1
 
 [sub_resource type="Resource" id="Resource_dru6i"]
 resource_local_to_scene = true
 script = ExtResource("5_y5u2a")
 damage = 5.0
-cooldown = 3.0
+cooldown = 0.5
 target_range = 75.0
 splash_range = 5.0
 ammo_capacity = 10.0
@@ -32,7 +32,7 @@ type = 0
 resource_local_to_scene = true
 script = ExtResource("5_y5u2a")
 damage = 5.0
-cooldown = 3.0
+cooldown = 0.5
 target_range = 75.0
 splash_range = 5.0
 ammo_capacity = 10.0
@@ -43,7 +43,7 @@ type = 0
 resource_local_to_scene = true
 script = ExtResource("5_y5u2a")
 damage = 5.0
-cooldown = 3.0
+cooldown = 0.5
 target_range = 75.0
 splash_range = 5.0
 ammo_capacity = 10.0

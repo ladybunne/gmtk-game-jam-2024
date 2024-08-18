@@ -3,7 +3,7 @@ class_name Enemy extends CharacterBody2D
 @export var speed: float = 100
 @export var health: float = 100
 var spawner: Spawner
-@onready var hitParticles: CPUParticles2D = %HitParticles
+@onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 
@@ -51,12 +51,21 @@ func distance_to_base():
 		current_pos = i
 	return result
 
-func take_damage(damage: float):
+func take_damage(damage: float, direction: Vector2):
 	health -= damage
-	print(name + str(health))
-	show_damage()
+	#print(name + str(health))
+	show_damage(damage, direction)
 	if health <=0:
+		print("enemy died")
 		Callable(queue_free).call_deferred()
 
-func show_damage():
-	hitParticles.emitting = true
+func show_damage(damage: float, direction: Vector2):
+	var flecks: CPUParticles2D = hitParticles.instantiate()
+	add_child(flecks)
+	flecks.direction = direction
+	flecks.scale_amount_max =flecks.scale_amount_max*damage
+	flecks.emitting = true
+	flecks.finished.connect(func(): kill_particle(flecks))
+
+func kill_particle(particle: CPUParticles2D):
+	Callable(particle.queue_free).call_deferred()

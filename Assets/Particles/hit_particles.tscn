@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlivhmvd02qh8"]
+
+[ext_resource type="Texture2D" uid="uid://8sv5hxqnm3r6" path="res://Assets/Sprites/hitsprite.png" id="1_6ejum"]
+
+[node name="HitParticles" type="CPUParticles2D"]
+emitting = false
+amount = 3
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_6ejum")
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 500.0
+linear_accel_min = -1.0
+linear_accel_max = -1.0

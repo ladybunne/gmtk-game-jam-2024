@@ -4,7 +4,7 @@ enum TowerType{Standard, Capacity, Splash, }
 
 @export_group("Stats")
 @export var damage: float = 5
-@export var cooldown: float = 3
+@export var cooldown: float = .5
 @export var target_range: float = 10
 @export_group("Splash Uniques")
 @export var splash_range: float = 5
