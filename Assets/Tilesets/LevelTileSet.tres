@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://bxu7rt05x3aw8"]
+[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://bxu7rt05x3aw8"]
 
 [ext_resource type="Texture2D" uid="uid://c1kr3hcmkep2f" path="res://Assets/Tiles/tileset.png" id="1_gfreu"]
+[ext_resource type="Texture2D" uid="uid://bmqekrefivymv" path="res://Assets/Sprites/towerspot.png" id="2_ydsrl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ta8nn"]
 vertices = PackedVector2Array(32, -6.39844, 32, 6.39844, 6.39844, 5.5, 6.39844, -6.39844, 6.39844, 32, -6.39844, 32, -6.39844, 6.39844, -32, 6.39844, -32, -6.39844, -6.39844, -6.39844, 6.39844, -32, -6.39844, -32)
@@ -191,6 +192,11 @@ texture_region_size = Vector2i(64, 64)
 3:3/0/terrains_peering_bit/bottom_side = 0
 3:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_sa55y")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nt4y8"]
+texture = ExtResource("2_ydsrl")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(64, 64)
 terrain_set_0/mode = 2
@@ -200,3 +206,4 @@ navigation_layer_0/layers = 1
 custom_data_layer_0/name = ""
 custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_xfw5l")
+sources/1 = SubResource("TileSetAtlasSource_nt4y8")

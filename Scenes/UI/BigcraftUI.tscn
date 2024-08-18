@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bth0h4rsnem14"]
+
+[ext_resource type="Texture2D" uid="uid://ybydfge58cwq" path="res://Assets/Sprites/bigsmall.png" id="1_o8eum"]
+
+[node name="BigcraftUI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_o8eum")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "34"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
