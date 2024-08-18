@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://dqx0tgwtfe1g8"]
+[gd_scene load_steps=9 format=4 uid="uid://dqx0tgwtfe1g8"]
 
 [ext_resource type="PackedScene" uid="uid://w6fk256glcoe" path="res://GameThings/Level.tscn" id="1_2db0s"]
-[ext_resource type="PackedScene" uid="uid://cwem31dqdtony" path="res://GameThings/Base.tscn" id="2_kkbwq"]
-[ext_resource type="PackedScene" uid="uid://u2q37unjbsb" path="res://GameThings/Spawner.tscn" id="3_lq0i7"]
+[ext_resource type="PackedScene" uid="uid://cqontydq58tyy" path="res://GameThings/Buildings.tscn" id="2_j408f"]
 [ext_resource type="PackedScene" uid="uid://dx6o8vnri4fmf" path="res://GameThings/Tower.tscn" id="4_cgdvt"]
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="5_y5u2a"]
 
@@ -53,13 +52,10 @@ type = 0
 [node name="TestLevel" type="Node2D"]
 
 [node name="Level" parent="." groups=["Tilemap"] instance=ExtResource("1_2db0s")]
-tile_map_data = PackedByteArray("AAABAAUAAAACAAMAAAACAAUAAAACAAAAAAADAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAUAAAACAAAAAAAGAAUAAAABAAIAAAAGAAQAAAADAAAAAAAGAAMAAAADAAAAAAAGAAIAAAADAAIAAAAJAAIAAAAAAAIAAAAJAAMAAAADAAAAAAAJAAQAAAADAAAAAAAJAAUAAAADAAAAAAAJAAYAAAADAAAAAAAJAAcAAAADAAAAAAAJAAgAAAACAAIAAAAMAAgAAAABAAIAAAAMAAcAAAADAAAAAAAMAAYAAAADAAAAAAAMAAUAAAADAAIAAAANAAUAAAACAAAAAAAOAAUAAAACAAAAAAAPAAUAAAACAAAAAAAQAAUAAAACAAAAAAARAAUAAAAAAAMAAAAKAAQAAQAAAAAAAAAOAAcAAQAAAAAAAAAEAAcAAQAAAAAAAAADAAMAAQAAAAAAAAAHAAUAAQAAAAAAAAAOAAQAAQAAAAAAAAAHAAIAAAACAAAAAAAIAAIAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAAIAAEAAQAAAAAAAAAKAAkAAQAAAAAAAAALAAkAAQAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAUAAAACAAMAAAACAAUAAAACAAAAAAADAAUAAAACAAAAAAAEAAUAAAACAAAAAAAFAAUAAAACAAAAAAAGAAUAAAABAAIAAAAGAAQAAAADAAAAAAAGAAMAAAADAAAAAAAGAAIAAAADAAIAAAAJAAIAAAAAAAIAAAAJAAMAAAADAAAAAAAJAAQAAAADAAAAAAAJAAUAAAADAAAAAAAJAAYAAAADAAAAAAAJAAcAAAADAAAAAAAJAAgAAAACAAIAAAAMAAgAAAABAAIAAAAMAAcAAAADAAAAAAAMAAYAAAADAAAAAAAMAAUAAAADAAIAAAANAAUAAAACAAAAAAAOAAUAAAACAAAAAAAPAAUAAAACAAAAAAAQAAUAAAACAAAAAAARAAUAAAAAAAMAAAAHAAIAAAACAAAAAAAIAAIAAAACAAAAAAAKAAgAAAACAAAAAAALAAgAAAACAAAAAAA=")
 
-[node name="Spawner" parent="." instance=ExtResource("3_lq0i7")]
-position = Vector2(96, 352)
-
-[node name="Base" parent="." instance=ExtResource("2_kkbwq")]
-position = Vector2(1120, 352)
+[node name="Buildings" parent="." instance=ExtResource("2_j408f")]
+tile_map_data = PackedByteArray("AAABAAUAAAAAAAAAAQARAAUAAAAAAAAAAgA=")
 
 [node name="FirstTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(224, 224)

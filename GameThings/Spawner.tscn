@@ -4,17 +4,17 @@
 [ext_resource type="Script" path="res://GameThings/Spawner.gd" id="1_rky0c"]
 [ext_resource type="PackedScene" uid="uid://0wjxf4s3ct76" path="res://GameThings/Enemy.tscn" id="2_h2f5h"]
 
-[node name="Spawner" type="Node2D" node_paths=PackedStringArray("next_spawn_timer", "next_wave_timer")]
+[node name="Spawner" type="Node2D"]
 script = ExtResource("1_rky0c")
-next_spawn_timer = NodePath("NextSpawnTimer")
-next_wave_timer = NodePath("NextWaveTimer")
 enemy_to_spawn = ExtResource("2_h2f5h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3fsqp")
 
 [node name="NextSpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 autostart = true
 
 [node name="NextWaveTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 30.0
