@@ -1,7 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @export var speed: float = 100
-
+@export var health: float = 100
 var spawner: Spawner
 
 # I guess this is the better way of doing this?
@@ -31,5 +31,28 @@ func _physics_process(delta: float) -> void:
 	velocity = current_agent_position.direction_to(next_path_position) * speed
 	move_and_slide()
 
-func distance_from_spawner():
-	return position.distance_to(spawner.position)
+func distance_to_base():
+	# Ughhhhh.
+	# Thanks GitHub.
+	#
+	# This is from https://github.com/godotengine/godot-proposals/issues/8296
+	# Sourced by Larrikin.
+
+	var arr = navigation_agent.get_current_navigation_path()
+
+	var current_index := 0
+	var result = 0
+	var current_pos = arr[navigation_agent.get_current_navigation_path_index()]
+	for i in arr:
+		if current_index <= navigation_agent.get_current_navigation_path_index():
+			current_index += 1
+			continue
+		result += current_pos.distance_to(i)
+		current_pos = i
+	return result
+
+func take_damage(damage: float):
+	health -= damage
+
+func show_damage():
+	pass
