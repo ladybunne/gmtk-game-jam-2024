@@ -37,9 +37,9 @@ func distance_to_base():
 	#
 	# This is from https://github.com/godotengine/godot-proposals/issues/8296
 	# Sourced by Larrikin.
-	
+
 	var arr = navigation_agent.get_current_navigation_path()
-	
+
 	var current_index := 0
 	var result = 0
 	var current_pos = arr[navigation_agent.get_current_navigation_path_index()]
@@ -50,7 +50,7 @@ func distance_to_base():
 		result += current_pos.distance_to(i)
 		current_pos = i
 	return result
-	
+
 func take_damage(damage: float):
 	health -= damage
 

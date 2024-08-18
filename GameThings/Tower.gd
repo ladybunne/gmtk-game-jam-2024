@@ -28,7 +28,7 @@ var volley_timer: float
 		targeting_mode = p_targeting_mode
 		if polygon != null:
 			recolor()
-			
+
 
 @onready var sprite: Node2D = find_child("Polygon2D")
 @onready var handle: Control = find_child("Handle")
@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 	if target != null:
 		sprite.look_at(target.position)
 		queue_redraw()
-	retarget()
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
@@ -59,9 +58,11 @@ func _process(delta: float) -> void:
 		if buffer_shot && !shooting_volley:
 			shoot()
 			buffer_shot = false
+	retarget()
 
 
-	
+
+
 func _draw() -> void:
 	if target != null:
 		draw_line(to_local(firing_point.global_position),to_local(target.position), polygon.color, 2)
@@ -97,7 +98,7 @@ func enemy_entered(body: Node2D):
 	var enemy := body as Enemy
 	if not enemy:
 		return
-	
+
 	if enemy not in enemies_in_range:
 		enemies_in_range.append(enemy)
 
@@ -105,7 +106,7 @@ func enemy_exited(body: Node2D):
 	var enemy := body as Enemy
 	if not enemy:
 		return
-	
+
 	if enemy in enemies_in_range:
 		enemies_in_range.erase(enemy)
 
