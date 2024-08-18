@@ -46,6 +46,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	GetEnemiesInRange()
 	retarget()
+	queue_redraw()
 	if target != null:
 		sprite.look_at(target.position)
 		#shooting mechanics and rules
@@ -59,8 +60,6 @@ func _process(delta: float) -> void:
 		if buffer_shot && !shooting_volley:
 			shoot()
 			buffer_shot = false
-	retarget()
-	queue_redraw()
 
 func _draw() -> void:
 	if target != null:
