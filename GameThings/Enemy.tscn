@@ -54,7 +54,6 @@ path_max_distance = 10.0
 path_postprocessing = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-visible = false
 custom_minimum_size = Vector2(400, 40)
 offset_left = -200.0
 offset_top = -70.0
@@ -64,6 +63,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_whnmu")
 
 [node name="ProgressBar" type="ProgressBar" parent="PanelContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(64, 12)
 layout_mode = 2
 size_flags_horizontal = 4
