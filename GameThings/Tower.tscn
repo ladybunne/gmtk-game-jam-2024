@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=7 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
 [ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
+[ext_resource type="Resource" uid="uid://iydmf0cu1hhj" path="res://GameThings/TowerResources/StandardTower.tres" id="2_8pjjc"]
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
 
@@ -11,6 +12,7 @@ radius = 200.0
 
 [node name="Tower" type="Area2D" groups=["Tower"]]
 script = ExtResource("1_k4d5n")
+tower_data = ExtResource("2_8pjjc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true

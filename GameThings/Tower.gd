@@ -125,7 +125,7 @@ func strong(new: Enemy, old: Enemy):
 
 
 func change_target_collider_radius(value: float):
-	collider.radius = value
+	collider.shape.radius = value
 
 #timer calls this on timeout or _process calls this if a shot is buffered
 func shoot(override_standard:bool = false):

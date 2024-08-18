@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=4 uid="uid://dqx0tgwtfe1g8"]
+[gd_scene load_steps=7 format=4 uid="uid://dqx0tgwtfe1g8"]
 
 [ext_resource type="PackedScene" uid="uid://w6fk256glcoe" path="res://GameThings/Level.tscn" id="1_2db0s"]
 [ext_resource type="PackedScene" uid="uid://cwem31dqdtony" path="res://GameThings/Base.tscn" id="2_kkbwq"]
 [ext_resource type="PackedScene" uid="uid://u2q37unjbsb" path="res://GameThings/Spawner.tscn" id="3_lq0i7"]
 [ext_resource type="PackedScene" uid="uid://dx6o8vnri4fmf" path="res://GameThings/Tower.tscn" id="4_cgdvt"]
+[ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="5_y5u2a"]
+
+[sub_resource type="Resource" id="Resource_l2m3w"]
+resource_local_to_scene = true
+script = ExtResource("5_y5u2a")
+damage = 5.0
+cooldown = 3.0
+target_range = 200.0
+splash_range = 5.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 0
 
 [node name="TestLevel" type="Node2D"]
 
@@ -18,6 +30,7 @@ position = Vector2(1120, 352)
 
 [node name="FirstTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(224, 224)
+tower_data = SubResource("Resource_l2m3w")
 
 [node name="LastTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(288, 480)
