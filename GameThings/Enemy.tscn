@@ -42,9 +42,3 @@ path_desired_distance = 10.0
 target_desired_distance = 5.0
 path_max_distance = 10.0
 path_postprocessing = 1
-
-[node name="cursed" type="RichTextLabel" parent="."]
-offset_left = -43.0
-offset_top = -66.0
-offset_right = 43.0
-offset_bottom = -33.0

@@ -30,8 +30,6 @@ func _physics_process(delta: float) -> void:
 
 	velocity = current_agent_position.direction_to(next_path_position) * speed
 	move_and_slide()
-	
-	$cursed.text = str(ceil(distance_to_base()))
 
 func distance_to_base():
 	# Ughhhhh.
