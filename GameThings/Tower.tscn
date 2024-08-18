@@ -41,6 +41,7 @@ shader_parameter/frequency = 32.0
 shader_parameter/speed = 12.0
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("rangeHitboxes") groups=["Tower"]]
+z_index = 1
 script = ExtResource("1_k4d5n")
 tower_data = ExtResource("2_8p3ue")
 rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4"), NodePath("Area2D5")]
@@ -86,6 +87,7 @@ unique_name_in_owner = true
 
 [node name="BaseSprite" type="NinePatchRect" parent="."]
 unique_name_in_owner = true
+z_as_relative = false
 texture_filter = 1
 offset_left = -32.0
 offset_top = -32.0
