@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cld0f8mg8m62w"]
+[gd_scene load_steps=5 format=3 uid="uid://cld0f8mg8m62w"]
 
 [ext_resource type="PackedScene" uid="uid://c7f6l47krk6xs" path="res://Scenes/UI/UI.tscn" id="1_4wb6o"]
 [ext_resource type="Texture2D" uid="uid://bwmtre1r87nsy" path="res://Assets/Sprites/background.png" id="1_dkb0d"]
 [ext_resource type="PackedScene" uid="uid://dqx0tgwtfe1g8" path="res://Scenes/TestLevel.tscn" id="2_v6iw5"]
+[ext_resource type="Script" path="res://Panner.gd" id="4_d1rfe"]
 
 [node name="GameScene" type="Node"]
 
@@ -17,3 +18,27 @@ centered = false
 [node name="UI" parent="." instance=ExtResource("1_4wb6o")]
 
 [node name="TestLevel" parent="." instance=ExtResource("2_v6iw5")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(640, 360)
+limit_left = -2000
+limit_top = -2000
+limit_right = 3280
+limit_bottom = 2640
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panner" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("camera")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_d1rfe")
+camera = NodePath("../../Camera2D")
