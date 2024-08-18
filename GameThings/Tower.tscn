@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=12 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
 [ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
@@ -27,10 +27,14 @@ resource_local_to_scene = true
 radius = 32.0
 height = 128.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4anu"]
+resource_local_to_scene = true
+size = Vector2(64, 64)
+
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("rangeHitboxes") groups=["Tower"]]
 script = ExtResource("1_k4d5n")
 tower_data = ExtResource("2_8p3ue")
-rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4")]
+rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4"), NodePath("Area2D5")]
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-32, 0)
@@ -62,6 +66,12 @@ script = ExtResource("2_t1qxj")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5lrnu")
 
+[node name="Area2D5" type="Area2D" parent="."]
+script = ExtResource("2_t1qxj")
+
+[node name="c" type="CollisionShape2D" parent="Area2D5"]
+shape = SubResource("RectangleShape2D_c4anu")
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 unique_name_in_owner = true
 scale = Vector2(0.8, 0.8)
@@ -75,7 +85,7 @@ position = Vector2(32, 0)
 [node name="ShotTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 
-[node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "range")]
+[node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "rangeHitboxes")]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 anchors_preset = 15
@@ -93,7 +103,7 @@ tower = NodePath("..")
 HandleSprite = NodePath("../HandleSprite")
 handleTex = ExtResource("2_l3qcl")
 handleTexBad = ExtResource("4_105yb")
-range = [NodePath("../Area2D/l"), NodePath("../Area2D2/r"), NodePath("../Area2D3/d"), NodePath("../Area2D4/u")]
+rangeHitboxes = [NodePath("../Area2D/l"), NodePath("../Area2D2/r"), NodePath("../Area2D3/d"), NodePath("../Area2D4/u"), NodePath("../Area2D5/c")]
 
 [node name="HandleSprite" type="NinePatchRect" parent="."]
 texture_filter = 1

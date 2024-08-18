@@ -51,7 +51,7 @@ func GetOverlapping():
 @export var handleTex: Texture
 @export var handleTexBad: Texture
 
-@export var range: Array[CollisionShape2D]
+@export var rangeHitboxes: Array[CollisionShape2D]
 
 func _process(delta: float) -> void:
 	if resizing:
@@ -73,20 +73,22 @@ func _process(delta: float) -> void:
 	
 	
 	
-	range[0].shape.height = scale.y * size.y + towerRange*2
-	range[0].shape.radius = towerRange
-	range[0].position.x = size.x/2 -(scale.x * size.x/2)
+	rangeHitboxes[0].shape.height = scale.y * size.y + towerRange*2
+	rangeHitboxes[0].shape.radius = towerRange
+	rangeHitboxes[0].position.x = size.x/2 -(scale.x * size.x/2)
 	
-	range[1].shape.height = scale.y * size.y + towerRange*2
-	range[1].shape.radius = towerRange
-	range[1].position.x = (scale.x * size.x/2) - size.x/2 
+	rangeHitboxes[1].shape.height = scale.y * size.y + towerRange*2
+	rangeHitboxes[1].shape.radius = towerRange
+	rangeHitboxes[1].position.x = (scale.x * size.x/2) - size.x/2 
 	
-	range[2].shape.height = scale.x * size.x + towerRange*2
-	range[2].shape.radius = towerRange
-	range[2].position.y = (scale.y * size.y/2) - size.y/2 
+	rangeHitboxes[2].shape.height = scale.x * size.x + towerRange*2
+	rangeHitboxes[2].shape.radius = towerRange
+	rangeHitboxes[2].position.y = (scale.y * size.y/2) - size.y/2 
 	
-	range[3].shape.height = scale.x * size.x + towerRange*2
-	range[3].shape.radius = towerRange	
-	range[3].position.y = size.y/2 -(scale.y * size.y/2)
+	rangeHitboxes[3].shape.height = scale.x * size.x + towerRange*2
+	rangeHitboxes[3].shape.radius = towerRange	
+	rangeHitboxes[3].position.y = size.y/2 -(scale.y * size.y/2)
+	
+	rangeHitboxes[4].scale = scale
 
 @export var towerRange = 124
