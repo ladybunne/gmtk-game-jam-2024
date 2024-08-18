@@ -1,9 +1,7 @@
 class_name Spawner extends Node2D
 
-@export_group("Internal")
-@export var next_spawn_timer: Timer
-@export var next_wave_timer: Timer
-@export_group("")
+@onready var next_spawn_timer: Timer = %NextSpawnTimer
+@onready var next_wave_timer: Timer = %NextWaveTimer
 
 @export var enemy_to_spawn: PackedScene
 

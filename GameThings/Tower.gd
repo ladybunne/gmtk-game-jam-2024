@@ -1,11 +1,8 @@
-extends Node2D
-
-class_name Tower
+class_name Tower extends Node2D
 
 @onready var polygon: Polygon2D = %Polygon2D
 @onready var shot_timer: Timer = %ShotTimer
 @onready var firing_point: Node2D = %FiringPoint
-@export_group("")
 
 @export var tower_data: TowerData
 
