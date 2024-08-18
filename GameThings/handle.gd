@@ -51,6 +51,8 @@ func GetOverlapping():
 @export var handleTex: Texture
 @export var handleTexBad: Texture
 
+@export var range: Array[CollisionShape2D]
+
 func _process(delta: float) -> void:
 	if resizing:
 		if (scaleType % 3 == 0):
@@ -68,3 +70,23 @@ func _process(delta: float) -> void:
 		
 	HandleSprite.global_position = global_position
 	HandleSprite.size = size * scale
+	
+	
+	
+	range[0].shape.height = scale.y * size.y + towerRange*2
+	range[0].shape.radius = towerRange
+	range[0].position.x = size.x/2 -(scale.x * size.x/2)
+	
+	range[1].shape.height = scale.y * size.y + towerRange*2
+	range[1].shape.radius = towerRange
+	range[1].position.x = (scale.x * size.x/2) - size.x/2 
+	
+	range[2].shape.height = scale.x * size.x + towerRange*2
+	range[2].shape.radius = towerRange
+	range[2].position.y = (scale.y * size.y/2) - size.y/2 
+	
+	range[3].shape.height = scale.x * size.x + towerRange*2
+	range[3].shape.radius = towerRange	
+	range[3].position.y = size.y/2 -(scale.y * size.y/2)
+
+@export var towerRange = 124

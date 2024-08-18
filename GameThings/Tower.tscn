@@ -1,24 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=10 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
 [ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
+[ext_resource type="Script" path="res://GameThings/DetectEnemy.gd" id="2_t1qxj"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ejdv8"]
-radius = 200.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c0oag"]
+resource_local_to_scene = true
+radius = 32.0
+height = 130.75
 
-[node name="Tower" type="Area2D" node_paths=PackedStringArray("polygon", "shot_timer", "firing_point") groups=["Tower"]]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y1be5"]
+resource_local_to_scene = true
+radius = 32.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_134mb"]
+resource_local_to_scene = true
+radius = 32.0
+height = 128.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5lrnu"]
+resource_local_to_scene = true
+radius = 32.0
+height = 128.0
+
+[node name="Tower" type="Node2D" node_paths=PackedStringArray("polygon", "shot_timer", "firing_point", "rangeHitboxes") groups=["Tower"]]
 script = ExtResource("1_k4d5n")
 polygon = NodePath("Polygon2D")
 shot_timer = NodePath("ShotTimer")
 firing_point = NodePath("Polygon2D/FiringPoint")
+rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ejdv8")
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-32, 0)
+script = ExtResource("2_t1qxj")
+
+[node name="l" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_c0oag")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(32, 0)
+script = ExtResource("2_t1qxj")
+
+[node name="r" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("CapsuleShape2D_y1be5")
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2(0, 32)
+script = ExtResource("2_t1qxj")
+
+[node name="d" type="CollisionShape2D" parent="Area2D3"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_134mb")
+
+[node name="Area2D4" type="Area2D" parent="."]
+position = Vector2(0, -32)
+script = ExtResource("2_t1qxj")
+
+[node name="u" type="CollisionShape2D" parent="Area2D4"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5lrnu")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-rotation = 6.28319
 scale = Vector2(0.8, 0.8)
 color = Color(0.678, 0.847, 0.902, 1)
 polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
@@ -28,7 +73,7 @@ position = Vector2(32, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
 
-[node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite")]
+[node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "range")]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 anchors_preset = 15
@@ -46,6 +91,7 @@ tower = NodePath("..")
 HandleSprite = NodePath("../HandleSprite")
 handleTex = ExtResource("2_l3qcl")
 handleTexBad = ExtResource("4_105yb")
+range = [NodePath("../Area2D/l"), NodePath("../Area2D2/r"), NodePath("../Area2D3/d"), NodePath("../Area2D4/u")]
 
 [node name="HandleSprite" type="NinePatchRect" parent="."]
 texture_filter = 1

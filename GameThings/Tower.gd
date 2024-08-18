@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Tower
 
@@ -26,16 +26,16 @@ enum TargetingMode {
 
 @onready var sprite: Node2D = find_child("Polygon2D")
 @onready var handle: Control = find_child("Handle")
-var currentCost
+var currentCost = 0
 
 func _ready() -> void:
-	body_entered.connect(enemy_entered)
-	body_exited.connect(enemy_exited)
 	recolor()
 	currentCost = handle.GetCost()
 
 
 func _process(delta: float) -> void:
+	GetEnemiesInRange()
+	retarget()
 	if target != null:
 		sprite.look_at(target.position)
 		queue_redraw()
@@ -56,6 +56,15 @@ func recolor():
 		TargetingMode.STRONG:
 			polygon.color = Color.KHAKI
 
+@export var rangeHitboxes: Array[Area2D]
+
+func GetEnemiesInRange():
+	enemies_in_range.clear()
+	for hitbox in rangeHitboxes:
+		for enemy in hitbox.enemies:
+			if !enemies_in_range.has(enemy):
+				enemies_in_range.append(enemy)
+
 func retarget():
 	target = null
 	for enemy in enemies_in_range:
@@ -71,26 +80,6 @@ func retarget():
 					target = close(enemy, target)
 				TargetingMode.STRONG:
 					target = strong(enemy, target)
-
-func enemy_entered(body: Node2D):
-	var enemy := body as Enemy
-	if not enemy:
-		return
-	
-	if enemy not in enemies_in_range:
-		enemies_in_range.append(enemy)
-	
-	retarget()
-
-func enemy_exited(body: Node2D):
-	var enemy := body as Enemy
-	if not enemy:
-		return
-	
-	if enemy in enemies_in_range:
-		enemies_in_range.erase(enemy)
-	
-	retarget()
 
 # This needs to not do "as the crow flies" - maybe do lifetime of entity?
 func first(new: Enemy, old: Enemy):
