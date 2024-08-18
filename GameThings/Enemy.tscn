@@ -36,3 +36,9 @@ polygon = PackedVector2Array(-15, -9, -15, 5, -11, 1, -11, -14)
 position = Vector2(13, 22)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-29, -16, -26, -9, -21, -5, -13, -4, -4, -5, 1, -9, 4, -16)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_max_distance = 10.0
+path_postprocessing = 1

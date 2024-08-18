@@ -15,6 +15,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="BuildResourceBar"]
+layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0
 offset_right = 880.0
@@ -27,6 +28,7 @@ patch_margin_bottom = 4
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="BuildResourceBar"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0
 offset_right = 880.0
@@ -45,6 +47,7 @@ preview = true
 
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="BuildResourceBar"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0
 offset_right = 880.0
@@ -61,6 +64,7 @@ tint_progress = Color(1, 1, 1, 0.501961)
 script = ExtResource("4_4iij1")
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="BuildResourceBar"]
+layout_mode = 0
 offset_left = 400.0
 offset_top = 25.0
 offset_right = 880.0
