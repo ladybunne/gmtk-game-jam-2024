@@ -3,9 +3,9 @@ class_name Enemy extends CharacterBody2D
 @export var speed: float = 100
 @export var health: float = 100
 var spawner: Spawner
-
-# I guess this is the better way of doing this?
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var hitParticles: CPUParticles2D = %HitParticles
+# I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
+@onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 
 func _ready() -> void:
 	call_deferred("actor_setup")
@@ -53,6 +53,10 @@ func distance_to_base():
 
 func take_damage(damage: float):
 	health -= damage
+	print(name + str(health))
+	show_damage()
+	if health <=0:
+		Callable(queue_free).call_deferred()
 
 func show_damage():
-	pass
+	hitParticles.emitting = true

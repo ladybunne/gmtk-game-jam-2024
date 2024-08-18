@@ -84,6 +84,7 @@ position = Vector2(32, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "rangeHitboxes")]
 modulate = Color(1, 1, 1, 0)
