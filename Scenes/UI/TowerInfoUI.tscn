@@ -54,7 +54,7 @@ polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Name" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Standard Tower"
 fit_content = true
@@ -66,14 +66,14 @@ layout_mode = 2
 theme_override_constants/h_separation = 30
 columns = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="Damage" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Damage: 10"
 fit_content = true
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="Range" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Range: 20"
@@ -83,14 +83,14 @@ autowrap_mode = 0
 [node name="Control" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="Cooldown" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Cooldown: 0.4"
 fit_content = true
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="Size" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Size: BIG"
@@ -100,7 +100,7 @@ autowrap_mode = 0
 [node name="Control2" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+[node name="Target" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "Target: First"

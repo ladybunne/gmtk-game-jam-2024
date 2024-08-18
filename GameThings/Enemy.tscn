@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=8 format=3 uid="uid://0wjxf4s3ct76"]
 
 [ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
 [ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="1_eo6st"]
@@ -7,7 +7,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 24.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_whnmu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rejq"]
+bg_color = Color(0.088275, 0.0693, 0.09, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsis1"]
+bg_color = Color(0.89, 0.3115, 0.504333, 1)
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
 script = ExtResource("1_6ags1")
 health = 50.0
@@ -44,3 +52,23 @@ path_desired_distance = 10.0
 target_desired_distance = 5.0
 path_max_distance = 10.0
 path_postprocessing = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 40)
+offset_left = -200.0
+offset_top = -70.0
+offset_right = 200.0
+offset_bottom = -30.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_whnmu")
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(64, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_2rejq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tsis1")
+rounded = true
+show_percentage = false

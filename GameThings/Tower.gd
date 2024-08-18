@@ -43,15 +43,12 @@ func _ready() -> void:
 	shot_timer.timeout.connect(shoot)
 	shot_timer.start()
 
-
-
-
 func _process(delta: float) -> void:
 	GetEnemiesInRange()
 	retarget()
+	queue_redraw()
 	if target != null:
 		sprite.look_at(target.position)
-		queue_redraw()
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
@@ -63,10 +60,6 @@ func _process(delta: float) -> void:
 		if buffer_shot && !shooting_volley:
 			shoot()
 			buffer_shot = false
-	retarget()
-
-
-
 
 func _draw() -> void:
 	if target != null:
@@ -144,26 +137,38 @@ func shoot(override_standard:bool = false):
 				damage_volley()
 			TowerData.TowerType.Splash:
 				#radius around target is affected
-				#print("sploosh")
-				var area = Area2D.new()
-				var shape = CollisionShape2D.new()
-				add_child(area)
-				shape.debug_color = Color(1,0,0,.2)
-				area.global_position = target.global_position
-				area.add_child(shape)
-				shape.shape = CircleShape2D.new()
-				shape.shape.radius = tower_data.splash_range
-				area.collision_layer = 1
-				area.collision_mask = 1
-				splash_visibility(area)
-				await get_tree().physics_frame
-				print(area.get_overlapping_bodies().size())
-				for thing in area.get_overlapping_bodies():
-					print(thing.name + " is about to get splooshed")
-					if thing is Enemy && target:
-						thing.take_damage(tower_data.damage, directionToEnemy)
-					elif thing is Enemy && !target:
-						thing.take_damage(tower_data.damage, thing.position-target.position)
+				print("sploosh")
+				for enemy in get_tree().get_nodes_in_group("Enemy"):
+					if enemy.global_position.distance_to(target.global_position) < tower_data.splash_range:
+						print(enemy.name + " is about to get splooshed")
+						print(global_position.distance_to(target.global_position))
+						if enemy == target:
+							enemy.take_damage(tower_data.damage, directionToEnemy)
+						else:
+							enemy.take_damage(tower_data.damage, enemy.position-target.position)
+				splash_visibility(target.global_position)
+
+				#DEPRECATED
+				#var area = Area2D.new()
+				#var shape = CollisionShape2D.new()
+				#add_child(area)
+				#shape.debug_color = Color(1,0,0,.2)
+				#area.global_position = target.global_position
+				#area.add_child(shape)
+				#shape.shape = CircleShape2D.new()
+				#shape.shape.radius = tower_data.splash_range
+				#area.collision_layer = 1
+				#area.collision_mask = 1
+				#await get_tree().physics_frame
+				#await get_tree().physics_frame
+				#await get_tree().physics_frame
+				#print(area.get_overlapping_bodies().size())
+				#for thing in area.get_overlapping_bodies():
+					#print(thing.name + " is about to get splooshed")
+					#if thing is Enemy && target:
+						#thing.take_damage(tower_data.damage, directionToEnemy)
+					#elif thing is Enemy && !target:
+						#thing.take_damage(tower_data.damage, thing.position-target.position)
 
 			_:
 				print("how did we have NO TowerType?")
@@ -173,17 +178,15 @@ func shoot(override_standard:bool = false):
 		shot_timer.stop() #idk if i need this but ohwell
 		buffer_shot = true #
 
-func splash_visibility(area: Area2D):
+func splash_visibility(position: Vector2):
 	var sprite = Sprite2D.new()
 	add_child(sprite)
-	sprite.global_position = area.global_position
+	sprite.global_position = position
 	sprite.texture = splash_sprite
 	sprite.modulate = Color(0,1,0,.2)
 	sprite.scale *= tower_data.splash_range/50
 	var splash_timer:= get_tree().create_timer(.5)
 	await splash_timer.timeout
-
-	Callable(area.queue_free).call_deferred()
 	Callable(sprite.queue_free).call_deferred()
 
 func damage_volley():
