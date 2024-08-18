@@ -5,6 +5,7 @@ class_name Tower
 @onready var polygon: Polygon2D = %Polygon2D
 @onready var shot_timer: Timer = %ShotTimer
 @onready var firing_point: Node2D = %FiringPoint
+@onready var splash_sprite: CompressedTexture2D = preload("res://Assets/Sprites/whitecircle.png")
 @export_group("")
 
 @export var tower_data: TowerData
@@ -58,7 +59,7 @@ func _process(delta: float) -> void:
 			if volley_timer <=0:
 				reshoot.emit()
 				volley_timer = tower_data.rate_of_fire
-				print("volley!")
+				#print("volley!")
 		if buffer_shot && !shooting_volley:
 			shoot()
 			buffer_shot = false
@@ -132,18 +133,38 @@ func shoot(override_standard:bool = false):
 		typeToUse = TowerData.TowerType.Standard
 	else:
 		typeToUse = tower_data.type
-
 	if target != null:
+		var directionToEnemy = (target.position - position).normalized()
 		match typeToUse:
 			TowerData.TowerType.Standard:
-				target.take_damage(tower_data.damage, (target.position - position).normalized())
+				target.take_damage(tower_data.damage, directionToEnemy)
 			TowerData.TowerType.Capacity:
 				#continuously shoot (changing targets as enemies die) until ammo reaches 0
 				shooting_volley = true
 				damage_volley()
 			TowerData.TowerType.Splash:
 				#radius around target is affected
-				pass
+				#print("sploosh")
+				var area = Area2D.new()
+				var shape = CollisionShape2D.new()
+				add_child(area)
+				shape.debug_color = Color(1,0,0,.2)
+				area.global_position = target.global_position
+				area.add_child(shape)
+				shape.shape = CircleShape2D.new()
+				shape.shape.radius = tower_data.splash_range
+				area.collision_layer = 1
+				area.collision_mask = 1
+				splash_visibility(area)
+				await get_tree().physics_frame
+				print(area.get_overlapping_bodies().size())
+				for thing in area.get_overlapping_bodies():
+					print(thing.name + " is about to get splooshed")
+					if thing is Enemy && target:
+						thing.take_damage(tower_data.damage, directionToEnemy)
+					elif thing is Enemy && !target:
+						thing.take_damage(tower_data.damage, thing.position-target.position)
+
 			_:
 				print("how did we have NO TowerType?")
 		if !override_standard:
@@ -151,6 +172,19 @@ func shoot(override_standard:bool = false):
 	else:
 		shot_timer.stop() #idk if i need this but ohwell
 		buffer_shot = true #
+
+func splash_visibility(area: Area2D):
+	var sprite = Sprite2D.new()
+	add_child(sprite)
+	sprite.global_position = area.global_position
+	sprite.texture = splash_sprite
+	sprite.modulate = Color(0,1,0,.2)
+	sprite.scale *= tower_data.splash_range/50
+	var splash_timer:= get_tree().create_timer(.5)
+	await splash_timer.timeout
+
+	Callable(area.queue_free).call_deferred()
+	Callable(sprite.queue_free).call_deferred()
 
 func damage_volley():
 	#acknowledging that we COULD round it to an int but we choose not to because SCALING

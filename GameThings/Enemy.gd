@@ -60,12 +60,12 @@ func take_damage(damage: float, direction: Vector2):
 		Callable(queue_free).call_deferred()
 
 func show_damage(damage: float, direction: Vector2):
-	var flecks: CPUParticles2D = hitParticles.instantiate()
-	add_child(flecks)
-	flecks.direction = direction
-	flecks.scale_amount_max =flecks.scale_amount_max*damage
-	flecks.emitting = true
-	flecks.finished.connect(func(): kill_particle(flecks))
+		var flecks: CPUParticles2D = hitParticles.instantiate()
+		add_child(flecks)
+		flecks.direction = direction
+		flecks.scale_amount_max =flecks.scale_amount_max*damage
+		flecks.emitting = true
+		flecks.finished.connect(func(): kill_particle(flecks))
 
 func kill_particle(particle: CPUParticles2D):
 	Callable(particle.queue_free).call_deferred()
