@@ -5,7 +5,6 @@ class_name Tower
 @onready var polygon: Polygon2D = %Polygon2D
 @onready var shot_timer: Timer = %ShotTimer
 @onready var firing_point: Node2D = %FiringPoint
-@onready var collider: CollisionShape2D = %CollisionShape2D
 @export_group("")
 
 @export var tower_data: TowerData
@@ -120,7 +119,7 @@ func strong(new: Enemy, old: Enemy):
 
 
 func change_target_collider_radius(value: float):
-	collider.shape.radius = value
+	handle.towerRange = value
 
 #timer calls this on timeout or _process calls this if a shot is buffered
 func shoot(override_standard:bool = false):

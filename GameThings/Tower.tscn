@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=11 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
 [ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
+[ext_resource type="Resource" uid="uid://iydmf0cu1hhj" path="res://GameThings/TowerResources/StandardTower.tres" id="2_8p3ue"]
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
 [ext_resource type="Script" path="res://GameThings/DetectEnemy.gd" id="2_t1qxj"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
@@ -26,11 +27,9 @@ resource_local_to_scene = true
 radius = 32.0
 height = 128.0
 
-[node name="Tower" type="Node2D" node_paths=PackedStringArray("polygon", "shot_timer", "firing_point", "rangeHitboxes") groups=["Tower"]]
+[node name="Tower" type="Node2D" node_paths=PackedStringArray("rangeHitboxes") groups=["Tower"]]
 script = ExtResource("1_k4d5n")
-polygon = NodePath("Polygon2D")
-shot_timer = NodePath("ShotTimer")
-firing_point = NodePath("Polygon2D/FiringPoint")
+tower_data = ExtResource("2_8p3ue")
 rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4")]
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -64,14 +63,17 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_5lrnu")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(0.8, 0.8)
 color = Color(0.678, 0.847, 0.902, 1)
 polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
 
 [node name="FiringPoint" type="Node2D" parent="Polygon2D"]
+unique_name_in_owner = true
 position = Vector2(32, 0)
 
 [node name="ShotTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "range")]
 modulate = Color(1, 1, 1, 0)

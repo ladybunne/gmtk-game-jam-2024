@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dqx0tgwtfe1g8"]
+[gd_scene load_steps=10 format=4 uid="uid://dqx0tgwtfe1g8"]
 
 [ext_resource type="PackedScene" uid="uid://w6fk256glcoe" path="res://GameThings/Level.tscn" id="1_2db0s"]
 [ext_resource type="PackedScene" uid="uid://cwem31dqdtony" path="res://GameThings/Base.tscn" id="2_kkbwq"]
@@ -6,12 +6,45 @@
 [ext_resource type="PackedScene" uid="uid://dx6o8vnri4fmf" path="res://GameThings/Tower.tscn" id="4_cgdvt"]
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="5_y5u2a"]
 
-[sub_resource type="Resource" id="Resource_l2m3w"]
+[sub_resource type="Resource" id="Resource_hhpmj"]
 resource_local_to_scene = true
 script = ExtResource("5_y5u2a")
 damage = 5.0
 cooldown = 3.0
-target_range = 200.0
+target_range = 75.0
+splash_range = 5.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 0
+
+[sub_resource type="Resource" id="Resource_dru6i"]
+resource_local_to_scene = true
+script = ExtResource("5_y5u2a")
+damage = 5.0
+cooldown = 3.0
+target_range = 75.0
+splash_range = 5.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 0
+
+[sub_resource type="Resource" id="Resource_bn7qd"]
+resource_local_to_scene = true
+script = ExtResource("5_y5u2a")
+damage = 5.0
+cooldown = 3.0
+target_range = 75.0
+splash_range = 5.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 0
+
+[sub_resource type="Resource" id="Resource_wnbo2"]
+resource_local_to_scene = true
+script = ExtResource("5_y5u2a")
+damage = 5.0
+cooldown = 3.0
+target_range = 75.0
 splash_range = 5.0
 ammo_capacity = 10.0
 rate_of_fire = 0.1
@@ -30,16 +63,19 @@ position = Vector2(1120, 352)
 
 [node name="FirstTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(224, 224)
-tower_data = SubResource("Resource_l2m3w")
+tower_data = SubResource("Resource_hhpmj")
 
 [node name="LastTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(288, 480)
+tower_data = SubResource("Resource_dru6i")
 targeting_mode = 1
 
 [node name="CloseTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(672, 288)
+tower_data = SubResource("Resource_bn7qd")
 targeting_mode = 2
 
 [node name="StrongTower" parent="." instance=ExtResource("4_cgdvt")]
 position = Vector2(928, 480)
+tower_data = SubResource("Resource_wnbo2")
 targeting_mode = 3
