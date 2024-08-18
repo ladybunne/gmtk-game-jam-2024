@@ -61,7 +61,8 @@ func take_damage(damage: float, direction: Vector2):
 
 func show_damage(damage: float, direction: Vector2):
 		var flecks: CPUParticles2D = hitParticles.instantiate()
-		add_child(flecks)
+		get_tree().get_first_node_in_group("Level").add_child(flecks)
+		flecks.global_position = global_position
 		flecks.direction = direction
 		flecks.scale_amount_max =flecks.scale_amount_max*damage
 		flecks.emitting = true
