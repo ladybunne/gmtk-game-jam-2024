@@ -39,6 +39,7 @@ func _process(delta: float) -> void:
 	if target != null:
 		sprite.look_at(target.position)
 		queue_redraw()
+	retarget()
 
 	
 func _draw() -> void:
@@ -79,8 +80,6 @@ func enemy_entered(body: Node2D):
 	
 	if enemy not in enemies_in_range:
 		enemies_in_range.append(enemy)
-	
-	retarget()
 
 func enemy_exited(body: Node2D):
 	var enemy := body as Enemy
@@ -89,15 +88,13 @@ func enemy_exited(body: Node2D):
 	
 	if enemy in enemies_in_range:
 		enemies_in_range.erase(enemy)
-	
-	retarget()
 
 # This needs to not do "as the crow flies" - maybe do lifetime of entity?
 func first(new: Enemy, old: Enemy):
-	return new if new.distance_from_spawner() > old.distance_from_spawner() else old
+	return new if new.distance_to_base() < old.distance_to_base() else old
 
 func last(new: Enemy, old: Enemy):
-	return new if new.distance_from_spawner() < old.distance_from_spawner() else old
+	return new if new.distance_to_base() > old.distance_to_base() else old
 
 func close(new: Enemy, old: Enemy):
 	return new if position.distance_to(new.position) < position.distance_to(old.position) else old
