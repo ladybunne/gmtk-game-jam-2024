@@ -1,4 +1,4 @@
-extends Area2D
+class_name Base extends Area2D
 
 var health: int = 100
 

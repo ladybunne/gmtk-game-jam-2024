@@ -49,9 +49,10 @@ func GetOverlapping():
 	var map = get_tree().get_first_node_in_group("Tilemap") as TileMapLayer
 	var coords = map.get_used_cells()
 	for coord in coords:
-		for point in map.get_cell_tile_data(coord).get_collision_polygon_points(0,0):
-			if get_global_rect().has_point(map.to_global(map.map_to_local(coord)+point)):
-				return true
+		if map.get_cell_tile_data(coord).get_collision_polygons_count(0)>0:
+			for point in map.get_cell_tile_data(coord).get_collision_polygon_points(0,0):
+				if get_global_rect().has_point(map.to_global(map.map_to_local(coord)+point)):
+					return true
 			
 	return false
 	
