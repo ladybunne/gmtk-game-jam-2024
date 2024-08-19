@@ -2,6 +2,8 @@ class_name Enemy extends CharacterBody2D
 
 @export var speed: float = 100
 @export var health: float = 100
+@onready var maxHealth: float = health
+
 var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
@@ -63,7 +65,7 @@ func take_damage(damage: float, direction: Vector2):
 
 func checkDead():
 	if health <=0:
-		print("enemy died")
+		GameManager.buildResource+= maxHealth/50
 		Callable(queue_free).call_deferred()
 
 @onready var bigness: float = health
@@ -71,6 +73,7 @@ func checkDead():
 
 func embiggen(damage: float):
 	health += damage
+	maxHealth += damage
 	%ProgressBar.max_value += damage
 	bigness += damage
 	%ProgressBar.show()
@@ -78,7 +81,7 @@ func embiggen(damage: float):
 	update_healthbar()
 
 func ensmallen(damage: float):
-	health -= damage
+	maxHealth -= damage
 	%ProgressBar.max_value -= damage
 	bigness -= damage
 	checkDead()

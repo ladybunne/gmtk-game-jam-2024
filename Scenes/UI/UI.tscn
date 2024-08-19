@@ -188,6 +188,7 @@ pool = true
 text = "Ensmallen Pool"
 
 [node name="Dot1" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button5"]
+layout_mode = 0
 offset_left = 37.5
 offset_top = -4.0
 offset_right = 49.5
@@ -196,6 +197,7 @@ texture = ExtResource("4_2nsox")
 expand_mode = 1
 
 [node name="Dot2" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button5"]
+layout_mode = 0
 offset_left = 76.5
 offset_top = -4.0
 offset_right = 88.5
