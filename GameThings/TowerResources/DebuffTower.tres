@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=2 format=3 uid="uid://d28j28j2kco5y"]
+
+[ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_3kl2f"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_3kl2f")
+damage = 5.0
+cooldown = 0.5
+target_range = 10.0
+splash_range = 200.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 7
+shot_sfx_string = "gurgle"

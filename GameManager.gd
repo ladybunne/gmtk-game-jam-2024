@@ -1,6 +1,6 @@
 extends Node
 
-var buildResource = 15
+var buildResource = 200
 var areaToBuildResourceRatio = 1.0/1024.0
 
 var barMax
@@ -101,6 +101,10 @@ func _input(event: InputEvent) -> void:
 				p.position = p.get_global_mouse_position()
 				get_tree().get_first_node_in_group("bigButton" if poolIsBig else "smallButton").ConsumeCharge()
 				placingPool = false
+				if poolIsBig:
+					AudioManager.play_sfx("mwap")
+				else:
+					AudioManager.play_sfx("awmp")
 
 
 			if placing:

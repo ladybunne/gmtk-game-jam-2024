@@ -27,7 +27,7 @@ func _process(_delta: float):
 	get_tree().get_first_node_in_group("WaveText").text = "Wave: " \
 	+str(currentWaveIndex+1)+"/"+str(waveSet.waves.size())
 
-func spawn_unit():
+func spawn_units():
 	while currentUnitIndex < currentCorps.units.size():
 		create_enemy(currentUnit)
 		next_unit_spawn_timer.wait_time = currentCorps.unitInterval
@@ -43,10 +43,10 @@ func create_enemy(data: UnitData):
 		get_parent().add_child(new_enemy)
 
 
-func spawn_corps(corps: CorpsData):
+func spawn_all_corps(corps: CorpsData):
 	while currentCorpsIndex < currentWave.corps.size():
 		print("Wave "+str(currentWaveIndex+1) + ", Corps "+str(currentCorpsIndex+1))
-		spawn_unit()
+		spawn_units()
 		next_corps_spawn_timer.wait_time = currentWave.corpsInterval
 		next_corps_spawn_timer.start()
 		await next_corps_spawn_timer.timeout
@@ -55,12 +55,12 @@ func spawn_corps(corps: CorpsData):
 
 func spawn_wave(wave: WaveData):
 	while currentWaveIndex < waveSet.waves.size():
-		spawn_corps(currentCorps)
+		await spawn_all_corps(currentCorps)
+		currentWaveIndex+=1
+		GameManager.availableTowers += 0.5
 		next_wave_timer.wait_time = waveSet.waveInterval
 		next_wave_timer.start()
 		await next_wave_timer.timeout
-		currentWaveIndex+=1
-		GameManager.availableTowers += 0.5
 	print("out of waves")
 
 #DEPRECATED

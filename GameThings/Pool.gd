@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 	lifetime -= delta
 	if lifetime<+0:
 		queue_free()
-	
+
 	timer -= delta
 	if timer<=0:
 		timer = 0.1
@@ -19,4 +19,3 @@ func _process(delta: float) -> void:
 					e.embiggen(2)
 				else:
 					e.ensmallen(2)
-	

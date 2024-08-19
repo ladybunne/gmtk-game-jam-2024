@@ -12,4 +12,4 @@ splash_range = 50.0
 ammo_capacity = 10.0
 rate_of_fire = 0.1
 type = 0
-shot_sfx_string = "puh"
+shot_sfx_string = "bang"

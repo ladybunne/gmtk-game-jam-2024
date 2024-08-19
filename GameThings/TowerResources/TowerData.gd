@@ -1,6 +1,6 @@
 class_name TowerData extends Resource
 
-enum TowerType{Standard, Capacity, Splash, Embiggen, Ensmallen}
+enum TowerType{Standard, Capacity, Splash, Embiggen, Ensmallen, Sniper, Equalizer, Debuff}
 
 @export_group("Stats")
 @export var damage: float = 5
