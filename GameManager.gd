@@ -52,7 +52,9 @@ var end_screen_ui: EndScreenUI
 var placingPool: bool = false
 var poolIsBig: bool = false
 func _process(delta: float) -> void:
-	get_tree().get_first_node_in_group("TowerCountText").text = "Available Towers: " + str(floor(availableTowers))
+	var tower_count_text = get_tree().get_first_node_in_group("TowerCountText")
+	if tower_count_text:
+		tower_count_text.text = "Available Towers: " + str(floor(availableTowers))
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
 	if base == null:
