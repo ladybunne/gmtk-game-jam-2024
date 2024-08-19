@@ -72,10 +72,10 @@ func updateStats():
 	#modify
 	match tower_data.type:
 		TowerData.TowerType.Standard:
-			damage *= currentCost/10
+			damage *= 1 + (currentCost/8)
 		TowerData.TowerType.Splash:
-			splash_range *= currentCost/16
-			damage *= currentCost/20
+			splash_range *= 1 + (currentCost/12)
+			damage *= 1 + (currentCost/20)
 		TowerData.TowerType.Capacity:
 			ammo_capacity += currentCost
 		TowerData.TowerType.Embiggen:
@@ -93,15 +93,19 @@ func Setup():
 		TowerData.TowerType.Standard:
 			polygon = standard_gon.instantiate()
 			add_child(polygon)
+			move_child(polygon,6)
 		TowerData.TowerType.Capacity:
 			polygon = capacity_gon.instantiate()
 			add_child(polygon)
+			move_child(polygon,6)
 		TowerData.TowerType.Splash:
 			polygon = splash_gon.instantiate()
 			add_child(polygon)
+			move_child(polygon,6)
 		TowerData.TowerType.Sniper:
 			polygon = sniper_gon.instantiate()
 			add_child(polygon)
+			move_child(polygon,6)
 		_:
 			pass
 	recolor()
@@ -186,7 +190,7 @@ func close(new: Enemy, old: Enemy):
 	return new if position.distance_to(new.position) < position.distance_to(old.position) else old
 
 func strong(new: Enemy, old: Enemy):
-	return new
+	return new if new.health > old.health else old
 
 
 func change_target_collider_radius(value: float):

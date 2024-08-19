@@ -57,6 +57,8 @@ func Populate(type: TowerData.TowerType, damage: float, range: float, \
 	match type:
 		TowerData.TowerType.Standard:
 				nameTxt.text = "Standard Tower"
+		TowerData.TowerType.Sniper:
+				nameTxt.text = "Sniper Tower"
 		TowerData.TowerType.Splash:
 				nameTxt.text = "Splash Tower"
 				splashTxt.show()

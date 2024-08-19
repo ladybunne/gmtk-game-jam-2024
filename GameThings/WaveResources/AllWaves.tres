@@ -12,12 +12,12 @@
 [sub_resource type="Resource" id="Resource_1ehyg"]
 script = ExtResource("3_nyxhs")
 units = Array[ExtResource("4_sanqk")]([ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr")])
-unitInterval = 1.0
+unitInterval = 1.5
 
 [sub_resource type="Resource" id="Resource_aiifg"]
 script = ExtResource("3_nyxhs")
 units = Array[ExtResource("4_sanqk")]([ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr"), ExtResource("5_3mnjr")])
-unitInterval = 1.0
+unitInterval = 1.5
 
 [sub_resource type="Resource" id="Resource_qbtvf"]
 script = ExtResource("2_1cryo")

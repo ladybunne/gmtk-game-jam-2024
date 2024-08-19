@@ -61,7 +61,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _process(delta: float) -> void:
-	get_tree().get_first_node_in_group("TowerCountText").text = "Available Towers: " + str(floor(availableTowers))
+	var tower_count_text = get_tree().get_first_node_in_group("TowerCountText")
+	if tower_count_text:
+		tower_count_text.text = "Available Towers: " + str(floor(availableTowers))
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
 	if base == null:
@@ -163,6 +165,10 @@ func game_over(p_win: bool):
 	end_screen_ui.visible = true
 
 func restart_scene():
+	availableTowers = 3
+	placing = false
+	placingPool = false
+	selling = false
 	game_over_on = false
 	cursor = null
 	base = null

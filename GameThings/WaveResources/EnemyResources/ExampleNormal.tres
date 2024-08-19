@@ -8,5 +8,5 @@ script = ExtResource("1_xpfh8")
 unitType = 0
 color = Color(1, 1, 0, 1)
 startSize = 24.0
-startHealth = 70.0
+startHealth = 50.0
 startSpeed = 100.0

@@ -5,11 +5,11 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_0kmka")
-damage = 5.0
-cooldown = 2.0
-target_range = 60.0
+damage = 4.0
+cooldown = 3.5
+target_range = 75.0
 splash_range = null
-ammo_capacity = 20.0
-rate_of_fire = 0.01
+ammo_capacity = 10.0
+rate_of_fire = 0.1
 type = 1
 shot_sfx_string = "T"
