@@ -84,6 +84,8 @@ func _input(event: InputEvent) -> void:
 				ResourceBar.previewBar.value = buildResource
 			if selling:
 				selling = false
+			if placingPool:
+				placingPool = false
 
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if placingPool:
@@ -110,7 +112,6 @@ func _input(event: InputEvent) -> void:
 						return
 
 					buildResource -= INITIAL_COST
-					ResourceBar.previewBar.value = ResourceBar.mainBar.value
 
 				placing = false
 

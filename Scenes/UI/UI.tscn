@@ -227,6 +227,21 @@ texture = ExtResource("12_epqg0")
 [node name="EndScreenUI" parent="." instance=ExtResource("17_icfck")]
 visible = false
 
+[node name="WaveCounter" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WaveCounter"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -146.0
+offset_right = 191.0
+offset_bottom = -96.0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 32
+text = "Wave: 1/5
+"
+
 [editable path="TowerCreateUI/Panel/Container/Button2"]
 [editable path="TowerCreateUI/Panel/Container/Button3"]
 [editable path="TowerCreateUI/Panel/Container/Button4"]
