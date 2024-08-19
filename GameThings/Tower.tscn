@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
-[ext_resource type="Script" path="res://GameThings/Handle.gd" id="2_8oltv"]
+[ext_resource type="Script" path="res://GameThings/HandleFixed.gd" id="2_8oltv"]
 [ext_resource type="Resource" uid="uid://iydmf0cu1hhj" path="res://GameThings/TowerResources/StandardTower.tres" id="2_8p3ue"]
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
 [ext_resource type="Script" path="res://GameThings/DetectEnemy.gd" id="2_t1qxj"]
