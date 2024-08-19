@@ -24,7 +24,8 @@ func _ready():
 
 
 func _process(_delta: float):
-	pass
+	get_tree().get_first_node_in_group("WaveText").text = "Wave: " \
+	+str(currentWaveIndex+1)+"/"+str(waveSet.waves.size())
 
 func spawn_unit(unit: UnitData):
 	while currentUnitIndex < currentCorps.units.size():

@@ -229,7 +229,7 @@ visible = false
 
 [node name="WaveCounter" type="CanvasLayer" parent="."]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WaveCounter"]
+[node name="Waves" type="RichTextLabel" parent="WaveCounter" groups=["WaveText"]]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
