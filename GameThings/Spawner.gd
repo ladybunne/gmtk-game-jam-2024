@@ -3,7 +3,7 @@ class_name Spawner extends Node2D
 @onready var next_unit_spawn_timer: Timer = %NextSpawnTimer
 @onready var next_corps_spawn_timer: Timer = %NextCorpsTimer
 @onready var next_wave_timer: Timer = %NextWaveTimer
-
+@onready var enemyScene: PackedScene = preload("res://GameThings/Enemy.tscn")
 @export var waveSet: WaveSetData
 var currentWaveIndex: int = 0
 var currentCorpsIndex: int = 0
@@ -29,13 +29,14 @@ func _process(_delta: float):
 func spawn_unit(unit: UnitData):
 	while currentUnitIndex < currentCorps.units.size():
 		create_enemy(unit)
-		next_unit_spawn_timer.wait_time = currentCorps.interval
+		next_unit_spawn_timer.wait_time = currentCorps.unitInterval
 		next_unit_spawn_timer.start()
 		await next_unit_spawn_timer.timeout
 		currentUnitIndex+=1
+	currentUnitIndex = 0
 
 func create_enemy(data: UnitData):
-		var new_enemy: Enemy = Enemy.new()
+		var new_enemy: Enemy = enemyScene.instantiate() as Enemy
 		new_enemy.initialise(data)
 		new_enemy.position = position
 		new_enemy.spawner = self
@@ -44,20 +45,23 @@ func create_enemy(data: UnitData):
 
 func spawn_corps(corps: CorpsData):
 	while currentCorpsIndex < currentWave.corps.size():
+		print("Wave "+str(currentWaveIndex+1) + ", Corps "+str(currentCorpsIndex+1))
 		spawn_unit(currentUnit)
 		next_corps_spawn_timer.wait_time = currentWave.corpsInterval
 		next_corps_spawn_timer.start()
 		await next_corps_spawn_timer.timeout
 		currentCorpsIndex+=1
+	currentCorpsIndex = 0
 
 func spawn_wave(wave: WaveData):
 	while currentWaveIndex < waveSet.waves.size():
 		spawn_corps(currentCorps)
-		next_wave_timer.waitTime = waveSet.waveInterval
+		next_wave_timer.wait_time = waveSet.waveInterval
 		next_wave_timer.start()
 		await next_wave_timer.timeout
 		currentWaveIndex+=1
-	print("out of stuff")
+	print("out of waves")
+
 
 
 #DEPRECATED

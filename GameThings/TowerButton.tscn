@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m1lqb1ilwf6j"]
+[gd_scene load_steps=7 format=3 uid="uid://dw0t4n08wc5g5"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_0lca5"]
 [ext_resource type="Script" path="res://GameThings/CreateTowerButton.gd" id="2_bae05"]

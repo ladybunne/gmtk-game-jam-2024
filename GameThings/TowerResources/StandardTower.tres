@@ -10,4 +10,4 @@ target_range = 80.0
 splash_range = 50.0
 ammo_capacity = null
 rate_of_fire = null
-type = null
+type = 0

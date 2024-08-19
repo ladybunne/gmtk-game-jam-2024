@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TowerData" load_steps=2 format=3 uid="uid://cai8i0vj5fegd"]
+[gd_resource type="Resource" script_class="TowerData" load_steps=2 format=3 uid="uid://cusrae3s6x4bu"]
 
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_5cbmb"]
 

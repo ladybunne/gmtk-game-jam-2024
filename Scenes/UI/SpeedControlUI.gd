@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+enum TimeScale{Tenth, Half, One, Two, Four}
+
+@export var startTimeScale: TimeScale = TimeScale.One
+
 var active_button: Button :
 	set(p_active_button):
 		if active_button != null:
@@ -9,7 +13,19 @@ var active_button: Button :
 			active_button.disabled = true
 
 func _ready() -> void:
-	active_button = %One
+
+	match startTimeScale:
+		TimeScale.Tenth:
+			tenth_pressed()
+		TimeScale.Half:
+			half_pressed()
+		TimeScale.One:
+			one_pressed()
+		TimeScale.Two:
+			two_pressed()
+		TimeScale.Four:
+			four_pressed()
+
 	# I prefer connecting stuff like this because you can see it easily.
 	%Tenth.pressed.connect(tenth_pressed)
 	%Half.pressed.connect(half_pressed)
@@ -21,7 +37,7 @@ func _ready() -> void:
 func tenth_pressed():
 	Engine.time_scale = 0.1
 	active_button = %Tenth
-	
+
 func half_pressed():
 	Engine.time_scale = 0.5
 	active_button = %Half

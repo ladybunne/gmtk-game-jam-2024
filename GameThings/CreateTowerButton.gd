@@ -32,9 +32,9 @@ func _process(delta: float) -> void:
 				charges+=1
 		if charges >=2:
 			$Dot2.show()
-		else: 
+		else:
 			$Dot2.hide()
 		if charges >=1:
 			$Dot1.show()
-		else: 
+		else:
 			$Dot1.hide()

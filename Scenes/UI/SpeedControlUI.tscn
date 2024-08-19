@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxr8eyrr3byde"]
+[gd_scene load_steps=3 format=3 uid="uid://bne2y7benlta3"]
 
 [ext_resource type="Script" path="res://Scenes/UI/SpeedControlUI.gd" id="1_2iy8r"]
 [ext_resource type="Theme" uid="uid://0wid4bcxqwwa" path="res://Assets/Themes/SpeedButton.tres" id="2_vhyt6"]
 
-[node name="SpeedControlUI" type="CanvasLayer"]
+[node name="SpeedControlUI" type="CanvasLayer" groups=["SpeedUI"]]
 script = ExtResource("1_2iy8r")
+startTimeScale = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7

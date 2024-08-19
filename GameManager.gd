@@ -8,12 +8,12 @@ var barMax
 func GainResourceFromEnemy(value: float):
 	GameManager.buildResource += value/50
 	ResetBar()
-	
+
 
 func ResetBar():
 	ResourceBar.mainBar.value = buildResource
 	ResourceBar.previewBar.value = buildResource
-	SetBarMax()	
+	SetBarMax()
 	ResourceBar.mainBar.max_value = barMax
 	ResourceBar.previewBar.max_value = barMax
 
@@ -46,7 +46,7 @@ var end_screen_ui: EndScreenUI
 @export var bigPool: PackedScene = preload("res://GameThings/Pool.tscn")
 var placingPool: bool = false
 var poolIsBig: bool = false
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
 	if base == null:
@@ -75,16 +75,16 @@ func SetBarMax():
 	for tower in get_tree().get_nodes_in_group("Tower") as Array[Tower]:
 		total += tower.currentCost
 	barMax = buildResource + total
-		
+
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:		
+	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if placing:
 				placing = false
 				ResourceBar.previewBar.value = buildResource
 			if selling:
 				selling = false
-				
+
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if placingPool:
 				var p = bigPool.instantiate()
@@ -93,33 +93,33 @@ func _input(event: InputEvent) -> void:
 				p.position = p.get_global_mouse_position()
 				get_tree().get_first_node_in_group("bigButton" if poolIsBig else "smallButton").ConsumeCharge()
 				placingPool = false
-				
-			
+
+
 			if placing:
 				if buildResource >= INITIAL_COST:
 					var t = tower.instantiate() as Tower
 					get_tree().get_first_node_in_group("Level").add_child(t)
 					t.position = t.get_global_mouse_position()
 					t.tower_data = towerData
-					
+
 					#cancel placement if overlapping track or towers
 					if t.handle.GetOverlapping():
 						t.queue_free()
 						ResourceBar.previewBar.value = ResourceBar.mainBar.value
 						placing = false
 						return
-					
+
 					buildResource -= INITIAL_COST
 					ResourceBar.previewBar.value = ResourceBar.mainBar.value
-					
+
 				placing = false
-				
+
 			elif selling:
 				for t: Tower in get_tree().get_nodes_in_group("Tower"):
 					if t.handle.get_global_rect().has_point(t.get_global_mouse_position()):
 						t.queue_free()
 						buildResource += t.handle.GetCost()
-						ResourceBar.previewBar.value = buildResource						
+						ResourceBar.previewBar.value = buildResource
 				selling = false
 
 func game_over(p_win: bool):

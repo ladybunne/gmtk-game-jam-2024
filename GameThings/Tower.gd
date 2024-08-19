@@ -61,9 +61,9 @@ func updateStats():
 	#modify
 	match tower_data.type:
 		TowerData.TowerType.Standard:
-			damage *= currentCost/4
+			damage *= currentCost/10
 		TowerData.TowerType.Splash:
-			splash_range *= currentCost/16
+			splash_range *= currentCost/50
 		TowerData.TowerType.Capacity:
 			ammo_capacity += currentCost/4
 		TowerData.TowerType.Embiggen:
