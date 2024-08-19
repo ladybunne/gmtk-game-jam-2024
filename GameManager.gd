@@ -25,12 +25,17 @@ func PlacingTower(data: TowerData):
 
 var cursor: Node2D
 
+@export var bigPool: PackedScene = preload("res://GameThings/Pool.tscn")
+var placingPool: bool = false
+var poolIsBig: bool = false
 func _process(delta: float) -> void:	
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
 	else:
 		if placing:
 			ResourceBar.previewBar.value = buildResource - INITIAL_COST
+			cursor.show()
+		elif placingPool:
 			cursor.show()
 		else:
 			cursor.hide()
@@ -47,6 +52,15 @@ func _input(event: InputEvent) -> void:
 				selling = false
 				
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if placingPool:
+				var p = bigPool.instantiate()
+				get_tree().get_first_node_in_group("Level").add_child(p)
+				p.grow = poolIsBig
+				p.position = p.get_global_mouse_position()
+				get_tree().get_first_node_in_group("bigButton" if poolIsBig else "smallButton").ConsumeCharge()
+				placingPool = false
+				
+			
 			if placing:
 				if buildResource >= INITIAL_COST:
 					var t = tower.instantiate() as Tower

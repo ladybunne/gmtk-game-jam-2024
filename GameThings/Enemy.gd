@@ -66,7 +66,8 @@ func checkDead():
 		print("enemy died")
 		Callable(queue_free).call_deferred()
 
-var bigness: float = 100
+@onready var bigness: float = health
+@onready var startBigness: float = health
 
 func embiggen(damage: float):
 	health += damage
@@ -86,7 +87,7 @@ func ensmallen(damage: float):
 	update_healthbar()
 	
 func updateScale():
-	scale = Vector2(1,1) * bigness/100
+	scale = Vector2(1,1) * bigness/startBigness
 
 func show_damage(damage: float, direction: Vector2):
 		var flecks: CPUParticles2D = hitParticles.instantiate()
