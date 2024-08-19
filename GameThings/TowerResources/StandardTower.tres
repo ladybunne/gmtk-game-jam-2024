@@ -3,12 +3,11 @@
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_y1js6"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_y1js6")
-damage = 5.0
-cooldown = 0.2
-target_range = 200.0
+damage = 7.0
+cooldown = 0.25
+target_range = 80.0
 splash_range = 50.0
-ammo_capacity = 10.0
-rate_of_fire = 0.1
-type = 0
+ammo_capacity = null
+rate_of_fire = null
+type = null

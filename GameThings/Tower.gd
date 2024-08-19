@@ -29,6 +29,8 @@ var volley_timer: float
 		if polygon != null:
 			recolor()
 
+func NextTargetMode():
+	targeting_mode = (targeting_mode + 1) % TargetingMode.size()
 
 @onready var sprite: Node2D = find_child("Polygon2D")
 @onready var handle: Control = find_child("Handle")
@@ -36,7 +38,41 @@ var volley_timer: float
 var currentCost = 0
 var buffer_shot: bool = false
 
-func _ready() -> void:
+var setup: bool = false
+
+var target_range
+var damage
+var cooldown 
+var rate_of_fire
+var splash_range
+var ammo_capacity
+
+func updateStats():
+	
+	#set base
+	tower_data.type
+	target_range = tower_data.target_range
+	damage = tower_data.damage
+	cooldown = tower_data.cooldown
+	rate_of_fire = tower_data.rate_of_fire
+	splash_range = tower_data.splash_range
+	ammo_capacity = tower_data.ammo_capacity
+	
+	#modify
+	match tower_data.type:
+		TowerData.TowerType.Standard:
+			damage *= currentCost/4
+		TowerData.TowerType.Splash:
+			splash_range *= currentCost/16
+		TowerData.TowerType.Capacity:
+			ammo_capacity += currentCost/4
+		TowerData.TowerType.Embiggen:
+			damage *= currentCost/4
+		TowerData.TowerType.Ensmallen:
+			damage *= currentCost/4
+
+func Setup():
+	setup = true
 	recolor()
 	currentCost = handle.GetCost()
 	change_target_collider_radius(tower_data.target_range)
@@ -44,6 +80,9 @@ func _ready() -> void:
 	shot_timer.start()
 
 func _process(delta: float) -> void:
+	if !setup: Setup()
+	
+	updateStats()
 	GetEnemiesInRange()
 	retarget()
 	queue_redraw()
@@ -55,7 +94,7 @@ func _process(delta: float) -> void:
 			volley_timer -= delta
 			if volley_timer <=0:
 				reshoot.emit()
-				volley_timer = tower_data.rate_of_fire
+				volley_timer = rate_of_fire
 				#print("volley!")
 		if buffer_shot && !shooting_volley:
 			shoot()
@@ -87,6 +126,7 @@ func GetEnemiesInRange():
 
 func retarget():
 	target = null
+	if handle.resizing: return
 	for enemy in enemies_in_range:
 		if target == null:
 			target = enemy
@@ -130,7 +170,11 @@ func shoot(override_standard:bool = false):
 		var directionToEnemy = (target.position - position).normalized()
 		match typeToUse:
 			TowerData.TowerType.Standard:
-				target.take_damage(tower_data.damage, directionToEnemy)
+				target.take_damage(damage, directionToEnemy)
+			TowerData.TowerType.Embiggen:
+				target.embiggen(damage)
+			TowerData.TowerType.Ensmallen:
+				target.ensmallen(damage)
 			TowerData.TowerType.Capacity:
 				#continuously shoot (changing targets as enemies die) until ammo reaches 0
 				shooting_volley = true
@@ -139,41 +183,19 @@ func shoot(override_standard:bool = false):
 				#radius around target is affected
 				print("sploosh")
 				for enemy in get_tree().get_nodes_in_group("Enemy"):
-					if enemy.global_position.distance_to(target.global_position) < tower_data.splash_range:
+					if enemy.global_position.distance_to(target.global_position) < splash_range:
 						print(enemy.name + " is about to get splooshed")
 						print(global_position.distance_to(target.global_position))
 						if enemy == target:
-							enemy.take_damage(tower_data.damage, directionToEnemy)
+							enemy.take_damage(damage, directionToEnemy)
 						else:
-							enemy.take_damage(tower_data.damage, enemy.position-target.position)
+							enemy.take_damage(damage, enemy.position-target.position)
 				splash_visibility(target.global_position)
-
-				#DEPRECATED
-				#var area = Area2D.new()
-				#var shape = CollisionShape2D.new()
-				#add_child(area)
-				#shape.debug_color = Color(1,0,0,.2)
-				#area.global_position = target.global_position
-				#area.add_child(shape)
-				#shape.shape = CircleShape2D.new()
-				#shape.shape.radius = tower_data.splash_range
-				#area.collision_layer = 1
-				#area.collision_mask = 1
-				#await get_tree().physics_frame
-				#await get_tree().physics_frame
-				#await get_tree().physics_frame
-				#print(area.get_overlapping_bodies().size())
-				#for thing in area.get_overlapping_bodies():
-					#print(thing.name + " is about to get splooshed")
-					#if thing is Enemy && target:
-						#thing.take_damage(tower_data.damage, directionToEnemy)
-					#elif thing is Enemy && !target:
-						#thing.take_damage(tower_data.damage, thing.position-target.position)
 
 			_:
 				print("how did we have NO TowerType?")
 		if !override_standard:
-			shot_timer.start(tower_data.cooldown)
+			shot_timer.start(cooldown)
 	else:
 		shot_timer.stop() #idk if i need this but ohwell
 		buffer_shot = true #
@@ -184,17 +206,17 @@ func splash_visibility(position: Vector2):
 	sprite.global_position = position
 	sprite.texture = splash_sprite
 	sprite.modulate = Color(0,1,0,.2)
-	sprite.scale *= tower_data.splash_range/50
+	sprite.scale *= splash_range/50
 	var splash_timer:= get_tree().create_timer(.5)
 	await splash_timer.timeout
 	Callable(sprite.queue_free).call_deferred()
 
 func damage_volley():
 	#acknowledging that we COULD round it to an int but we choose not to because SCALING
-	var ammo: float = tower_data.ammo_capacity
+	var ammo: float = ammo_capacity
 	while ammo > 0:
 		shoot(true)
 		ammo -=1
 		await reshoot
 	shooting_volley = false
-	shot_timer.start(tower_data.cooldown)
+	shot_timer.start(cooldown)

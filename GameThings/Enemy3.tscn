@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=8 format=3 uid="uid://bm0sd0q5i13ef"]
 
-[ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
-[ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="1_eo6st"]
-[ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_ejndl"]
+[ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_fajub"]
+[ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_7816i"]
+[ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="3_e1gbi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 24.0
@@ -15,18 +15,21 @@ bg_color = Color(0.088275, 0.0693, 0.09, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsis1"]
 bg_color = Color(0.89, 0.3115, 0.504333, 1)
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+[node name="Enemy3" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 0
-script = ExtResource("1_6ags1")
-health = 50.0
+script = ExtResource("1_fajub")
+speed = 75.0
+health = 70.0
 
 [node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("2_ejndl")
+script = ExtResource("2_7816i")
+color = Color(0.512404, 0.842828, 0.268977, 1)
+radius = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
-texture = ExtResource("1_eo6st")
+texture = ExtResource("3_e1gbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 			start_position = camera.position
 			start_viewport_posiiton = event.position
 			
-		elif event.button_index == 2 or event.button_index == 3:
+		elif event.button_index == 3:
 			down = event.pressed
 			start_position = camera.position
 			start_viewport_posiiton = event.position

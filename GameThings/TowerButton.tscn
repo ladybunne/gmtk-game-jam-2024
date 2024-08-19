@@ -1,20 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://m1lqb1ilwf6j"]
+[gd_scene load_steps=7 format=3 uid="uid://m1lqb1ilwf6j"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_0lca5"]
 [ext_resource type="Script" path="res://GameThings/CreateTowerButton.gd" id="2_bae05"]
 [ext_resource type="Texture2D" uid="uid://cibwiiomnilr2" path="res://Assets/Sprites/barProgress.png" id="2_ia8ma"]
 [ext_resource type="Texture2D" uid="uid://b87ge5byu3q03" path="res://Assets/Sprites/barProgress2.png" id="2_nrpp7"]
 [ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="2_qrubt"]
+[ext_resource type="Resource" uid="uid://iydmf0cu1hhj" path="res://GameThings/TowerResources/StandardTower.tres" id="5_io6nl"]
 
 [node name="Button" type="TextureButton"]
 texture_filter = 1
-custom_minimum_size = Vector2(128, 64)
+custom_minimum_size = Vector2(128, 55)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -64.0
 offset_right = 64.0
-offset_bottom = 64.0
+offset_bottom = 55.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -25,22 +26,34 @@ texture_hover = ExtResource("2_nrpp7")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("2_bae05")
+data = ExtResource("5_io6nl")
 
 [node name="Texture" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 52.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -21.0
+offset_right = 52.0
+offset_bottom = 21.0
+grow_vertical = 2
 texture = ExtResource("2_qrubt")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 52.0
-offset_top = 9.0
-offset_right = 112.0
-offset_bottom = 57.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -22.0
+offset_right = -8.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
 text = "Standard Tower"

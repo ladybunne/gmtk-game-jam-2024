@@ -14,4 +14,4 @@ func enemy_entered(body: Node2D):
 	body.queue_free()
 
 func game_over():
-	get_tree().quit()
+	print("YOU LOSE")

@@ -9,6 +9,7 @@ var spawner: Spawner
 
 func _ready() -> void:
 	%ProgressBar.max_value = health
+	%ProgressBar.hide()
 	call_deferred("actor_setup")
 
 func actor_setup():
@@ -31,7 +32,6 @@ func _physics_process(delta: float) -> void:
 
 	velocity = current_agent_position.direction_to(next_path_position) * speed
 	move_and_slide()
-	update_healthbar()
 
 func distance_to_base():
 	# Ughhhhh.
@@ -57,9 +57,36 @@ func take_damage(damage: float, direction: Vector2):
 	health -= damage
 	#print(name + str(health))
 	show_damage(damage, direction)
+	checkDead()
+	%ProgressBar.show()
+	update_healthbar()
+
+func checkDead():
 	if health <=0:
 		print("enemy died")
 		Callable(queue_free).call_deferred()
+
+var bigness: float = 100
+
+func embiggen(damage: float):
+	health += damage
+	%ProgressBar.max_value += damage
+	bigness += damage
+	%ProgressBar.show()
+	updateScale()
+	update_healthbar()
+
+func ensmallen(damage: float):
+	health -= damage
+	%ProgressBar.max_value -= damage
+	bigness -= damage
+	checkDead()
+	%ProgressBar.show()
+	updateScale()
+	update_healthbar()
+	
+func updateScale():
+	scale = Vector2(1,1) * bigness/100
 
 func show_damage(damage: float, direction: Vector2):
 		var flecks: CPUParticles2D = hitParticles.instantiate()
@@ -74,6 +101,4 @@ func kill_particle(particle: CPUParticles2D):
 	Callable(particle.queue_free).call_deferred()
 
 func update_healthbar():
-	var max_health = 50.0
-	%ProgressBar.visible = health < max_health
 	%ProgressBar.value = health

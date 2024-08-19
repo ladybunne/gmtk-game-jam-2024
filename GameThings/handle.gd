@@ -8,6 +8,8 @@ var oldScale
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:			
+			tower.NextTargetMode()
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:			
 			
 			#detect edge click
@@ -50,10 +52,12 @@ func GetOverlapping():
 	var coords = map.get_used_cells()
 	for coord in coords:
 		if map.get_cell_tile_data(coord).get_collision_polygons_count(0)>0:
+			var cellCoord = map.to_global(map.map_to_local(coord))
+			if get_global_rect().intersects(Rect2(cellCoord.x-32,cellCoord.y-32,64,64)):
+				return true
 			for point in map.get_cell_tile_data(coord).get_collision_polygon_points(0,0):
 				if get_global_rect().has_point(map.to_global(map.map_to_local(coord)+point)):
-					return true
-			
+					return true			
 	return false
 	
 @export var tower: Tower
@@ -87,7 +91,8 @@ func _process(delta: float) -> void:
 	else:
 		HandleSprite.hide()
 		
-	if get_global_rect().has_point(get_global_mouse_position()) or resizing:
+	if has_focus() or resizing or get_global_rect().has_point(get_global_mouse_position()):
+		TowerInfo.I.Populate(tower.tower_data.type, tower.damage, tower.target_range, tower.cooldown, tower.targeting_mode)
 		rangeOutline.show()
 	else: 
 		rangeOutline.hide()
