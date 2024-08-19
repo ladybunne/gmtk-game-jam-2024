@@ -39,12 +39,26 @@ func PlacingTower(data: TowerData):
 
 var cursor: Node2D
 
+# These are a bit dumb. Sorry. -Ladybunne
+var base: Base
+var end_screen_ui: EndScreenUI
+
 @export var bigPool: PackedScene = preload("res://GameThings/Pool.tscn")
 var placingPool: bool = false
 var poolIsBig: bool = false
 func _process(delta: float) -> void:	
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
+	if base == null:
+		base = get_tree().get_first_node_in_group("Base")
+		# this is breaking lmao
+		# Invalid access to property or key 'base_died' on a base object of type 'null instance'.
+		if base != null:
+			base.base_died.connect(func(): game_over(false))
+	if end_screen_ui == null:
+		end_screen_ui = get_tree().get_first_node_in_group("TerribleEndScreenGroup")
+		if end_screen_ui != null:
+			end_screen_ui.button.pressed.connect(restart_scene)
 	else:
 		if placing:
 			ResourceBar.previewBar.value = buildResource - INITIAL_COST
@@ -107,3 +121,15 @@ func _input(event: InputEvent) -> void:
 						buildResource += t.handle.GetCost()
 						ResourceBar.previewBar.value = buildResource						
 				selling = false
+
+func game_over(p_win: bool):
+	#get_tree().paused = true
+	end_screen_ui.win = p_win
+	end_screen_ui.visible = true
+
+func restart_scene():
+	cursor = null
+	base = null
+	end_screen_ui = null
+	buildResource = 100
+	get_tree().reload_current_scene()
