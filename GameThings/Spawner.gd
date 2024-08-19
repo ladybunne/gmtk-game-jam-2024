@@ -9,6 +9,8 @@ var currentWaveIndex: int = 0
 var currentCorpsIndex: int = 0
 var currentUnitIndex: int = 0
 
+signal all_done
+
 var currentWave:
 	get:
 		return waveSet.waves[currentWaveIndex]
@@ -64,6 +66,7 @@ func spawn_wave(wave: WaveData):
 		
 	currentWaveIndex-=1
 	print("out of waves")
+	all_done.emit()
 
 #DEPRECATED
 #@export var enemy_to_spawn: PackedScene

@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://datu6fcwhci0d" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 [ext_resource type="PackedScene" uid="uid://bqe0ghafx8o7c" path="res://Scenes/UI/TowerInfoUI.tscn" id="8_j376u"]
 [ext_resource type="PackedScene" uid="uid://dw0t4n08wc5g5" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
+[ext_resource type="PackedScene" uid="uid://c5h6t03ggetju" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="11_2auba"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="12_wid68"]
