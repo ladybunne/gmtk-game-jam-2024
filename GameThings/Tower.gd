@@ -70,7 +70,8 @@ func updateStats():
 		TowerData.TowerType.Standard:
 			damage *= currentCost/10
 		TowerData.TowerType.Splash:
-			splash_range *= currentCost/50
+			splash_range *= currentCost/16
+			damage *= currentCost/20
 		TowerData.TowerType.Capacity:
 			ammo_capacity += currentCost
 		TowerData.TowerType.Embiggen:
