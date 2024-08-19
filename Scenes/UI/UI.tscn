@@ -209,16 +209,22 @@ offset_bottom = 8.0
 texture = ExtResource("4_2nsox")
 expand_mode = 1
 
-[node name="Button6" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+[node name="Sell Tower" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+visible = false
 layout_mode = 2
 data = ExtResource("12_drnvu")
 sell = true
 
-[node name="Texture" parent="TowerCreateUI/Panel/Container/Button6" index="0"]
+[node name="Texture" parent="TowerCreateUI/Panel/Container/Sell Tower" index="0"]
 texture = ExtResource("12_wid68")
 
-[node name="Label" parent="TowerCreateUI/Panel/Container/Button6" index="1"]
+[node name="Label" parent="TowerCreateUI/Panel/Container/Sell Tower" index="1"]
 text = "Sell Tower"
+
+[node name="TowerCounter" type="RichTextLabel" parent="TowerCreateUI/Panel/Container" groups=["TowerCountText"]]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Available Towers: "
 
 [node name="Cursor" type="Sprite2D" parent="." groups=["Cursor"]]
 visible = false
@@ -246,4 +252,4 @@ text = "Wave: 1/5
 [editable path="TowerCreateUI/Panel/Container/Button3"]
 [editable path="TowerCreateUI/Panel/Container/Button4"]
 [editable path="TowerCreateUI/Panel/Container/Button5"]
-[editable path="TowerCreateUI/Panel/Container/Button6"]
+[editable path="TowerCreateUI/Panel/Container/Sell Tower"]

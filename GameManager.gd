@@ -1,6 +1,6 @@
 extends Node
 
-var buildResource = 100
+var buildResource = 15
 var areaToBuildResourceRatio = 1.0/1024.0
 
 var barMax
@@ -28,14 +28,17 @@ signal funding_changed(funding: int)
 
 @export var tower: PackedScene = preload("res://GameThings/Tower.tscn")
 
+var availableTowers: float = 3
+
 var placing: bool = false
 var towerData: TowerData
 
 var selling: bool = false
 
 func PlacingTower(data: TowerData):
-	placing = true
-	towerData = data
+	if availableTowers>=1:
+		placing = true
+		towerData = data
 
 var cursor: Node2D
 
@@ -47,6 +50,7 @@ var end_screen_ui: EndScreenUI
 var placingPool: bool = false
 var poolIsBig: bool = false
 func _process(delta: float) -> void:
+	get_tree().get_first_node_in_group("TowerCountText").text = "Available Towers: " + str(floor(availableTowers))
 	if cursor == null:
 		cursor = get_tree().get_first_node_in_group("Cursor")
 	if base == null:
@@ -112,6 +116,7 @@ func _input(event: InputEvent) -> void:
 						return
 
 					buildResource -= INITIAL_COST
+					availableTowers-=1
 
 				placing = false
 

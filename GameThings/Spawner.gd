@@ -61,9 +61,8 @@ func spawn_wave(wave: WaveData):
 		next_wave_timer.start()
 		await next_wave_timer.timeout
 		currentWaveIndex+=1
+		GameManager.availableTowers += 0.5
 	print("out of waves")
-
-
 
 #DEPRECATED
 #@export var enemy_to_spawn: PackedScene
