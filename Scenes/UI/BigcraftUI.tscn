@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bth0h4rsnem14"]
+[gd_scene load_steps=3 format=3 uid="uid://datu6fcwhci0d"]
 
 [ext_resource type="Texture2D" uid="uid://ybydfge58cwq" path="res://Assets/Sprites/bigsmall.png" id="1_o8eum"]
+[ext_resource type="Script" path="res://Scenes/UI/BigcraftUI.gd" id="2_7pv0i"]
 
 [node name="BigcraftUI" type="CanvasLayer"]
 
@@ -29,3 +30,4 @@ text = "34"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+script = ExtResource("2_7pv0i")

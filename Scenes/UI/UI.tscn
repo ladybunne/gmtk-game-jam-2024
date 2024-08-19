@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7f6l47krk6xs"]
+[gd_scene load_steps=18 format=3 uid="uid://c7f6l47krk6xs"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_yl4kl"]
 [ext_resource type="Texture2D" uid="uid://cehcu8y4e3uyn" path="res://Assets/Sprites/barOver.png" id="2_u31s5"]
@@ -6,15 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://b87ge5byu3q03" path="res://Assets/Sprites/barProgress2.png" id="4_2nsox"]
 [ext_resource type="Script" path="res://Scenes/UI/ResourceBar.gd" id="4_4iij1"]
 [ext_resource type="PackedScene" uid="uid://dxr8eyrr3byde" path="res://Scenes/UI/SpeedControlUI.tscn" id="6_4y3xo"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
+[ext_resource type="PackedScene" uid="uid://datu6fcwhci0d" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 [ext_resource type="PackedScene" uid="uid://bqe0ghafx8o7c" path="res://Scenes/UI/TowerInfoUI.tscn" id="8_j376u"]
 [ext_resource type="PackedScene" uid="uid://m1lqb1ilwf6j" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
+[ext_resource type="PackedScene" uid="uid://c5h6t03ggetju" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
 [ext_resource type="Resource" uid="uid://bwmbm3j4cnijd" path="res://GameThings/TowerResources/SplashTower.tres" id="11_su80b"]
 [ext_resource type="Resource" uid="uid://b3w47aflwvwyn" path="res://GameThings/TowerResources/CapacityTower.tres" id="12_drnvu"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
 [ext_resource type="Resource" uid="uid://cai8i0vj5fegd" path="res://GameThings/TowerResources/EmbiggenTower.tres" id="12_g5fyv"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="12_wid68"]
 [ext_resource type="Resource" uid="uid://tydmpqmajfbd" path="res://GameThings/TowerResources/EnsmallenTower.tres" id="13_7b7f3"]
+[ext_resource type="PackedScene" uid="uid://cpu00utrln8y5" path="res://Scenes/UI/EndScreenUI.tscn" id="17_icfck"]
 
 [node name="UI" type="Node"]
 
@@ -97,6 +99,8 @@ patch_margin_bottom = 4
 
 [node name="TowerInfoUI" parent="." instance=ExtResource("8_j376u")]
 
+[node name="BaseHealthUI" parent="." instance=ExtResource("9_8ccqo")]
+
 [node name="TowerCreateUI" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="TowerCreateUI"]
@@ -152,19 +156,58 @@ data = ExtResource("12_drnvu")
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button3" index="1"]
 text = "Burst Tower"
 
-[node name="Button4" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+[node name="Button4" parent="TowerCreateUI/Panel/Container" groups=["bigButton"] instance=ExtResource("9_0k1bh")]
 layout_mode = 2
 data = ExtResource("12_g5fyv")
+pool = true
+poolIsBig = true
 
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button4" index="1"]
-text = "Embiggen Tower"
+text = "Embiggen Pool"
 
-[node name="Button5" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+[node name="Dot1" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button4"]
+layout_mode = 0
+offset_left = 37.5
+offset_top = -4.0
+offset_right = 49.5
+offset_bottom = 8.0
+texture = ExtResource("4_2nsox")
+expand_mode = 1
+
+[node name="Dot2" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button4"]
+layout_mode = 0
+offset_left = 76.5
+offset_top = -4.0
+offset_right = 88.5
+offset_bottom = 8.0
+texture = ExtResource("4_2nsox")
+expand_mode = 1
+
+[node name="Button5" parent="TowerCreateUI/Panel/Container" groups=["smallButton"] instance=ExtResource("9_0k1bh")]
 layout_mode = 2
 data = ExtResource("13_7b7f3")
+pool = true
 
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button5" index="1"]
-text = "Ensmallen Tower"
+text = "Ensmallen Pool"
+
+[node name="Dot1" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button5"]
+layout_mode = 0
+offset_left = 37.5
+offset_top = -4.0
+offset_right = 49.5
+offset_bottom = 8.0
+texture = ExtResource("4_2nsox")
+expand_mode = 1
+
+[node name="Dot2" type="TextureRect" parent="TowerCreateUI/Panel/Container/Button5"]
+layout_mode = 0
+offset_left = 76.5
+offset_top = -4.0
+offset_right = 88.5
+offset_bottom = 8.0
+texture = ExtResource("4_2nsox")
+expand_mode = 1
 
 [node name="Button6" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 layout_mode = 2
@@ -180,6 +223,9 @@ text = "Sell Tower"
 [node name="Cursor" type="Sprite2D" parent="." groups=["Cursor"]]
 visible = false
 texture = ExtResource("12_epqg0")
+
+[node name="EndScreenUI" parent="." instance=ExtResource("17_icfck")]
+visible = false
 
 [editable path="TowerCreateUI/Panel/Container/Button2"]
 [editable path="TowerCreateUI/Panel/Container/Button3"]

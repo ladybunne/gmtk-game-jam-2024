@@ -5,7 +5,12 @@ var data: UnitData
 @export var health: float = 100
 @export var type: UnitData.UnitType
 @onready var visuals: EnemyPolygon = %EnemyVisuals
-var bigness: float = 100
+@onready var maxHealth: float = health
+
+@onready var bigness: float = health
+@onready var startBigness: float = health
+
+
 var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
@@ -80,12 +85,12 @@ func take_damage(damage: float, direction: Vector2):
 
 func checkDead():
 	if health <=0:
-		print("enemy died")
+		GameManager.GainResourceFromEnemy(maxHealth)
 		Callable(queue_free).call_deferred()
-
 
 func embiggen(damage: float):
 	health += damage
+	maxHealth += damage
 	%ProgressBar.max_value += damage
 	bigness += damage
 	%ProgressBar.show()
@@ -93,7 +98,7 @@ func embiggen(damage: float):
 	update_healthbar()
 
 func ensmallen(damage: float):
-	health -= damage
+	maxHealth -= damage
 	%ProgressBar.max_value -= damage
 	bigness -= damage
 	checkDead()
@@ -102,7 +107,7 @@ func ensmallen(damage: float):
 	update_healthbar()
 
 func updateScale():
-	scale = Vector2(1,1) * bigness/100
+	scale = Vector2(1,1) * bigness/startBigness
 
 func show_damage(damage: float, direction: Vector2):
 		var flecks: CPUParticles2D = hitParticles.instantiate()
