@@ -1,0 +1,116 @@
+[gd_resource type="Resource" script_class="WaveSetData" load_steps=29 format=3 uid="uid://ic5pst68j6tw"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveSetData.gd" id="1_pi4um"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveData.gd" id="2_p1btg"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="3_ulk77"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="4_jlble"]
+[ext_resource type="Resource" uid="uid://qgrerak0uqrv" path="res://GameThings/WaveResources/EnemyResources/ExampleNormal.tres" id="5_an7ko"]
+[ext_resource type="Resource" uid="uid://csu1kwtfrvm5f" path="res://GameThings/WaveResources/EnemyResources/ExampleFast.tres" id="6_j7c5a"]
+[ext_resource type="Resource" uid="uid://cu0rmq7ii36f2" path="res://GameThings/WaveResources/EnemyResources/ExampleSlow.tres" id="7_hxnuk"]
+[ext_resource type="Resource" uid="uid://bug31axb25b0c" path="res://GameThings/WaveResources/EnemyResources/ExamplePinata.tres" id="8_gjdb1"]
+
+[sub_resource type="Resource" id="Resource_1ehyg"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_aiifg"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_qbtvf"]
+script = ExtResource("2_p1btg")
+corps = Array[ExtResource("3_ulk77")]([SubResource("Resource_1ehyg"), SubResource("Resource_aiifg")])
+corpsInterval = 3.0
+
+[sub_resource type="Resource" id="Resource_nmf0m"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_xpp0p"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a")])
+unitInterval = 0.8
+
+[sub_resource type="Resource" id="Resource_sl11b"]
+script = ExtResource("2_p1btg")
+corps = Array[ExtResource("3_ulk77")]([SubResource("Resource_nmf0m"), SubResource("Resource_xpp0p"), SubResource("Resource_nmf0m")])
+corpsInterval = 3.0
+
+[sub_resource type="Resource" id="Resource_bhbxj"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_rbaqi"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("7_hxnuk"), ExtResource("7_hxnuk"), ExtResource("7_hxnuk")])
+unitInterval = 2.0
+
+[sub_resource type="Resource" id="Resource_nj8gg"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_p5jda"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a")])
+unitInterval = 0.8
+
+[sub_resource type="Resource" id="Resource_xun3x"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_wjpxx"]
+script = ExtResource("2_p1btg")
+corps = Array[ExtResource("3_ulk77")]([SubResource("Resource_bhbxj"), SubResource("Resource_rbaqi"), SubResource("Resource_nj8gg"), SubResource("Resource_p5jda"), SubResource("Resource_xun3x")])
+corpsInterval = 2.0
+
+[sub_resource type="Resource" id="Resource_5qghf"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a")])
+unitInterval = 0.8
+
+[sub_resource type="Resource" id="Resource_0d6rl"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("7_hxnuk"), ExtResource("7_hxnuk"), ExtResource("7_hxnuk"), ExtResource("7_hxnuk"), ExtResource("7_hxnuk")])
+unitInterval = 1.0
+
+[sub_resource type="Resource" id="Resource_ccq06"]
+script = ExtResource("2_p1btg")
+corps = Array[ExtResource("3_ulk77")]([SubResource("Resource_5qghf"), SubResource("Resource_0d6rl"), SubResource("Resource_5qghf"), SubResource("Resource_p5jda")])
+corpsInterval = 2.0
+
+[sub_resource type="Resource" id="Resource_458j4"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("6_j7c5a")])
+unitInterval = 0.8
+
+[sub_resource type="Resource" id="Resource_4nnu3"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("7_hxnuk"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("7_hxnuk"), ExtResource("5_an7ko"), ExtResource("5_an7ko")])
+unitInterval = 2.0
+
+[sub_resource type="Resource" id="Resource_8a507"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a"), ExtResource("5_an7ko"), ExtResource("5_an7ko"), ExtResource("6_j7c5a")])
+unitInterval = 0.8
+
+[sub_resource type="Resource" id="Resource_w2ikw"]
+script = ExtResource("3_ulk77")
+units = Array[ExtResource("4_jlble")]([ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("6_j7c5a"), ExtResource("8_gjdb1")])
+unitInterval = 0.5
+
+[sub_resource type="Resource" id="Resource_b4ub5"]
+script = ExtResource("2_p1btg")
+corps = Array[ExtResource("3_ulk77")]([SubResource("Resource_458j4"), SubResource("Resource_4nnu3"), SubResource("Resource_8a507"), SubResource("Resource_w2ikw")])
+corpsInterval = 3.0
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_pi4um")
+waves = Array[ExtResource("2_p1btg")]([SubResource("Resource_qbtvf"), SubResource("Resource_sl11b"), SubResource("Resource_wjpxx"), SubResource("Resource_ccq06"), SubResource("Resource_b4ub5")])
+waveInterval = 10.0

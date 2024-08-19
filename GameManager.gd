@@ -1,6 +1,6 @@
 extends Node
 
-var buildResource = 15
+var buildResource = 30
 var areaToBuildResourceRatio = 1.0/1024.0
 
 var barMax
