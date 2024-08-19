@@ -65,7 +65,7 @@ func take_damage(damage: float, direction: Vector2):
 
 func checkDead():
 	if health <=0:
-		GameManager.buildResource+= maxHealth/50
+		GameManager.GainResourceFromEnemy(maxHealth)
 		Callable(queue_free).call_deferred()
 
 @onready var bigness: float = health

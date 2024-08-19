@@ -3,6 +3,20 @@ extends Node
 var buildResource = 100
 var areaToBuildResourceRatio = 1.0/1024.0
 
+var barMax
+
+func GainResourceFromEnemy(value: float):
+	GameManager.buildResource += value/50
+	ResetBar()
+	
+
+func ResetBar():
+	ResourceBar.mainBar.value = buildResource
+	ResourceBar.previewBar.value = buildResource
+	SetBarMax()	
+	ResourceBar.mainBar.max_value = barMax
+	ResourceBar.previewBar.max_value = barMax
+
 static var INITIAL_COST = 4
 
 var funding = 10 :
@@ -40,7 +54,13 @@ func _process(delta: float) -> void:
 		else:
 			cursor.hide()
 		cursor.global_position = cursor.get_global_mouse_position()
-	
+	SetBarMax()
+
+func SetBarMax():
+	var total = 0
+	for tower in get_tree().get_nodes_in_group("Tower") as Array[Tower]:
+		total += tower.currentCost
+	barMax = buildResource + total
 		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:		
@@ -71,12 +91,12 @@ func _input(event: InputEvent) -> void:
 					#cancel placement if overlapping track or towers
 					if t.handle.GetOverlapping():
 						t.queue_free()
-						ResourceBar.previewBar.value = buildResource
+						ResourceBar.previewBar.value = ResourceBar.mainBar.value
 						placing = false
 						return
 					
 					buildResource -= INITIAL_COST
-					ResourceBar.previewBar.value = buildResource
+					ResourceBar.previewBar.value = ResourceBar.mainBar.value
 					
 				placing = false
 				
