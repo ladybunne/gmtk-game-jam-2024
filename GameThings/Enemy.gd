@@ -1,16 +1,33 @@
 class_name Enemy extends CharacterBody2D
 
+var data: UnitData
 @export var speed: float = 100
 @export var health: float = 100
+@export var type: UnitData.UnitType
+@onready var visuals: EnemyPolygon = %EnemyVisuals
+var bigness: float = 100
 var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
 
 func _ready() -> void:
+	setup()
 	%ProgressBar.max_value = health
 	%ProgressBar.hide()
 	call_deferred("actor_setup")
+
+#this needs to happen before _ready
+func initialise(myData: UnitData):
+	data = myData
+
+func setup():
+	speed = data.startSpeed
+	health = data.startHealth
+	visuals.radius = data.startSize
+	type = data.unitType
+	visuals.color = data.color
+
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -66,7 +83,6 @@ func checkDead():
 		print("enemy died")
 		Callable(queue_free).call_deferred()
 
-var bigness: float = 100
 
 func embiggen(damage: float):
 	health += damage
@@ -84,7 +100,7 @@ func ensmallen(damage: float):
 	%ProgressBar.show()
 	updateScale()
 	update_healthbar()
-	
+
 func updateScale():
 	scale = Vector2(1,1) * bigness/100
 

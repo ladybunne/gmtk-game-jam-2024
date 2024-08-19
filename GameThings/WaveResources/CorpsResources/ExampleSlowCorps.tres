@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CorpsData" load_steps=4 format=3 uid="uid://dghahdy4c0kc2"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="1_0vew0"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="2_qyqrw"]
+[ext_resource type="Resource" uid="uid://cu0rmq7ii36f2" path="res://GameThings/WaveResources/EnemyResources/ExampleSlow.tres" id="3_rdwpb"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_0vew0")
+units = Array[ExtResource("2_qyqrw")]([ExtResource("3_rdwpb"), ExtResource("3_rdwpb"), ExtResource("3_rdwpb"), ExtResource("3_rdwpb")])
+unitInterval = 1.0

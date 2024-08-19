@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=6 format=3 uid="uid://wymn1ghog0qh"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="1_aapvc"]
+[ext_resource type="Resource" uid="uid://457ljkb88cj6" path="res://GameThings/WaveResources/CorpsResources/ExampleFastCorps.tres" id="2_cvp37"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveData.gd" id="2_i8hc0"]
+[ext_resource type="Resource" uid="uid://baiv10ppbrwoh" path="res://GameThings/WaveResources/CorpsResources/ExampleNormalCorps.tres" id="3_d38pk"]
+[ext_resource type="Resource" uid="uid://dghahdy4c0kc2" path="res://GameThings/WaveResources/CorpsResources/ExampleSlowCorps.tres" id="4_arckc"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_i8hc0")
+corps = Array[ExtResource("1_aapvc")]([ExtResource("2_cvp37"), ExtResource("3_d38pk"), ExtResource("4_arckc")])
+corpsInterval = 15.0

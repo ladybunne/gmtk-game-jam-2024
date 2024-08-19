@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://cu0rmq7ii36f2"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_d4875"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_d4875")
+unitType = 0
+color = Color(0, 0.482353, 0.286275, 1)
+startSize = 50.0
+startHealth = 500.0
+startSpeed = 20.0

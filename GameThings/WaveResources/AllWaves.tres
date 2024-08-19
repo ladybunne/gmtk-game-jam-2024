@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaveSetData" load_steps=4 format=3 uid="uid://dt70iia72xli4"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveSetData.gd" id="1_e4g3t"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveData.gd" id="2_1cryo"]
+[ext_resource type="Resource" uid="uid://wymn1ghog0qh" path="res://GameThings/WaveResources/ExampleWave.tres" id="3_88pxo"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_e4g3t")
+waves = Array[ExtResource("2_1cryo")]([ExtResource("3_88pxo"), ExtResource("3_88pxo")])
+waveInterval = 60.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CorpsData" load_steps=4 format=3 uid="uid://457ljkb88cj6"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="1_stfw2"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="2_t1daw"]
+[ext_resource type="Resource" uid="uid://csu1kwtfrvm5f" path="res://GameThings/WaveResources/EnemyResources/ExampleFast.tres" id="3_s3v56"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_stfw2")
+units = Array[ExtResource("2_t1daw")]([ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56"), ExtResource("3_s3v56")])
+unitInterval = 1.0

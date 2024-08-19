@@ -1,27 +1,82 @@
 class_name Spawner extends Node2D
 
-@onready var next_spawn_timer: Timer = %NextSpawnTimer
+@onready var next_unit_spawn_timer: Timer = %NextSpawnTimer
+@onready var next_corps_spawn_timer: Timer = %NextCorpsTimer
 @onready var next_wave_timer: Timer = %NextWaveTimer
 
-@export var enemy_to_spawn: PackedScene
+@export var waveSet: WaveSetData
+var currentWaveIndex: int = 0
+var currentCorpsIndex: int = 0
+var currentUnitIndex: int = 0
 
-@export var spawnableEnemies: Array[PackedScene]
+var currentWave:
+	get:
+		return waveSet.waves[currentWaveIndex]
+var currentCorps:
+	get:
+		return waveSet.waves[currentWaveIndex].corps[currentCorpsIndex]
+var currentUnit:
+	get:
+		return waveSet.waves[currentWaveIndex].corps[currentCorpsIndex].units[currentUnitIndex]
 
-var enemiesInWave = 20
+func _ready():
+	spawn_wave(currentWave)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	next_spawn_timer.timeout.connect(spawn_enemy)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if get_tree().get_nodes_in_group("Enemy").size() == 0 and enemiesInWave <= 0:
-		print("WIN")
+func _process(_delta: float):
+	pass
 
-func spawn_enemy():
-	if enemiesInWave>0:
-		enemiesInWave-=1
-		var new_enemy: Enemy = spawnableEnemies.pick_random().instantiate() as Enemy
+func spawn_unit(unit: UnitData):
+	while currentUnitIndex < currentCorps.units.size():
+		create_enemy(unit)
+		next_unit_spawn_timer.wait_time = currentCorps.interval
+		next_unit_spawn_timer.start()
+		await next_unit_spawn_timer.timeout
+		currentUnitIndex+=1
+
+func create_enemy(data: UnitData):
+		var new_enemy: Enemy = Enemy.new()
+		new_enemy.initialise(data)
 		new_enemy.position = position
 		new_enemy.spawner = self
 		get_parent().add_child(new_enemy)
+
+
+func spawn_corps(corps: CorpsData):
+	while currentCorpsIndex < currentWave.corps.size():
+		spawn_unit(currentUnit)
+		next_corps_spawn_timer.wait_time = currentWave.corpsInterval
+		next_corps_spawn_timer.start()
+		await next_corps_spawn_timer.timeout
+		currentCorpsIndex+=1
+
+func spawn_wave(wave: WaveData):
+	while currentWaveIndex < waveSet.waves.size():
+		spawn_corps(currentCorps)
+		next_wave_timer.waitTime = waveSet.waveInterval
+		next_wave_timer.start()
+		await next_wave_timer.timeout
+		currentWaveIndex+=1
+	print("out of stuff")
+
+
+#DEPRECATED
+#@export var enemy_to_spawn: PackedScene
+#var enemiesInWave = 20
+#@export var spawnableEnemies: Array[PackedScene]
+## Called when the node enters the scene tree for the first time.
+#func _ready() -> void:
+	#next_spawn_timer.timeout.connect(spawn_enemy)
+#
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#if get_tree().get_nodes_in_group("Enemy").size() == 0 and enemiesInWave <= 0:
+		#print("WIN")
+#
+#func spawn_enemy():
+	#if enemiesInWave>0:
+		#enemiesInWave-=1
+		#var new_enemy: Enemy = spawnableEnemies.pick_random().instantiate() as Enemy
+		#new_enemy.position = position
+		#new_enemy.spawner = self
+		#get_parent().add_child(new_enemy)

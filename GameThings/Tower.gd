@@ -42,13 +42,13 @@ var setup: bool = false
 
 var target_range
 var damage
-var cooldown 
+var cooldown
 var rate_of_fire
 var splash_range
 var ammo_capacity
 
 func updateStats():
-	
+
 	#set base
 	tower_data.type
 	target_range = tower_data.target_range
@@ -57,7 +57,7 @@ func updateStats():
 	rate_of_fire = tower_data.rate_of_fire
 	splash_range = tower_data.splash_range
 	ammo_capacity = tower_data.ammo_capacity
-	
+
 	#modify
 	match tower_data.type:
 		TowerData.TowerType.Standard:
@@ -81,7 +81,7 @@ func Setup():
 
 func _process(delta: float) -> void:
 	if !setup: Setup()
-	
+
 	updateStats()
 	GetEnemiesInRange()
 	retarget()

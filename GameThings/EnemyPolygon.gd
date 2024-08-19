@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+class_name EnemyPolygon extends Node2D
 
 @export var color: Color = Color.YELLOW
 @export var radius: float = 24
