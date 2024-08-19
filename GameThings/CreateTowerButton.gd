@@ -11,7 +11,7 @@ var current_tower_count:
 	get:
 		return get_tree().get_nodes_in_group("Tower").size()
 var charges = 2
-var chargeTimer = 3
+var chargeTimer = 20
 
 func ConsumeCharge():
 	charges -= 1
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 		if charges < 2:
 			chargeTimer-= delta
 			if chargeTimer<=0:
-				chargeTimer = 3
+				chargeTimer = 20
 				charges+=1
 		if charges >=2:
 			$Dot2.show()

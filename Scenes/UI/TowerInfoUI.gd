@@ -7,6 +7,9 @@ static var I
 
 func _ready() -> void:
 	I = self
+	ammoTxt.hide()
+	splashTxt.hide()
+	reloadTxt.hide()
 
 @onready var margin_container: MarginContainer = %MarginContainer
 
@@ -41,15 +44,29 @@ func reposition():
 @onready var rangeTxt: RichTextLabel = %Range
 @onready var cdTxt: RichTextLabel = %Cooldown
 @onready var targetTxt: RichTextLabel = %Target
+@onready var splashTxt: RichTextLabel = %Splash
+@onready var ammoTxt: RichTextLabel = %Ammo
+@onready var reloadTxt: RichTextLabel = %Reload
 
-func Populate(type: TowerData.TowerType, damage: float, range: float, cooldown: float, targetingMode: Tower.TargetingMode):
+func Populate(type: TowerData.TowerType, damage: float, range: float, \
+ cooldown: float, targetingMode: Tower.TargetingMode, splash: float, ammo: float, reload: float):
+	splashTxt.hide()
+	ammoTxt.hide()
+	reloadTxt.hide()
+	
 	match type:
 		TowerData.TowerType.Standard:
 				nameTxt.text = "Standard Tower"
 		TowerData.TowerType.Splash:
 				nameTxt.text = "Splash Tower"
+				splashTxt.show()
+				splashTxt.text = "Splash Range: " + str(splash)
 		TowerData.TowerType.Capacity:
 				nameTxt.text = "Burst Tower"
+				ammoTxt.show()
+				ammoTxt.text = "Ammo Capacity: " + str(ammo)
+				reloadTxt.show()
+				reloadTxt.text = "Reload Time: " + str(reload)
 		TowerData.TowerType.Embiggen:
 				nameTxt.text = "Embiggen Tower"
 		TowerData.TowerType.Ensmallen:

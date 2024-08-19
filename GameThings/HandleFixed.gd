@@ -92,7 +92,8 @@ func _process(delta: float) -> void:
 		HandleSprite.hide()
 		
 	if has_focus() or resizing or get_global_rect().has_point(get_global_mouse_position()):
-		TowerInfo.I.Populate(tower.tower_data.type, tower.damage, tower.target_range, tower.cooldown, tower.targeting_mode)
+		TowerInfo.I.Populate(tower.tower_data.type, tower.damage, tower.target_range, \
+		tower.cooldown, tower.targeting_mode, tower.splash_range, tower.ammo_capacity, tower.rate_of_fire)
 		rangeOutline.show()
 	else: 
 		rangeOutline.hide()

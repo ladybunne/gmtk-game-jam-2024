@@ -24,7 +24,8 @@ func _ready():
 
 
 func _process(_delta: float):
-	pass
+	get_tree().get_first_node_in_group("WaveText").text = "Wave: " \
+	+str(currentWaveIndex+1)+"/"+str(waveSet.waves.size())
 
 func spawn_unit(unit: UnitData):
 	while currentUnitIndex < currentCorps.units.size():
@@ -60,9 +61,8 @@ func spawn_wave(wave: WaveData):
 		next_wave_timer.start()
 		await next_wave_timer.timeout
 		currentWaveIndex+=1
+		GameManager.availableTowers += 0.5
 	print("out of waves")
-
-
 
 #DEPRECATED
 #@export var enemy_to_spawn: PackedScene

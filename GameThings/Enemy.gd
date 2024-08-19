@@ -29,6 +29,9 @@ func initialise(myData: UnitData):
 func setup():
 	speed = data.startSpeed
 	health = data.startHealth
+	bigness = health
+	maxHealth = health
+	startBigness = health
 	visuals.radius = data.startSize
 	type = data.unitType
 	visuals.color = data.color
@@ -107,6 +110,8 @@ func ensmallen(damage: float):
 	update_healthbar()
 
 func updateScale():
+	if bigness<=0:
+		Callable(queue_free).call_deferred()
 	scale = Vector2(1,1) * bigness/startBigness
 
 func show_damage(damage: float, direction: Vector2):
