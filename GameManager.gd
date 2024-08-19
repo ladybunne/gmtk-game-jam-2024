@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 		# this is breaking lmao
 		# Invalid access to property or key 'base_died' on a base object of type 'null instance'.
 		if spawner != null:
-			spawner.all_done.connect(func(): game_over(true))
+			spawner.all_done.connect(func(): all_done_received = true)
 	if end_screen_ui == null:
 		end_screen_ui = get_tree().get_first_node_in_group("TerribleEndScreenGroup")
 		if end_screen_ui != null:
@@ -176,5 +176,6 @@ func restart_scene():
 	end_screen_ui = null
 	buildResource = 100
 	all_done_received = false
+	get_tree().paused = false
 	print_rich("ignore those errors, they're [wave amp=50.0 freq=5.0 connected=1]garbage[/wave]")
 	get_tree().reload_current_scene()
