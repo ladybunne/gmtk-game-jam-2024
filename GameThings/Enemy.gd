@@ -1,6 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 var data: UnitData
+var baseSpeed: float = 100
 @export var speed: float = 100
 @export var health: float = 100
 @export var type: UnitData.UnitType
@@ -28,7 +29,8 @@ func initialise(myData: UnitData):
 	data = myData
 
 func setup():
-	speed = data.startSpeed
+	baseSpeed = data.startSpeed
+	speed = baseSpeed
 	health = data.startHealth
 	bigness = health
 	maxHealth = health
@@ -117,15 +119,25 @@ func embiggen(damage: float):
 	maxHealth += damage
 	%ProgressBar.max_value += damage
 	bigness += damage
+	update_speed(damage, false)
 	%ProgressBar.show()
 	updateScale()
 	update_healthbar()
+
+func update_speed(modifier: float, faster: bool):
+	if faster:
+		speed += modifier
+	else:
+		speed -= modifier
+	if speed < baseSpeed/2:
+		speed = baseSpeed/2
 
 func ensmallen(damage: float):
 	maxHealth -= damage
 	%ProgressBar.max_value -= damage
 	bigness -= damage
 	checkDead()
+	update_speed(damage, true)
 	%ProgressBar.show()
 	updateScale()
 	update_healthbar()

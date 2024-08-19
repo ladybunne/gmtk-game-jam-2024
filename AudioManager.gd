@@ -22,7 +22,7 @@ func _init():
 	_add_bus("SFX")
 
 	# create audio source
-	_create_2DaudioSources(2)
+	_create_2DaudioSources(30)
 	_create_3DaudioSources(5)
 	_create_musicAudioSources(2)
 

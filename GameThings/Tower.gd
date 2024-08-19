@@ -14,9 +14,13 @@ class_name Tower
 @onready var standard_gon: PackedScene = preload("res://Assets/Polygons/StandardGon.tscn")
 @onready var capacity_gon: PackedScene = preload("res://Assets/Polygons/CapacityGon.tscn")
 @onready var splash_gon: PackedScene = preload("res://Assets/Polygons/SplashGon.tscn")
+@onready var sniper_gon: PackedScene = preload("res://Assets/Polygons/SniperGon.tscn")
 @onready var sprite: Node2D:
 	get:
 		return polygon
+var isEqualizer: bool:
+	get:
+		return tower_data.type == TowerData.TowerType.Equalizer
 enum TargetingMode {
 	FIRST,
 	LAST,
@@ -78,6 +82,10 @@ func updateStats():
 			damage *= currentCost/4
 		TowerData.TowerType.Ensmallen:
 			damage *= currentCost/4
+		TowerData.TowerType.Sniper:
+			cooldown -= currentCost/10
+			damage *= currentCost/8
+
 
 func Setup():
 	setup = true
@@ -90,6 +98,9 @@ func Setup():
 			add_child(polygon)
 		TowerData.TowerType.Splash:
 			polygon = splash_gon.instantiate()
+			add_child(polygon)
+		TowerData.TowerType.Sniper:
+			polygon = sniper_gon.instantiate()
 			add_child(polygon)
 		_:
 			pass
@@ -122,7 +133,7 @@ func _process(delta: float) -> void:
 			buffer_shot = false
 
 func _draw() -> void:
-	if target != null:
+	if target != null && !isEqualizer:
 		draw_line(to_local(firing_point.global_position),to_local(target.position), polygon.color, 2)
 
 func recolor():
@@ -147,6 +158,8 @@ func GetEnemiesInRange():
 
 func retarget():
 	target = null
+	if isEqualizer:
+		return
 	if handle.resizing: return
 	for enemy in enemies_in_range:
 		if target == null:
@@ -202,7 +215,7 @@ func shoot(override_standard:bool = false):
 				damage_volley()
 			TowerData.TowerType.Splash:
 				#radius around target is affected
-				print("sploosh")
+				#print("sploosh")
 				for enemy in get_tree().get_nodes_in_group("Enemy"):
 					if enemy.global_position.distance_to(target.global_position) < splash_range:
 						#print(enemy.name + " is about to get splooshed")
@@ -212,14 +225,37 @@ func shoot(override_standard:bool = false):
 						else:
 							enemy.take_damage(damage, enemy.position-target.position)
 				splash_visibility(target.global_position)
+			TowerData.TowerType.Sniper:
+				target.take_damage(damage, directionToEnemy)
+			TowerData.TowerType.Equalizer:
+				print("this shouldn't happen because equalizers don't target")
 			_:
 				print("how did we have NO TowerType?")
+		if isEqualizer:
+			Equalize()
 		AudioManager.play_sfx(tower_data.shot_sfx_string)
 		if !override_standard:
 			shot_timer.start(cooldown)
 	else:
 		shot_timer.stop() #idk if i need this but ohwell
 		buffer_shot = true #
+
+func Equalize():
+	var totalBigness: float = 0
+	var totalHealth: float = 0
+	var totalSpeed: float = 0
+	for enemy in enemies_in_range:
+		totalBigness+- enemy.bigness
+		totalHealth += enemy.health
+		totalSpeed += enemy.speed
+	var averageBig = totalBigness/enemies_in_range.size()
+	var averageHealth = totalHealth/enemies_in_range.size()
+	var averageSpeed = totalSpeed/enemies_in_range.size()
+
+	for enemy in enemies_in_range:
+		enemy.health = lerpf(enemy.health, averageHealth, tower_data.damage)
+		enemy.speed = lerpf(enemy.speed, averageSpeed, tower_data.damage)
+		enemy.bigness = lerpf(enemy.bigness, averageBig, tower_data.damage)
 
 func splash_visibility(position: Vector2):
 	var sprite = Sprite2D.new()

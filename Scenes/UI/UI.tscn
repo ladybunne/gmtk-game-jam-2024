@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c7f6l47krk6xs"]
+[gd_scene load_steps=22 format=3 uid="uid://c7f6l47krk6xs"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_yl4kl"]
 [ext_resource type="Texture2D" uid="uid://cehcu8y4e3uyn" path="res://Assets/Sprites/barOver.png" id="2_u31s5"]
@@ -6,18 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://b87ge5byu3q03" path="res://Assets/Sprites/barProgress2.png" id="4_2nsox"]
 [ext_resource type="Script" path="res://Scenes/UI/ResourceBar.gd" id="4_4iij1"]
 [ext_resource type="PackedScene" uid="uid://bne2y7benlta3" path="res://Scenes/UI/SpeedControlUI.tscn" id="6_4y3xo"]
-[ext_resource type="PackedScene" uid="uid://datu6fcwhci0d" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 [ext_resource type="PackedScene" uid="uid://bqe0ghafx8o7c" path="res://Scenes/UI/TowerInfoUI.tscn" id="8_j376u"]
 [ext_resource type="PackedScene" uid="uid://dw0t4n08wc5g5" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
-[ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="11_jgu0o"]
+[ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="11_2auba"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="12_wid68"]
-[ext_resource type="PackedScene" uid="uid://cpu00utrln8y5" path="res://Scenes/UI/EndScreenUI.tscn" id="17_icfck"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/EndScreenUI.tscn" id="17_icfck"]
 
-[sub_resource type="Resource" id="Resource_ehnt0"]
+[sub_resource type="Resource" id="Resource_wltd2"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
 damage = 7.0
 cooldown = 0.25
 target_range = 80.0
@@ -25,11 +25,11 @@ splash_range = 50.0
 ammo_capacity = 10.0
 rate_of_fire = 0.1
 type = 0
-shot_sfx_string = "puh"
+shot_sfx_string = "bang"
 
-[sub_resource type="Resource" id="Resource_l11qp"]
+[sub_resource type="Resource" id="Resource_0kshi"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
 damage = 20.0
 cooldown = 3.0
 target_range = 100.0
@@ -39,21 +39,33 @@ rate_of_fire = 0.1
 type = 2
 shot_sfx_string = "pshh"
 
-[sub_resource type="Resource" id="Resource_28dom"]
+[sub_resource type="Resource" id="Resource_44w8x"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
 damage = 5.0
 cooldown = 2.0
 target_range = 60.0
-splash_range = null
+splash_range = 200.0
 ammo_capacity = 20.0
 rate_of_fire = 0.01
 type = 1
 shot_sfx_string = "T"
 
-[sub_resource type="Resource" id="Resource_w3j0d"]
+[sub_resource type="Resource" id="Resource_0cst8"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
+damage = 100.0
+cooldown = 5.0
+target_range = 200.0
+splash_range = 200.0
+ammo_capacity = 10.0
+rate_of_fire = 0.1
+type = 5
+shot_sfx_string = "bang"
+
+[sub_resource type="Resource" id="Resource_fokb6"]
+resource_local_to_scene = true
+script = ExtResource("11_2auba")
 damage = 5.0
 cooldown = 0.5
 target_range = 100.0
@@ -63,9 +75,9 @@ rate_of_fire = 0.1
 type = 3
 shot_sfx_string = "mwap"
 
-[sub_resource type="Resource" id="Resource_8ath8"]
+[sub_resource type="Resource" id="Resource_g6oy1"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
 damage = 5.0
 cooldown = 0.5
 target_range = 100.0
@@ -75,13 +87,13 @@ rate_of_fire = 0.1
 type = 4
 shot_sfx_string = "awmp"
 
-[sub_resource type="Resource" id="Resource_brr7k"]
+[sub_resource type="Resource" id="Resource_rplcj"]
 resource_local_to_scene = true
-script = ExtResource("11_jgu0o")
+script = ExtResource("11_2auba")
 damage = 5.0
 cooldown = 2.0
 target_range = 60.0
-splash_range = null
+splash_range = 200.0
 ammo_capacity = 20.0
 rate_of_fire = 0.01
 type = 1
@@ -210,25 +222,32 @@ theme_override_constants/separation = 8
 
 [node name="Button" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 layout_mode = 2
-data = SubResource("Resource_ehnt0")
+data = SubResource("Resource_wltd2")
 
 [node name="Button2" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 layout_mode = 2
-data = SubResource("Resource_l11qp")
+data = SubResource("Resource_0kshi")
 
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button2" index="1"]
 text = "Splash Tower"
 
 [node name="Button3" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 layout_mode = 2
-data = SubResource("Resource_28dom")
+data = SubResource("Resource_44w8x")
 
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button3" index="1"]
 text = "Burst Tower"
 
+[node name="Button6" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+layout_mode = 2
+data = SubResource("Resource_0cst8")
+
+[node name="Label" parent="TowerCreateUI/Panel/Container/Button6" index="1"]
+text = "Sniper Tower"
+
 [node name="Button4" parent="TowerCreateUI/Panel/Container" groups=["bigButton"] instance=ExtResource("9_0k1bh")]
 layout_mode = 2
-data = SubResource("Resource_w3j0d")
+data = SubResource("Resource_fokb6")
 pool = true
 poolIsBig = true
 
@@ -255,7 +274,7 @@ expand_mode = 1
 
 [node name="Button5" parent="TowerCreateUI/Panel/Container" groups=["smallButton"] instance=ExtResource("9_0k1bh")]
 layout_mode = 2
-data = SubResource("Resource_8ath8")
+data = SubResource("Resource_g6oy1")
 pool = true
 
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button5" index="1"]
@@ -282,7 +301,7 @@ expand_mode = 1
 [node name="Sell Tower" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 visible = false
 layout_mode = 2
-data = SubResource("Resource_brr7k")
+data = SubResource("Resource_rplcj")
 sell = true
 
 [node name="Texture" parent="TowerCreateUI/Panel/Container/Sell Tower" index="0"]
@@ -320,6 +339,7 @@ text = "Wave: 1/5
 
 [editable path="TowerCreateUI/Panel/Container/Button2"]
 [editable path="TowerCreateUI/Panel/Container/Button3"]
+[editable path="TowerCreateUI/Panel/Container/Button6"]
 [editable path="TowerCreateUI/Panel/Container/Button4"]
 [editable path="TowerCreateUI/Panel/Container/Button5"]
 [editable path="TowerCreateUI/Panel/Container/Sell Tower"]
