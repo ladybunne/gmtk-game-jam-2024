@@ -7,3 +7,9 @@ class_name EndScreenUI extends CanvasLayer
 		win = p_win
 		if get_node_or_null("%Outcome"):
 			%Outcome.text = "You win!" if win else "You lose..."
+
+func _ready() -> void:
+	%Button.pressed.connect(clicked)
+	
+func clicked():
+	print("clicked")

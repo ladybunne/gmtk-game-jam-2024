@@ -46,11 +46,20 @@ var cursor: Node2D
 
 # These are a bit dumb. Sorry. -Ladybunne
 var base: Base
+var spawner: Spawner
 var end_screen_ui: EndScreenUI
+
+var all_done_received: bool = false
 
 @export var bigPool: PackedScene = preload("res://GameThings/Pool.tscn")
 var placingPool: bool = false
 var poolIsBig: bool = false
+
+var game_over_on: bool = false
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 func _process(delta: float) -> void:
 	var tower_count_text = get_tree().get_first_node_in_group("TowerCountText")
 	if tower_count_text:
@@ -63,6 +72,12 @@ func _process(delta: float) -> void:
 		# Invalid access to property or key 'base_died' on a base object of type 'null instance'.
 		if base != null:
 			base.base_died.connect(func(): game_over(false))
+	if spawner == null:
+		spawner = get_tree().get_first_node_in_group("Spawner")
+		# this is breaking lmao
+		# Invalid access to property or key 'base_died' on a base object of type 'null instance'.
+		if spawner != null:
+			spawner.all_done.connect(func(): game_over(true))
 	if end_screen_ui == null:
 		end_screen_ui = get_tree().get_first_node_in_group("TerribleEndScreenGroup")
 		if end_screen_ui != null:
@@ -77,6 +92,11 @@ func _process(delta: float) -> void:
 			cursor.hide()
 		cursor.global_position = cursor.get_global_mouse_position()
 	SetBarMax()
+	
+	if get_tree().get_node_count_in_group("Enemy") == 0 and all_done_received:
+		all_done_received = false
+		game_over(true)
+		
 
 func SetBarMax():
 	var total = 0
@@ -85,6 +105,9 @@ func SetBarMax():
 	barMax = buildResource + total
 
 func _input(event: InputEvent) -> void:
+	if game_over_on and event is InputEventMouseButton and event.pressed:
+		restart_scene()
+	
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if placing:
@@ -140,13 +163,18 @@ func _input(event: InputEvent) -> void:
 				selling = false
 
 func game_over(p_win: bool):
-	#get_tree().paused = true
+	get_tree().paused = true
+	game_over_on = true
 	end_screen_ui.win = p_win
 	end_screen_ui.visible = true
 
 func restart_scene():
+	game_over_on = false
 	cursor = null
 	base = null
+	spawner = null
 	end_screen_ui = null
 	buildResource = 100
+	all_done_received = false
+	print_rich("ignore those errors, they're [wave amp=50.0 freq=5.0 connected=1]garbage[/wave]")
 	get_tree().reload_current_scene()
