@@ -11,3 +11,4 @@ splash_range = null
 ammo_capacity = 20.0
 rate_of_fire = 0.01
 type = 1
+shot_sfx_string = "T"

@@ -2,14 +2,21 @@ extends Node2D
 
 class_name Tower
 
-@onready var polygon: Polygon2D = %Polygon2D
+@onready var polygon: Polygon2D
 @onready var shot_timer: Timer = %ShotTimer
-@onready var firing_point: Node2D = %FiringPoint
+@onready var firing_point: Node2D:
+	get:
+		return polygon.find_child("FiringPoint")
 @onready var splash_sprite: CompressedTexture2D = preload("res://Assets/Sprites/whitecircle.png")
 @export_group("")
 
 @export var tower_data: TowerData
-
+@onready var standard_gon: PackedScene = preload("res://Assets/Polygons/StandardGon.tscn")
+@onready var capacity_gon: PackedScene = preload("res://Assets/Polygons/CapacityGon.tscn")
+@onready var splash_gon: PackedScene = preload("res://Assets/Polygons/SplashGon.tscn")
+@onready var sprite: Node2D:
+	get:
+		return polygon
 enum TargetingMode {
 	FIRST,
 	LAST,
@@ -32,7 +39,7 @@ var volley_timer: float
 func NextTargetMode():
 	targeting_mode = (targeting_mode + 1) % TargetingMode.size()
 
-@onready var sprite: Node2D = find_child("Polygon2D")
+
 @onready var handle: Control = find_child("Handle")
 
 var currentCost = 0
@@ -73,7 +80,20 @@ func updateStats():
 
 func Setup():
 	setup = true
+	match tower_data.type:
+		TowerData.TowerType.Standard:
+			polygon = standard_gon.instantiate()
+			add_child(polygon)
+		TowerData.TowerType.Capacity:
+			polygon = capacity_gon.instantiate()
+			add_child(polygon)
+		TowerData.TowerType.Splash:
+			polygon = splash_gon.instantiate()
+			add_child(polygon)
+		_:
+			pass
 	recolor()
+
 	currentCost = handle.GetCost()
 	change_target_collider_radius(tower_data.target_range)
 	shot_timer.timeout.connect(shoot)
@@ -184,16 +204,16 @@ func shoot(override_standard:bool = false):
 				print("sploosh")
 				for enemy in get_tree().get_nodes_in_group("Enemy"):
 					if enemy.global_position.distance_to(target.global_position) < splash_range:
-						print(enemy.name + " is about to get splooshed")
-						print(global_position.distance_to(target.global_position))
+						#print(enemy.name + " is about to get splooshed")
+						#print(global_position.distance_to(target.global_position))
 						if enemy == target:
 							enemy.take_damage(damage, directionToEnemy)
 						else:
 							enemy.take_damage(damage, enemy.position-target.position)
 				splash_visibility(target.global_position)
-
 			_:
 				print("how did we have NO TowerType?")
+		AudioManager.play_sfx(tower_data.shot_sfx_string)
 		if !override_standard:
 			shot_timer.start(cooldown)
 	else:

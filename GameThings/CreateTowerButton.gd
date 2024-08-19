@@ -4,7 +4,12 @@ extends TextureButton
 @export var sell: bool
 @export var pool: bool
 @export var poolIsBig: bool
-
+var tower_limit:
+	get:
+		return get_tree().get_first_node_in_group("Spawner").currentWaveIndex+1
+var current_tower_count:
+	get:
+		return get_tree().get_nodes_in_group("Tower").size()
 var charges = 2
 var chargeTimer = 3
 
@@ -19,7 +24,12 @@ func _pressed() -> void:
 			GameManager.placingPool = true
 			GameManager.poolIsBig = poolIsBig
 	else:
-		GameManager.PlacingTower(data)
+		if current_tower_count <= tower_limit:
+			GameManager.PlacingTower(data)
+		else:
+			print(str(current_tower_count)+" "+ str(tower_limit))
+			AudioManager.play_sfx("No")
+
 
 func _process(delta: float) -> void:
 	if sell:

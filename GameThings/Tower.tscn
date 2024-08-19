@@ -99,16 +99,6 @@ patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(0.8, 0.8)
-color = Color(0.678, 0.847, 0.902, 1)
-polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
-
-[node name="FiringPoint" type="Node2D" parent="Polygon2D"]
-unique_name_in_owner = true
-position = Vector2(32, 0)
-
 [node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "rangeHitboxes")]
 self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1

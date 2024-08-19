@@ -11,3 +11,4 @@ splash_range = 120.0
 ammo_capacity = 10.0
 rate_of_fire = 0.1
 type = 2
+shot_sfx_string = "pshh"

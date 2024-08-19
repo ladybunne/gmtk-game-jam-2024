@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://GameThings/Spawner.gd" id="1_rky0c"]
 [ext_resource type="Resource" uid="uid://dt70iia72xli4" path="res://GameThings/WaveResources/AllWaves.tres" id="2_7puft"]
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="Node2D" groups=["Spawner"]]
 script = ExtResource("1_rky0c")
 waveSet = ExtResource("2_7puft")
 

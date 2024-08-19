@@ -13,3 +13,4 @@ enum TowerType{Standard, Capacity, Splash, Embiggen, Ensmallen}
 @export var rate_of_fire: float = 0.1
 @export_group("")
 @export var type: TowerType = TowerType.Standard
+@export var shot_sfx_string: String

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://3o2v1euxeocd"]
+
+[node name="Polygon2D" type="Polygon2D"]
+scale = Vector2(0.8, 0.8)
+color = Color(0.678, 0.847, 0.902, 1)
+polygon = PackedVector2Array(32, 0, 30, 16, 21, 25, 0, 32, -15, 30, -30, 20, -16, 0, -30, -20, -15, -30, 0, -32, 21, -25, 30, -16)
+
+[node name="FiringPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(32, 0)

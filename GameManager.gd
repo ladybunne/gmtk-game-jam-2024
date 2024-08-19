@@ -107,8 +107,10 @@ func _input(event: InputEvent) -> void:
 						t.queue_free()
 						ResourceBar.previewBar.value = ResourceBar.mainBar.value
 						placing = false
+						AudioManager.play_sfx("No")
 						return
 
+					AudioManager.play_sfx("ting")
 					buildResource -= INITIAL_COST
 					ResourceBar.previewBar.value = ResourceBar.mainBar.value
 
@@ -120,6 +122,7 @@ func _input(event: InputEvent) -> void:
 						t.queue_free()
 						buildResource += t.handle.GetCost()
 						ResourceBar.previewBar.value = buildResource
+						AudioManager.play_sfx("slwp")
 				selling = false
 
 func game_over(p_win: bool):
