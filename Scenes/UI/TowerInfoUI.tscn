@@ -65,7 +65,7 @@ autowrap_mode = 0
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 30
-columns = 3
+columns = 2
 
 [node name="Damage" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
@@ -83,9 +83,6 @@ text = "Range: 20"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Control" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-
 [node name="Cooldown" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -94,21 +91,34 @@ text = "Cooldown: 0.4"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Size" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-bbcode_enabled = true
-text = "Size: BIG"
-fit_content = true
-autowrap_mode = 0
-
-[node name="Control2" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-
 [node name="Target" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "Target: First"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Splash" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Splash Range: 50"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Ammo" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Ammo: 10"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Reload" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Reload Time: 3"
 fit_content = true
 autowrap_mode = 0

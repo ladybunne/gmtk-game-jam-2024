@@ -14,7 +14,7 @@ func _ready() -> void:
 func enemy_entered(body: Node2D):
 	if body is Enemy:
 		var enemy = body as Enemy
-		health -= enemy.health
+		health -= max(floor(enemy.health/25),1)
 		if health <= 0:
 			game_over()
 	body.queue_free()

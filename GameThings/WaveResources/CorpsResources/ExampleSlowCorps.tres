@@ -8,4 +8,4 @@
 resource_local_to_scene = true
 script = ExtResource("1_0vew0")
 units = Array[ExtResource("2_qyqrw")]([ExtResource("3_rdwpb"), ExtResource("3_rdwpb"), ExtResource("3_rdwpb"), ExtResource("3_rdwpb")])
-unitInterval = 1.0
+unitInterval = 2.0
