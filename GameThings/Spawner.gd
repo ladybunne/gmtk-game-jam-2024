@@ -27,9 +27,9 @@ func _process(_delta: float):
 	get_tree().get_first_node_in_group("WaveText").text = "Wave: " \
 	+str(currentWaveIndex+1)+"/"+str(waveSet.waves.size())
 
-func spawn_unit(unit: UnitData):
+func spawn_unit():
 	while currentUnitIndex < currentCorps.units.size():
-		create_enemy(unit)
+		create_enemy(currentUnit)
 		next_unit_spawn_timer.wait_time = currentCorps.unitInterval
 		next_unit_spawn_timer.start()
 		await next_unit_spawn_timer.timeout
@@ -40,14 +40,13 @@ func create_enemy(data: UnitData):
 		var new_enemy: Enemy = enemyScene.instantiate() as Enemy
 		new_enemy.initialise(data)
 		new_enemy.position = position
-		new_enemy.spawner = self
 		get_parent().add_child(new_enemy)
 
 
 func spawn_corps(corps: CorpsData):
 	while currentCorpsIndex < currentWave.corps.size():
 		print("Wave "+str(currentWaveIndex+1) + ", Corps "+str(currentCorpsIndex+1))
-		spawn_unit(currentUnit)
+		spawn_unit()
 		next_corps_spawn_timer.wait_time = currentWave.corpsInterval
 		next_corps_spawn_timer.start()
 		await next_corps_spawn_timer.timeout

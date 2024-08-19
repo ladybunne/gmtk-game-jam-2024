@@ -39,6 +39,8 @@ func PlacingTower(data: TowerData):
 	if availableTowers>=1:
 		placing = true
 		towerData = data
+	else:
+		AudioManager.play_sfx("No")
 
 var cursor: Node2D
 

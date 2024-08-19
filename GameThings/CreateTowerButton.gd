@@ -24,11 +24,8 @@ func _pressed() -> void:
 			GameManager.placingPool = true
 			GameManager.poolIsBig = poolIsBig
 	else:
-		if current_tower_count <= tower_limit:
-			GameManager.PlacingTower(data)
-		else:
-			print(str(current_tower_count)+" "+ str(tower_limit))
-			AudioManager.play_sfx("No")
+		GameManager.PlacingTower(data)
+
 
 
 func _process(delta: float) -> void:

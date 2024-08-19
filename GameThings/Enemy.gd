@@ -6,12 +6,13 @@ var data: UnitData
 @export var type: UnitData.UnitType
 @onready var visuals: EnemyPolygon = %EnemyVisuals
 @onready var maxHealth: float = health
-
+@onready var candyUnit: UnitData = preload("res://GameThings/WaveResources/EnemyResources/CandyUnit.tres")
+@onready var enemyScene: PackedScene = preload("res://GameThings/Enemy.tscn")
 @onready var bigness: float = health
 @onready var startBigness: float = health
+var hits_taken: int = 0
 
-
-var spawner: Spawner
+#var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
@@ -79,6 +80,14 @@ func distance_to_base():
 	return result
 
 func take_damage(damage: float, direction: Vector2):
+	if data.unitType==data.UnitType.Hardening:
+		damage *= clamp(hits_taken/100, 0, 0.5)
+	elif data.unitType==data.UnitType.Armoured:
+		damage += hits_taken
+		damage -= 20
+		if damage <0:
+			damage = 0.5
+	hits_taken+=1
 	health -= damage
 	#print(name + str(health))
 	show_damage(damage, direction)
@@ -86,8 +95,20 @@ func take_damage(damage: float, direction: Vector2):
 	%ProgressBar.show()
 	update_healthbar()
 
+
+
 func checkDead():
 	if health <=0:
+		if data.unitType == UnitData.UnitType.Pinata:
+			var i = 20*bigness/100
+			var randnum = 50
+			while i > 0:
+				var new_enemy: Enemy = enemyScene.instantiate() as Enemy
+				new_enemy.initialise(candyUnit)
+				var offset: Vector2 = Vector2(randf_range(-randnum,randnum),randf_range(-randnum,randnum))
+				new_enemy.position = position+offset
+				get_parent().add_child(new_enemy)
+				i-=1
 		GameManager.GainResourceFromEnemy(maxHealth)
 		Callable(queue_free).call_deferred()
 

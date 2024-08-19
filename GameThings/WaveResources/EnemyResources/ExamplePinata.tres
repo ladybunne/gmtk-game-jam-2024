@@ -5,8 +5,8 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ny5w3")
-unitType = 4
+unitType = 5
 color = Color(0.935508, 0.0794211, 1, 1)
-startSize = 30.0
+startSize = 35.0
 startHealth = 300.0
 startSpeed = 50.0

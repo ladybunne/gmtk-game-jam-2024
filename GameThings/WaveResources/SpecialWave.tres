@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=4 format=3 uid="uid://fa1rp6ehrxts"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="1_7ejnh"]
+[ext_resource type="Resource" uid="uid://djt3krv485eer" path="res://GameThings/WaveResources/CorpsResources/AllTheSpecialsCorps.tres" id="2_7wr1w"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveData.gd" id="2_54j5t"]
+
+[resource]
+script = ExtResource("2_54j5t")
+corps = Array[ExtResource("1_7ejnh")]([ExtResource("2_7wr1w")])
+corpsInterval = 15.0

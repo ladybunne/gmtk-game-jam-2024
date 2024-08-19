@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_kneno"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_kneno")
 damage = 5.0
 cooldown = 0.5
