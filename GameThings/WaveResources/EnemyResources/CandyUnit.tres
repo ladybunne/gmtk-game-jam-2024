@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://c640p4vnw5c5s"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://cxk8dmx7rmtv8"]
 
 [ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_leajk"]
 
@@ -8,5 +8,5 @@ script = ExtResource("1_leajk")
 unitType = 0
 color = Color(1, 1, 1, 1)
 startSize = 10.0
-startHealth = 10.0
-startSpeed = 300.0
+startHealth = 25.0
+startSpeed = 225.0

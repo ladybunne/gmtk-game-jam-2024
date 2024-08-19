@@ -8,5 +8,5 @@ script = ExtResource("1_wlbsv")
 unitType = 1
 color = Color(1, 0, 0, 1)
 startSize = 20.0
-startHealth = 35.0
+startHealth = 40.0
 startSpeed = 150.0
