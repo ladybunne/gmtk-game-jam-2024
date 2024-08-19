@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7f6l47krk6xs"]
+[gd_scene load_steps=17 format=3 uid="uid://c7f6l47krk6xs"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_yl4kl"]
 [ext_resource type="Texture2D" uid="uid://cehcu8y4e3uyn" path="res://Assets/Sprites/barOver.png" id="2_u31s5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bth0h4rsnem14" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 [ext_resource type="PackedScene" uid="uid://bqe0ghafx8o7c" path="res://Scenes/UI/TowerInfoUI.tscn" id="8_j376u"]
 [ext_resource type="PackedScene" uid="uid://m1lqb1ilwf6j" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
+[ext_resource type="PackedScene" uid="uid://c5h6t03ggetju" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
 [ext_resource type="Resource" uid="uid://bwmbm3j4cnijd" path="res://GameThings/TowerResources/SplashTower.tres" id="11_su80b"]
 [ext_resource type="Resource" uid="uid://b3w47aflwvwyn" path="res://GameThings/TowerResources/CapacityTower.tres" id="12_drnvu"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
@@ -96,6 +97,8 @@ patch_margin_bottom = 4
 [node name="BigcraftUI" parent="." instance=ExtResource("7_cqopu")]
 
 [node name="TowerInfoUI" parent="." instance=ExtResource("8_j376u")]
+
+[node name="BaseHealthUI" parent="." instance=ExtResource("9_8ccqo")]
 
 [node name="TowerCreateUI" type="CanvasLayer" parent="."]
 
