@@ -92,11 +92,16 @@ func _process(delta: float) -> void:
 			cursor.hide()
 		cursor.global_position = cursor.get_global_mouse_position()
 	SetBarMax()
-	
+
 	if get_tree().get_node_count_in_group("Enemy") == 0 and all_done_received:
 		all_done_received = false
 		game_over(true)
-		
+
+
+	if get_tree().get_node_count_in_group("Enemy") == 0 and all_done_received:
+		all_done_received = false
+		game_over(true)
+
 
 func SetBarMax():
 	var total = 0
@@ -107,7 +112,8 @@ func SetBarMax():
 func _input(event: InputEvent) -> void:
 	if game_over_on and event is InputEventMouseButton and event.pressed:
 		restart_scene()
-	
+
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if placing:

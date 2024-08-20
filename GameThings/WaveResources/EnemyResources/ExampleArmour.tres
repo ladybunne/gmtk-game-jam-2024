@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://q14u75308oo7"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://q14u75308oo7"]
 
 [ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_7x1eq"]
+[ext_resource type="Texture2D" uid="uid://dwta263qfx38o" path="res://Assets/Sprites/Enemies/virus.png" id="2_rnchp"]
 
 [resource]
 script = ExtResource("1_7x1eq")
 unitType = 3
 color = Color(0.295867, 0.295866, 0.295866, 1)
-startSize = 30.0
+scaleMultiplier = 0.5
 startHealth = 100.0
 startSpeed = 50.0
+sprite = ExtResource("2_rnchp")

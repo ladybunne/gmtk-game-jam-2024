@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://dkjk4hr3iihnd"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://dkjk4hr3iihnd"]
 
 [ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_fch3w"]
+[ext_resource type="Texture2D" uid="uid://bxmiptee3f5q" path="res://Assets/Sprites/Enemies/angrycube.png" id="2_jbhmw"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_fch3w")
 unitType = 4
 color = Color(0.519674, 0.261612, 0, 1)
-startSize = 30.0
+scaleMultiplier = 0.5
 startHealth = 200.0
 startSpeed = 80.0
+sprite = ExtResource("2_jbhmw")

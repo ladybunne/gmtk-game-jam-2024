@@ -7,17 +7,19 @@ var baseSpeed: float = 100
 @export var type: UnitData.UnitType
 @onready var visuals: EnemyPolygon = %EnemyVisuals
 @onready var maxHealth: float = health
-@onready var candyUnit: UnitData = preload("res://GameThings/WaveResources/EnemyResources/CandyUnit.tres")
+@onready var candyUnit: UnitData = preload("res://GameThings/WaveResources/EnemyResources/CandySubUnit.tres")
 @onready var enemyScene: PackedScene = preload("res://GameThings/Enemy.tscn")
 @onready var bigness: float = health
 @onready var startBigness: float = health
+var isDebuffed: bool = false
 var hits_taken: int = 0
-
+@onready var mouth: Polygon2D = %Mouth
+@onready var sprite: Sprite2D = %Sprite2D
 #var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
 # I guess this is the better way of doing this? edit: Dan made this even better with UNIQUE NAME!
 @onready var navigation_agent: NavigationAgent2D = %NavigationAgent2D
-
+@onready var debuffParticles: CPUParticles2D = %DebuffParticles
 func _ready() -> void:
 	setup()
 	%ProgressBar.max_value = health
@@ -35,9 +37,11 @@ func setup():
 	bigness = health
 	maxHealth = health
 	startBigness = health
-	visuals.radius = data.startSize
 	type = data.unitType
 	visuals.color = data.color
+	sprite.texture = data.sprite
+	sprite.scale *= data.scaleMultiplier
+
 
 
 func actor_setup():
@@ -97,6 +101,10 @@ func take_damage(damage: float, direction: Vector2):
 	%ProgressBar.show()
 	update_healthbar()
 
+func debuff(damage: float):
+	update_speed(damage, false)
+	isDebuffed = true
+	debuffParticles.emitting = true
 
 
 func checkDead():
@@ -107,9 +115,13 @@ func checkDead():
 			while i > 0:
 				var new_enemy: Enemy = enemyScene.instantiate() as Enemy
 				new_enemy.initialise(candyUnit)
+				var r = randi_range(0,candyUnit.spriteOptions.size()-1)
+				candyUnit.sprite = candyUnit.spriteOptions[r]
 				var offset: Vector2 = Vector2(randf_range(-randnum,randnum),randf_range(-randnum,randnum))
 				new_enemy.position = position+offset
 				get_parent().add_child(new_enemy)
+
+
 				i-=1
 		GameManager.GainResourceFromEnemy(maxHealth)
 		Callable(queue_free).call_deferred()

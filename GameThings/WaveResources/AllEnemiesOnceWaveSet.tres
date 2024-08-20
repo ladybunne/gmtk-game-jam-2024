@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WaveSetData" load_steps=4 format=3 uid="uid://dy656snnjs5yj"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveSetData.gd" id="1_ss86u"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/WaveData.gd" id="2_dpf1b"]
+[ext_resource type="Resource" uid="uid://cc1xt7s66d3pu" path="res://GameThings/WaveResources/AllEnemiesOnceWave.tres" id="3_07x7q"]
+
+[resource]
+script = ExtResource("1_ss86u")
+waves = Array[ExtResource("2_dpf1b")]([ExtResource("3_07x7q")])
+waveInterval = 1.0

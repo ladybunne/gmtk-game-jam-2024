@@ -21,6 +21,9 @@ class_name Tower
 var isEqualizer: bool:
 	get:
 		return tower_data.type == TowerData.TowerType.Equalizer
+var isDebuff: bool:
+	get:
+		return tower_data.type == TowerData.TowerType.Debuff
 enum TargetingMode {
 	FIRST,
 	LAST,
@@ -105,6 +108,9 @@ func Setup():
 		TowerData.TowerType.Sniper:
 			polygon = sniper_gon.instantiate()
 			add_child(polygon)
+		TowerData.TowerType.Debuff:
+			polygon = sniper_gon.instantiate()
+			add_child(polygon)
 			move_child(polygon,6)
 		_:
 			pass
@@ -168,6 +174,10 @@ func retarget():
 	for enemy in enemies_in_range:
 		if target == null:
 			target = enemy
+		if isDebuff && target.isDebuffed:
+			print("no retargeting sad!")
+			target = null
+			continue
 		else:
 			match targeting_mode:
 				TargetingMode.FIRST:
@@ -233,6 +243,8 @@ func shoot(override_standard:bool = false):
 				target.take_damage(damage, directionToEnemy)
 			TowerData.TowerType.Equalizer:
 				print("this shouldn't happen because equalizers don't target")
+			TowerData.TowerType.Debuff:
+				target.debuff(tower_data.damage)
 			_:
 				print("how did we have NO TowerType?")
 		if isEqualizer:
@@ -256,10 +268,11 @@ func Equalize():
 	var averageHealth = totalHealth/enemies_in_range.size()
 	var averageSpeed = totalSpeed/enemies_in_range.size()
 
-	for enemy in enemies_in_range:
-		enemy.health = lerpf(enemy.health, averageHealth, tower_data.damage)
-		enemy.speed = lerpf(enemy.speed, averageSpeed, tower_data.damage)
-		enemy.bigness = lerpf(enemy.bigness, averageBig, tower_data.damage)
+	#maybe later implement the coroutine
+	#for enemy in enemies_in_range:
+		#enemy.health = lerpf(enemy.health, averageHealth, tower_data.damage)
+		#enemy.speed = lerpf(enemy.speed, averageSpeed, tower_data.damage)
+		#enemy.bigness = lerpf(enemy.bigness, averageBig, tower_data.damage)
 
 func splash_visibility(position: Vector2):
 	var sprite = Sprite2D.new()

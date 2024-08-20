@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://bug31axb25b0c"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://bug31axb25b0c"]
 
 [ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_ny5w3"]
+[ext_resource type="Texture2D" uid="uid://b464seexfb3uc" path="res://Assets/Sprites/Enemies/partyball.png" id="2_nkkgr"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_ny5w3")
 unitType = 5
 color = Color(0.935508, 0.0794211, 1, 1)
-startSize = 35.0
+scaleMultiplier = 1.2
 startHealth = 500.0
-startSpeed = 45.0
+startSpeed = 60.0
+sprite = ExtResource("2_nkkgr")
