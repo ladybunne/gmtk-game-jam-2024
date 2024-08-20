@@ -4,7 +4,6 @@
 
 [node name="Polygon2D" type="Sprite2D"]
 z_index = 1
-texture_filter = 1
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_rgkcn")
 

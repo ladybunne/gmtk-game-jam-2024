@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dew2hxqg5ldgy"]
+
+[ext_resource type="Texture2D" uid="uid://venay3uthvcb" path="res://Assets/Sprites/Towers/snipeTowerRotate.png" id="1_5g536"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_5g536")
