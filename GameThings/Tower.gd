@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Tower
 
-@onready var polygon: Polygon2D
+@onready var polygon: Sprite2D
 @onready var shot_timer: Timer = %ShotTimer
 @onready var firing_point: Node2D:
 	get:
@@ -78,16 +78,20 @@ func updateStats():
 			damage *= 1 + (currentCost/8)
 		TowerData.TowerType.Splash:
 			splash_range *= 1 + (currentCost/12)
-			damage *= 1 + (currentCost/20)
+			damage *= 1 + (currentCost/18)
 		TowerData.TowerType.Capacity:
-			ammo_capacity += currentCost
+			ammo_capacity += currentCost*1.1
+			damage += currentCost/20
+			cooldown += currentCost/40
 		TowerData.TowerType.Embiggen:
 			damage *= currentCost/4
 		TowerData.TowerType.Ensmallen:
 			damage *= currentCost/4
 		TowerData.TowerType.Sniper:
-			cooldown -= currentCost/10
-			damage *= currentCost/8
+			damage *= currentCost/16			
+			cooldown -=  2 * (1 - (1 / (1 +currentCost/40)))
+		TowerData.TowerType.Debuff:
+			damage *= 1 + (currentCost/8)
 
 
 func Setup():
@@ -131,6 +135,9 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	if target != null:
 		sprite.look_at(target.position)
+		var rot = (roundi(sprite.rotation_degrees) + 720) % 360
+		print(rot )
+		sprite.flip_v = rot > 90 and rot < 270
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
@@ -144,10 +151,12 @@ func _process(delta: float) -> void:
 			buffer_shot = false
 
 func _draw() -> void:
+	return
 	if target != null && !isEqualizer:
 		draw_line(to_local(firing_point.global_position),to_local(target.position), polygon.color, 2)
 
 func recolor():
+	return
 	match targeting_mode:
 		TargetingMode.FIRST:
 			polygon.color = Color.SLATE_BLUE
@@ -174,17 +183,17 @@ func retarget():
 	if handle.resizing: return
 	for enemy in enemies_in_range:
 		if target == null:
-			target = null if isDebuff && enemy.isDebuffed else enemy
+			target = enemy
 		else:
 			match targeting_mode:
 				TargetingMode.FIRST:
-					target = target if isDebuff && first(enemy, target).isDebuffed else first(enemy, target)
+					target = first(enemy, target)
 				TargetingMode.LAST:
-					target = target if isDebuff && last(enemy, target).isDebuffed else last(enemy, target)
+					target = last(enemy, target)
 				TargetingMode.CLOSE:
-					target = target if isDebuff && close(enemy, target).isDebuffed else close(enemy, target)
+					target = close(enemy, target)
 				TargetingMode.STRONG:
-					target = target if isDebuff && strong(enemy, target).isDebuffed else strong(enemy, target)
+					target = strong(enemy, target)
 
 
 
@@ -243,10 +252,8 @@ func shoot(override_standard:bool = false):
 			TowerData.TowerType.Equalizer:
 				print("this shouldn't happen because equalizers don't target")
 			TowerData.TowerType.Debuff:
-				if !target.isDebuffed:
-					target.debuff(tower_data.damage)
-				else:
-					print("targeting an already debuffed enemy. BAD")
+				target.debuff(40)
+				target.take_damage(damage, directionToEnemy)
 			_:
 				print("how did we have NO TowerType?")
 		if isEqualizer:

@@ -87,7 +87,8 @@ func distance_to_base():
 
 func take_damage(damage: float, direction: Vector2):
 	if data.unitType==data.UnitType.Hardening:
-		damage *= clamp(hits_taken/100, 0, 0.5)
+		damage *= lerp(1.0,0.5,hits_taken/100.0)
+		update_speed(0.4,false)
 	elif data.unitType==data.UnitType.Armoured:
 		damage += hits_taken
 		damage -= 20
@@ -100,19 +101,22 @@ func take_damage(damage: float, direction: Vector2):
 	checkDead()
 	%ProgressBar.show()
 	update_healthbar()
+	if data.unitType==data.UnitType.Hardening:
+		sprite.material.set_shader_parameter("tint",Vector3(1,1 - hits_taken/100.0,1 - hits_taken/100.0))
+
 
 func debuff(damage: float):
 	update_speed(damage/100.0, false, true)
 	isDebuffed = true
 	debuffParticles.emitting = true
 	debuffParticles.emission_sphere_radius *= data.scaleMultiplier
-	sprite.modulate = Color(0.8,1,0.8)
+	sprite.material.set_shader_parameter("slowTint",Vector3(0.8,1,0.8))
 
 
 func checkDead():
 	if health <=0:
 		if data.unitType == UnitData.UnitType.Pinata:
-			var i = 20*bigness/100
+			var i = 20*bigness/startBigness
 			var randnum = 50
 			while i > 0:
 				var new_enemy: Enemy = enemyScene.instantiate() as Enemy
@@ -152,6 +156,7 @@ func update_speed(modifier: float, faster: bool, isMultiplier: bool = false):
 
 func ensmallen(damage: float):
 	maxHealth -= damage
+	health-= damage
 	%ProgressBar.max_value -= damage
 	bigness -= damage
 	checkDead()

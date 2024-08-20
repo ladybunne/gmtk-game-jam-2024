@@ -3,10 +3,9 @@
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_cgvbt"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_cgvbt")
-damage = 75.0
-cooldown = 5.0
+damage = 36.0
+cooldown = 3.5
 target_range = 270.0
 splash_range = 200.0
 ammo_capacity = 10.0

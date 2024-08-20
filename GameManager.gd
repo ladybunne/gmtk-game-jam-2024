@@ -1,12 +1,14 @@
 extends Node
 
-var buildResource = 30
+var START_RESOURCE = 20
+
+@onready var buildResource = START_RESOURCE
 var areaToBuildResourceRatio = 1.0/1024.0
 
 var barMax
 
 func GainResourceFromEnemy(value: float):
-	GameManager.buildResource += value/50
+	GameManager.buildResource += value/150
 	ResetBar()
 
 
@@ -180,7 +182,7 @@ func restart_scene():
 	base = null
 	spawner = null
 	end_screen_ui = null
-	buildResource = 100
+	buildResource = START_RESOURCE
 	all_done_received = false
 	get_tree().paused = false
 	print_rich("ignore those errors, they're [wave amp=50.0 freq=5.0 connected=1]garbage[/wave]")

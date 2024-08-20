@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
 [ext_resource type="Script" path="res://GameThings/DetectEnemy.gd" id="2_t1qxj"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
-[ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="7_k1bvg"]
+[ext_resource type="Texture2D" uid="uid://m8qqfepdgxlp" path="res://Assets/Sprites/Towers/SplashField.png" id="4_esqqk"]
 [ext_resource type="Texture2D" uid="uid://jo7838087we1" path="res://Assets/Sprites/funkySquare.png" id="7_k7s4i"]
 [ext_resource type="Shader" path="res://GameThings/TowerRadius.gdshader" id="7_ygpkm"]
 
@@ -93,11 +93,9 @@ offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
-texture = ExtResource("7_k1bvg")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+texture = ExtResource("4_esqqk")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Handle" type="Panel" parent="." node_paths=PackedStringArray("tower", "HandleSprite", "rangeHitboxes")]
 self_modulate = Color(1, 1, 1, 0)

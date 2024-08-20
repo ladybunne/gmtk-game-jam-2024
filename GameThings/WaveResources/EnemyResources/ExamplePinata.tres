@@ -9,6 +9,6 @@ script = ExtResource("1_ny5w3")
 unitType = 5
 color = Color(0.935508, 0.0794211, 1, 1)
 scaleMultiplier = 1.2
-startHealth = 500.0
+startHealth = 4000.0
 startSpeed = 60.0
 sprite = ExtResource("2_nkkgr")

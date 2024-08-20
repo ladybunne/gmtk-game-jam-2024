@@ -1,4 +1,4 @@
-extends Node2D
+class_name Pool extends Node2D
 
 var timer = 0
 var radius = 75
