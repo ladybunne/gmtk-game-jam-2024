@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_cgvbt")
-damage = 25.0
+damage = 36.0
 cooldown = 3.2
 target_range = 270.0
 splash_range = 200.0

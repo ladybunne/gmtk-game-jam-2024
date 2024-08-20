@@ -79,12 +79,12 @@ func updateStats():
 		TowerData.TowerType.Standard:
 			damage *= 1 + (currentCost/10)
 		TowerData.TowerType.Splash:
-			splash_range *= 1 + (currentCost/12)
-			damage *= 1 + (currentCost/18)
+			splash_range *= 1 + (currentCost/10)
+			damage *= 1 + (currentCost/22)
 		TowerData.TowerType.Capacity:
-			ammo_capacity += currentCost*1.1
-			damage += currentCost/20
-			cooldown += currentCost/40
+			ammo_capacity += currentCost*1
+			damage += currentCost/18
+			cooldown += currentCost/50
 		TowerData.TowerType.Embiggen:
 			damage *= currentCost/4
 		TowerData.TowerType.Ensmallen:
@@ -93,7 +93,7 @@ func updateStats():
 			damage *= 1 + (currentCost/18)
 			cooldown -=  1.3 * (1 - (1 / (1 +currentCost/80)))
 		TowerData.TowerType.Debuff:
-			damage *= 1 + (currentCost/8)
+			damage *= 1 + (currentCost/12)
 
 @export var standardTex :Texture
 @export var splashTex :Texture

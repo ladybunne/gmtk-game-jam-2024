@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_0kmka")
-damage = 4.0
+damage = 5.5
 cooldown = 3.0
 target_range = 75.0
 splash_range = null
-ammo_capacity = 12.0
+ammo_capacity = 14.0
 rate_of_fire = 0.1
 type = 1
 shot_sfx_string = "T"
