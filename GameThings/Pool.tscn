@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GameThings/Pool.gd" id="1_gvm1f"]
 [ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_c807x"]
 
-[node name="Pool" type="Node2D" groups=["Enemy"]]
+[node name="Pool" type="Node2D" groups=["Pool"]]
 script = ExtResource("1_gvm1f")
 
 [node name="Node2D" type="Node2D" parent="."]
