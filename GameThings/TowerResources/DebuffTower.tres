@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_3kl2f")
-damage = 5.0
+damage = 40.0
 cooldown = 0.5
 target_range = 50.0
 splash_range = 200.0
