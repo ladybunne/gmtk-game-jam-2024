@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cwem31dqdtony"]
 
 [ext_resource type="Script" path="res://GameThings/Base.gd" id="1_hxo7n"]
-[ext_resource type="Texture2D" uid="uid://bfokkaff6tm36" path="res://Assets/Sprites/base.png" id="1_t4542"]
+[ext_resource type="Texture2D" uid="uid://dbdca8icb4nwj" path="res://Assets/Sprites/SignBase.png" id="2_i3pos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18w4u"]
 size = Vector2(12, 12)
@@ -10,7 +10,7 @@ size = Vector2(12, 12)
 script = ExtResource("1_hxo7n")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_t4542")
+texture = ExtResource("2_i3pos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_18w4u")
