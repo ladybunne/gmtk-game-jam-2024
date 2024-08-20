@@ -72,13 +72,13 @@ func Populate(type: TowerData.TowerType, damage: float, range: float, \
 		TowerData.TowerType.Splash:
 				nameTxt.text = "Splash Tower"
 				splashTxt.show()
-				splashTxt.text = "Splash Range: " + str(splash)
+				splashTxt.text = "Splash Range: " + str(floor(splash * 100.0) / 100.0)
 		TowerData.TowerType.Capacity:
 				nameTxt.text = "Burst Tower"
 				ammoTxt.show()
-				ammoTxt.text = "Ammo Capacity: " + str(ammo)
+				ammoTxt.text = "Ammo Capacity: " + str(floor(ammo))
 				reloadTxt.show()
-				reloadTxt.text = "Reload Time: " + str(reload)
+				reloadTxt.text = "Reload Time: " + str(floor(reload * 100.0) / 100.0)
 		TowerData.TowerType.Embiggen:
 				nameTxt.text = "Embiggen Tower"
 		TowerData.TowerType.Ensmallen:
@@ -87,9 +87,9 @@ func Populate(type: TowerData.TowerType, damage: float, range: float, \
 				nameTxt.text = "Slow Tower"
 				splashTxt.show()
 				splashTxt.text = "Slow: 40%"
-	damageTxt.text = "Damage: " + str(damage)
-	rangeTxt.text = "Range: " + str(range)
-	cdTxt.text = "Cooldown: " + str(cooldown)
+	damageTxt.text = "Damage: " + str(floor(damage * 100.0) / 100.0)
+	rangeTxt.text = "Range: " + str(floor(range * 100.0) / 100.0)
+	cdTxt.text = "Cooldown: " + str(floor(cooldown * 100.0) / 100.0)
 	match targetingMode:
 		Tower.TargetingMode.FIRST:
 			targetTxt.text = "Target: First"

@@ -15,20 +15,29 @@ func _process(delta: float) -> void:
 	%Lead.on = get_tree().get_node_count_in_group("Tower") >= 1
 
 	%Hat.on = get_tree().get_node_count_in_group("Enemy") >= 1
-	
+
 	# Check for a boss enemy
-	%IntenseDrums.on = false
-	if %IntenseDrums.on:
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	if enemies.filter(func(enemy): return enemy.type in [UnitData.UnitType.Armoured, UnitData.UnitType.Hardening, UnitData.UnitType.Pinata]):
+		%IntenseDrums.on = true
 		# Maybe turn off hat at the same time.
 		%Hat.on = false
-	
+
 	# Change which lead is playing based on pools.
 	# Ideally whichever one you place most recently is the one that works.
 	%HighLead.on = false
 	%LowLead.on = false
-	
-	if %HighLead.on or %LowLead.on:
+
+	var pools = get_tree().get_nodes_in_group("Pool")
+	if pools.size():
+		var latest_pool = pools[-1] as Pool
+		%HighLead.on = !latest_pool.grow
+		%LowLead.on = latest_pool.grow
 		%Lead.on = false
+	else:
+		%HighLead.on = false
+		%LowLead.on = false
+
 
 func update_players():
 	%Base.on_volume = normal_volume

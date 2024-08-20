@@ -180,6 +180,7 @@ func show_damage(damage: float, direction: Vector2):
 		flecks.finished.connect(func(): kill_particle(flecks))
 
 func kill_particle(particle: CPUParticles2D):
+	#print("killing particle")
 	Callable(particle.queue_free).call_deferred()
 
 func update_healthbar():

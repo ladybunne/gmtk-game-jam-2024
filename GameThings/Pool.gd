@@ -1,9 +1,18 @@
-extends Node2D
+class_name Pool extends Node2D
 
 var timer = 0
 var radius = 75
 var grow: bool = false
 var lifetime: float = 10
+@onready var bigParticles: PackedScene = preload("res://Assets/Particles/BigParticles.tscn")
+@onready var smolParticles: PackedScene = preload("res://Assets/Particles/SmolParticles.tscn")
+
+func _ready():
+	print(grow)
+	if grow:
+		spawnBigParticles()
+	else:
+		spawnSmolParticles()
 
 func _process(delta: float) -> void:
 	lifetime -= delta
@@ -19,3 +28,12 @@ func _process(delta: float) -> void:
 					e.embiggen(2)
 				else:
 					e.ensmallen(2)
+
+func spawnBigParticles():
+	var particles = bigParticles.instantiate()
+	add_child(particles)
+
+
+func spawnSmolParticles():
+	var particles = smolParticles.instantiate()
+	add_child(particles)
