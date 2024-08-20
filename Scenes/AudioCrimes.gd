@@ -22,6 +22,8 @@ func _process(delta: float) -> void:
 		%IntenseDrums.on = true
 		# Maybe turn off hat at the same time.
 		%Hat.on = false
+	else:
+		%IntenseDrums.on = false
 
 	# Change which lead is playing based on pools.
 	# Ideally whichever one you place most recently is the one that works.
