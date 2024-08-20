@@ -127,8 +127,8 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if placingPool:
 				var p = bigPool.instantiate()
-				get_tree().get_first_node_in_group("Level").add_child(p)
 				p.grow = poolIsBig
+				get_tree().get_first_node_in_group("Level").add_child(p)
 				p.position = p.get_global_mouse_position()
 				get_tree().get_first_node_in_group("bigButton" if poolIsBig else "smallButton").ConsumeCharge()
 				placingPool = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg3w8eh8d07lt"]
+[gd_scene load_steps=3 format=3 uid="uid://j812asvqftiw"]
 
 [ext_resource type="Script" path="res://GameThings/Pool.gd" id="1_gvm1f"]
 [ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_c807x"]
@@ -7,6 +7,7 @@
 script = ExtResource("1_gvm1f")
 
 [node name="Node2D" type="Node2D" parent="."]
+visible = false
 script = ExtResource("2_c807x")
 color = Color(1, 0.419608, 0, 0.596078)
 radius = 75.0

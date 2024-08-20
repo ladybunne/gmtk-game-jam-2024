@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c7f6l47krk6xs" path="res://Scenes/UI/UI.tscn" id="1_4wb6o"]
 [ext_resource type="PackedScene" uid="uid://dqx0tgwtfe1g8" path="res://Scenes/TestLevel.tscn" id="2_v6iw5"]
 [ext_resource type="Script" path="res://Panner.gd" id="4_d1rfe"]
-[ext_resource type="PackedScene" uid="uid://hnucd0snqfkf" path="res://Scenes/AudioCrimes.tscn" id="5_n74yx"]
+[ext_resource type="PackedScene" path="res://Scenes/AudioCrimes.tscn" id="5_n74yx"]
 
 [node name="GameScene" type="Node"]
 
