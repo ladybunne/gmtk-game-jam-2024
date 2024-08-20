@@ -90,8 +90,8 @@ func updateStats():
 		TowerData.TowerType.Ensmallen:
 			damage *= currentCost/4
 		TowerData.TowerType.Sniper:
-			damage *= currentCost/16
-			cooldown -=  2 * (1 - (1 / (1 +currentCost/40)))
+			damage *= currentCost/15
+			cooldown -=  1.3 * (1 - (1 / (1 +currentCost/80)))
 		TowerData.TowerType.Debuff:
 			damage *= 1 + (currentCost/8)
 
