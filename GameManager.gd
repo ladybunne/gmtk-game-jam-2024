@@ -100,11 +100,6 @@ func _process(delta: float) -> void:
 		game_over(true)
 
 
-	if get_tree().get_node_count_in_group("Enemy") == 0 and all_done_received:
-		all_done_received = false
-		game_over(true)
-
-
 func SetBarMax():
 	var total = 0
 	for tower in get_tree().get_nodes_in_group("Tower") as Array[Tower]:

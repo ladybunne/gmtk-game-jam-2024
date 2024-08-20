@@ -47,4 +47,3 @@ script = ExtResource("4_d1rfe")
 camera = NodePath("../../Camera2D")
 
 [node name="AudioCrimes" parent="." instance=ExtResource("5_n74yx")]
-normal_volume = -8
