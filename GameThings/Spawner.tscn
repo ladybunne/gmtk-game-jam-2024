@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GameThings/Spawner.gd" id="1_rky0c"]
 [ext_resource type="Resource" uid="uid://dt70iia72xli4" path="res://GameThings/WaveResources/AllWaves.tres" id="2_7puft"]
-[ext_resource type="Resource" path="res://GameThings/WaveResources/AllEnemiesOnceWaveSet.tres" id="3_p6xlc"]
+[ext_resource type="Resource" uid="uid://dy656snnjs5yj" path="res://GameThings/WaveResources/AllEnemiesOnceWaveSet.tres" id="3_p6xlc"]
 [ext_resource type="Texture2D" uid="uid://cjbykr2t5wud6" path="res://Assets/Sprites/Enemies/spawner.png" id="4_h0egg"]
 [ext_resource type="Shader" path="res://GameThings/Squiggly.gdshader" id="4_opao4"]
 [ext_resource type="Texture2D" uid="uid://bn481eamd1kjv" path="res://Assets/Sprites/whitecircle.png" id="6_k2voi"]

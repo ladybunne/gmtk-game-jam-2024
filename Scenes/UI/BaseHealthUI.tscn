@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5h6t03ggetju"]
+[gd_scene load_steps=3 format=3 uid="uid://cejavfnvbjrkf"]
 
 [ext_resource type="Script" path="res://Scenes/UI/BaseHealthUI.gd" id="1_ciael"]
 [ext_resource type="Texture2D" uid="uid://bpollwxw1fbve" path="res://Assets/Sprites/heart.png" id="2_2nuu1"]
