@@ -107,22 +107,27 @@ func _process(delta: float) -> void:
 	rangeOutline.size = scale * size + Vector2(towerRange,towerRange) * 2
 	rangeOutline.position = position + (size/2) - (rangeOutline.size/2)
 	
+	#left
 	rangeHitboxes[0].shape.height = scale.y * size.y + towerRange*2
-	rangeHitboxes[0].shape.radius = towerRange
-	rangeHitboxes[0].position.x = size.x/2 -(scale.x * size.x/2)
+	#rangeHitboxes[0].shape.radius = towerRange
+	rangeHitboxes[0].position.x = size.x/2 -(scale.x * size.x/2) - towerRange+32
 	
+	#right
 	rangeHitboxes[1].shape.height = scale.y * size.y + towerRange*2
-	rangeHitboxes[1].shape.radius = towerRange
-	rangeHitboxes[1].position.x = (scale.x * size.x/2) - size.x/2 
+	#rangeHitboxes[1].shape.radius = towerRange
+	rangeHitboxes[1].position.x = (scale.x * size.x/2) - size.x/2 + towerRange-32
 	
+	#down
 	rangeHitboxes[2].shape.height = scale.x * size.x + towerRange*2
-	rangeHitboxes[2].shape.radius = towerRange
-	rangeHitboxes[2].position.y = (scale.y * size.y/2) - size.y/2 
+	#rangeHitboxes[2].shape.radius = towerRange
+	rangeHitboxes[2].position.y = (scale.y * size.y/2) - size.y/2 + towerRange-32
 	
+	#up
 	rangeHitboxes[3].shape.height = scale.x * size.x + towerRange*2
-	rangeHitboxes[3].shape.radius = towerRange	
-	rangeHitboxes[3].position.y = size.y/2 -(scale.y * size.y/2)
+	#rangeHitboxes[3].shape.radius = towerRange	
+	rangeHitboxes[3].position.y = size.y/2 -(scale.y * size.y/2) - towerRange+32
 	
-	rangeHitboxes[4].scale = scale
+	#center
+	rangeHitboxes[4].shape.size = (scale*size) + Vector2(towerRange+32,towerRange+32)
 
 @export var towerRange = 124
