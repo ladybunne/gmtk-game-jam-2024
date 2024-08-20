@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c7f6l47krk6xs"]
+[gd_scene load_steps=31 format=3 uid="uid://c7f6l47krk6xs"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_yl4kl"]
 [ext_resource type="Texture2D" uid="uid://cehcu8y4e3uyn" path="res://Assets/Sprites/barOver.png" id="2_u31s5"]
@@ -6,15 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b87ge5byu3q03" path="res://Assets/Sprites/barProgress2.png" id="4_2nsox"]
 [ext_resource type="Script" path="res://Scenes/UI/ResourceBar.gd" id="4_4iij1"]
 [ext_resource type="PackedScene" uid="uid://bne2y7benlta3" path="res://Scenes/UI/SpeedControlUI.tscn" id="6_4y3xo"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
+[ext_resource type="PackedScene" uid="uid://datu6fcwhci0d" path="res://Scenes/UI/BigcraftUI.tscn" id="7_cqopu"]
 [ext_resource type="PackedScene" uid="uid://bqe0ghafx8o7c" path="res://Scenes/UI/TowerInfoUI.tscn" id="8_j376u"]
 [ext_resource type="PackedScene" uid="uid://dw0t4n08wc5g5" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
-[ext_resource type="PackedScene" uid="uid://cejavfnvbjrkf" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
-[ext_resource type="PackedScene" uid="uid://c847sapy47grg" path="res://Scenes/UI/HelpUI.tscn" id="10_qhr12"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="11_2auba"]
 [ext_resource type="Texture2D" uid="uid://cch01smarx0me" path="res://Assets/Sprites/Towers/standardTower.png" id="11_a81nn"]
 [ext_resource type="Resource" uid="uid://bwmbm3j4cnijd" path="res://GameThings/TowerResources/SplashTower.tres" id="11_dfxxo"]
-[ext_resource type="PackedScene" uid="uid://bqck1unkaqlgd" path="res://Scenes/UI/HelpDismissButton.tscn" id="11_r3x6n"]
 [ext_resource type="Resource" uid="uid://b3w47aflwvwyn" path="res://GameThings/TowerResources/CapacityTower.tres" id="12_36bk1"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="12_wid68"]
@@ -29,10 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://dhmdwkoxawxry" path="res://Assets/Particles/ArrowUp.png" id="23_nj3tm"]
 [ext_resource type="Texture2D" uid="uid://dvunoxdnbtmmh" path="res://Assets/Particles/smolpool.png" id="24_5gaqn"]
 [ext_resource type="Texture2D" uid="uid://kl0d6c5412nd" path="res://Assets/Particles/DownArrow.png" id="25_vvee0"]
-[ext_resource type="Texture2D" uid="uid://cyl5bwyloriks" path="res://Assets/Sprites/Help/middleClick.png" id="30_3cxch"]
-[ext_resource type="Texture2D" uid="uid://bgdqui2v8175b" path="res://Assets/Sprites/Help/rightClick.png" id="31_475rf"]
 
-[sub_resource type="Resource" id="Resource_v60ag"]
+[sub_resource type="Resource" id="Resource_aoysc"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -44,7 +40,7 @@ rate_of_fire = 0.01
 type = 1
 shot_sfx_string = "T"
 
-[sub_resource type="Resource" id="Resource_qrowh"]
+[sub_resource type="Resource" id="Resource_p2dh7"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -56,7 +52,7 @@ rate_of_fire = 0.1
 type = 3
 shot_sfx_string = "mwap"
 
-[sub_resource type="Resource" id="Resource_10art"]
+[sub_resource type="Resource" id="Resource_43yai"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -151,11 +147,6 @@ patch_margin_bottom = 4
 
 [node name="BaseHealthUI" parent="." instance=ExtResource("9_8ccqo")]
 
-[node name="HelpUI" parent="." node_paths=PackedStringArray("helpImageButton") instance=ExtResource("10_qhr12")]
-helpImageButton = NodePath("../HelpDismissButton")
-
-[node name="HelpDismissButton" parent="." instance=ExtResource("11_r3x6n")]
-
 [node name="TowerCreateUI" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="TowerCreateUI"]
@@ -243,7 +234,7 @@ text = "Slow Tower"
 [node name="Sell Tower" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 visible = false
 layout_mode = 2
-data = SubResource("Resource_v60ag")
+data = SubResource("Resource_aoysc")
 sell = true
 
 [node name="Texture" parent="TowerCreateUI/Panel/Container/Sell Tower" index="0"]
@@ -273,7 +264,7 @@ offset_left = 180.0
 offset_top = -100.0
 offset_right = 308.0
 offset_bottom = -45.0
-data = SubResource("Resource_qrowh")
+data = SubResource("Resource_p2dh7")
 pool = true
 poolIsBig = true
 
@@ -312,7 +303,7 @@ offset_left = 180.0
 offset_top = -36.0
 offset_right = 308.0
 offset_bottom = 19.0
-data = SubResource("Resource_10art")
+data = SubResource("Resource_43yai")
 pool = true
 
 [node name="Texture" parent="TowerCreateUI/Control/Button5" index="0"]
@@ -364,37 +355,6 @@ text = "Wave: 1/5
 
 [node name="EndScreenUI" parent="." instance=ExtResource("17_icfck")]
 visible = false
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1069.0
-offset_top = 428.0
-offset_right = 1319.0
-offset_bottom = 548.0
-theme_override_constants/line_separation = -7
-bbcode_enabled = true
-text = "- Pan Screen/Zoom
-
-
-- Change Targeting Priority
-"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 1019.0
-offset_top = 424.0
-offset_right = 1147.0
-offset_bottom = 552.0
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("30_3cxch")
-
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-offset_left = 1019.0
-offset_top = 471.0
-offset_right = 1147.0
-offset_bottom = 599.0
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("31_475rf")
 
 [editable path="TowerCreateUI/Panel/Container/Button"]
 [editable path="TowerCreateUI/Panel/Container/Button2"]

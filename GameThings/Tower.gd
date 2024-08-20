@@ -15,6 +15,7 @@ class_name Tower
 @onready var capacity_gon: PackedScene = preload("res://Assets/Polygons/CapacityGon.tscn")
 @onready var splash_gon: PackedScene = preload("res://Assets/Polygons/SplashGon.tscn")
 @onready var sniper_gon: PackedScene = preload("res://Assets/Polygons/SniperGon.tscn")
+@onready var sniper_gon2: PackedScene = preload("res://Assets/Polygons/SniperGon2.tscn")
 @onready var slow_gon: PackedScene = preload("res://Assets/Polygons/SlowGon.tscn")
 @onready var sprite: Node2D:
 	get:
@@ -121,7 +122,9 @@ func Setup():
 		TowerData.TowerType.Sniper:
 			%BaseSprite.texture = sniperTex
 			polygon = sniper_gon.instantiate()
-			add_child(polygon)
+			add_child(polygon)			
+			
+			polygon.get_child(0).add_child(sniper_gon2.instantiate())
 		TowerData.TowerType.Debuff:
 			%BaseSprite.texture = slowTex
 			polygon = slow_gon.instantiate()
@@ -145,10 +148,12 @@ func _process(delta: float) -> void:
 
 	queue_redraw()
 	if target != null:
-		sprite.look_at(target.position)
-		var rot = (roundi(sprite.rotation_degrees) + 720) % 360
-		print(rot )
-		sprite.flip_v = rot > 90 and rot < 270
+		if tower_data.type == TowerData.TowerType.Sniper:
+			sprite.get_child(0).look_at(target.position)
+		else:
+			sprite.look_at(target.position)
+			var rot = (roundi(sprite.rotation_degrees) + 720) % 360
+			sprite.flip_v = rot > 90 and rot < 270
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
