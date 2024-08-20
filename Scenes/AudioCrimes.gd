@@ -18,6 +18,12 @@ func _process(delta: float) -> void:
 
 	# Check for a boss enemy
 	var enemies = get_tree().get_nodes_in_group("Enemy")
+	var boss = false
+	for e in enemies:
+		if e.type == UnitData.UnitType.Armoured or e.type == UnitData.UnitType.Pinata:
+			boss = true
+		elif e.type == UnitData.UnitType.Hardening and get_tree().get_first_node_in_group("Spawner").currentWaveIndex <= 6:
+			boss = true
 	if enemies.filter(func(enemy): return enemy.type in [UnitData.UnitType.Armoured, UnitData.UnitType.Hardening, UnitData.UnitType.Pinata]):
 		%IntenseDrums.on = true
 		# Maybe turn off hat at the same time.
