@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://d28j28j2kco5y" path="res://GameThings/TowerResources/DebuffTower.tres" id="14_mmnkw"]
 [ext_resource type="PackedScene" uid="uid://cpu00utrln8y5" path="res://Scenes/UI/EndScreenUI.tscn" id="17_icfck"]
 
-[sub_resource type="Resource" id="Resource_04qim"]
+[sub_resource type="Resource" id="Resource_emmlo"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -31,7 +31,7 @@ rate_of_fire = 0.01
 type = 1
 shot_sfx_string = "T"
 
-[sub_resource type="Resource" id="Resource_oud1r"]
+[sub_resource type="Resource" id="Resource_5bayj"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -43,7 +43,7 @@ rate_of_fire = 0.1
 type = 3
 shot_sfx_string = "mwap"
 
-[sub_resource type="Resource" id="Resource_rqyo2"]
+[sub_resource type="Resource" id="Resource_b2ihm"]
 resource_local_to_scene = true
 script = ExtResource("11_2auba")
 damage = 5.0
@@ -210,7 +210,7 @@ text = "Slow Tower"
 [node name="Sell Tower" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
 visible = false
 layout_mode = 2
-data = SubResource("Resource_04qim")
+data = SubResource("Resource_emmlo")
 sell = true
 
 [node name="Texture" parent="TowerCreateUI/Panel/Container/Sell Tower" index="0"]
@@ -240,7 +240,7 @@ offset_left = 180.0
 offset_top = -100.0
 offset_right = 308.0
 offset_bottom = -45.0
-data = SubResource("Resource_oud1r")
+data = SubResource("Resource_5bayj")
 pool = true
 poolIsBig = true
 
@@ -272,7 +272,7 @@ offset_left = 180.0
 offset_top = -36.0
 offset_right = 308.0
 offset_bottom = 19.0
-data = SubResource("Resource_rqyo2")
+data = SubResource("Resource_b2ihm")
 pool = true
 
 [node name="Label" parent="TowerCreateUI/Control/Button5" index="1"]
