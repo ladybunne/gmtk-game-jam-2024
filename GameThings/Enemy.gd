@@ -105,9 +105,11 @@ func take_damage(damage: float, direction: Vector2):
 
 
 func debuff(damage: float):
-	update_speed(damage, false)
+	update_speed(damage/100.0, false, true)
 	isDebuffed = true
 	debuffParticles.emitting = true
+	debuffParticles.emission_sphere_radius *= data.scaleMultiplier
+	sprite.modulate = Color(0.8,1,0.8)
 
 
 func checkDead():
@@ -123,8 +125,6 @@ func checkDead():
 				var offset: Vector2 = Vector2(randf_range(-randnum,randnum),randf_range(-randnum,randnum))
 				new_enemy.position = position+offset
 				get_parent().add_child(new_enemy)
-
-
 				i-=1
 		GameManager.GainResourceFromEnemy(maxHealth)
 		Callable(queue_free).call_deferred()
@@ -139,11 +139,17 @@ func embiggen(damage: float):
 	updateScale()
 	update_healthbar()
 
-func update_speed(modifier: float, faster: bool):
+func update_speed(modifier: float, faster: bool, isMultiplier: bool = false):
 	if faster:
-		speed += modifier
+		if isMultiplier:
+			speed /= modifier
+		else:
+			speed += modifier
 	else:
-		speed -= modifier
+		if isMultiplier:
+			speed *= modifier
+		else:
+			speed -= modifier
 	if speed < baseSpeed/2:
 		speed = baseSpeed/2
 

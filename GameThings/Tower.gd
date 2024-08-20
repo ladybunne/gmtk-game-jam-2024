@@ -126,6 +126,7 @@ func _process(delta: float) -> void:
 	updateStats()
 	GetEnemiesInRange()
 	retarget()
+
 	queue_redraw()
 	if target != null:
 		sprite.look_at(target.position)
@@ -172,21 +173,19 @@ func retarget():
 	if handle.resizing: return
 	for enemy in enemies_in_range:
 		if target == null:
-			target = enemy
-		if isDebuff && target.isDebuffed:
-			print("no retargeting sad!")
-			target = null
-			continue
+			target = null if isDebuff && enemy.isDebuffed else enemy
 		else:
 			match targeting_mode:
 				TargetingMode.FIRST:
-					target = first(enemy, target)
+					target = target if isDebuff && first(enemy, target).isDebuffed else first(enemy, target)
 				TargetingMode.LAST:
-					target = last(enemy, target)
+					target = target if isDebuff && last(enemy, target).isDebuffed else last(enemy, target)
 				TargetingMode.CLOSE:
-					target = close(enemy, target)
+					target = target if isDebuff && close(enemy, target).isDebuffed else close(enemy, target)
 				TargetingMode.STRONG:
-					target = strong(enemy, target)
+					target = target if isDebuff && strong(enemy, target).isDebuffed else strong(enemy, target)
+
+
 
 # This needs to not do "as the crow flies" - maybe do lifetime of entity?
 func first(new: Enemy, old: Enemy):
@@ -243,7 +242,10 @@ func shoot(override_standard:bool = false):
 			TowerData.TowerType.Equalizer:
 				print("this shouldn't happen because equalizers don't target")
 			TowerData.TowerType.Debuff:
-				target.debuff(tower_data.damage)
+				if !target.isDebuffed:
+					target.debuff(tower_data.damage)
+				else:
+					print("targeting an already debuffed enemy. BAD")
 			_:
 				print("how did we have NO TowerType?")
 		if isEqualizer:

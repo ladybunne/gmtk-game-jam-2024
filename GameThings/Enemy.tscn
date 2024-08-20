@@ -92,6 +92,7 @@ unique_name_in_owner = true
 position = Vector2(0, -5)
 emitting = false
 randomness = 0.5
+local_coords = true
 texture = ExtResource("4_wsixm")
 emission_shape = 1
 emission_sphere_radius = 24.0
