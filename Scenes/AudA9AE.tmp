@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://hnucd0snqfkf"]
+
+[ext_resource type="AudioStream" uid="uid://b3e3koygfvg6b" path="res://Audio/Music/TowerJam-Base.mp3" id="1_m5jp8"]
+[ext_resource type="Script" path="res://Scenes/AudioCrimes.gd" id="1_pdrw7"]
+[ext_resource type="AudioStream" uid="uid://dj8j00pdrbcyh" path="res://Audio/Music/TowerJam-Bass.mp3" id="2_ygltc"]
+[ext_resource type="AudioStream" uid="uid://dvw42f4e833wo" path="res://Audio/Music/TowerJam-Chip.mp3" id="3_r43ox"]
+[ext_resource type="AudioStream" uid="uid://cqxgy7h2apf4a" path="res://Audio/Music/TowerJam-Hat.mp3" id="4_a1ja8"]
+[ext_resource type="AudioStream" uid="uid://dtwb3v77w3u3n" path="res://Audio/Music/TowerJam-HighLead.mp3" id="5_7ndts"]
+[ext_resource type="AudioStream" uid="uid://6xdy1qc15mfc" path="res://Audio/Music/TowerJam-IntenseDrums.mp3" id="6_1hl58"]
+[ext_resource type="Script" path="res://Scenes/FadeableAudioStreamPlayer.gd" id="6_hl45x"]
+[ext_resource type="AudioStream" uid="uid://bepnr0acaunu0" path="res://Audio/Music/TowerJam-Lead.mp3" id="7_k0g0q"]
+[ext_resource type="AudioStream" uid="uid://pjrxkjbuhybx" path="res://Audio/Music/TowerJam-LowLead.mp3" id="8_boak8"]
+
+[node name="AudioCrimes" type="Node"]
+script = ExtResource("1_pdrw7")
+
+[node name="Base" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_m5jp8")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+on = true
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_ygltc")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+
+[node name="Chip" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_r43ox")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+
+[node name="Hat" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_a1ja8")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+on = true
+on_volume = -8.0
+
+[node name="HighLead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_7ndts")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+
+[node name="IntenseDrums" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_1hl58")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+
+[node name="Lead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_k0g0q")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")
+
+[node name="LowLead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_boak8")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+script = ExtResource("6_hl45x")

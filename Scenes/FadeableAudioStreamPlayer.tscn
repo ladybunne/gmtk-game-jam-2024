@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://l3i51o40kufh"]
+
+[ext_resource type="Script" path="res://Scenes/FadeableAudioStreamPlayer.gd" id="1_g31w4"]
+
+[node name="FadeableAudioStreamPlayer" type="AudioStreamPlayer"]
+script = ExtResource("1_g31w4")
