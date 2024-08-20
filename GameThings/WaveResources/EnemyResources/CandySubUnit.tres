@@ -9,9 +9,9 @@
 [resource]
 script = ExtResource("1_bh471")
 spriteOptions = Array[Texture2D]([ExtResource("3_mm6ed"), ExtResource("4_jdf2r"), ExtResource("5_a407e"), ExtResource("2_n514a")])
-unitType = 0
+unitType = 6
 color = Color(0, 0, 0, 1)
-startSize = 0.0
-startHealth = 0.0
-startSpeed = 0.0
+scaleMultiplier = 0.2
+startHealth = 10.0
+startSpeed = 200.0
 sprite = ExtResource("2_n514a")

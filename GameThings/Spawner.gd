@@ -5,9 +5,12 @@ class_name Spawner extends Node2D
 @onready var next_wave_timer: Timer = %NextWaveTimer
 @onready var enemyScene: PackedScene = preload("res://GameThings/Enemy.tscn")
 @export var waveSet: WaveSetData
+@export var debugWaveset: WaveSetData
 var currentWaveIndex: int = 0
 var currentCorpsIndex: int = 0
 var currentUnitIndex: int = 0
+@export_group("Debug")
+@export var debugEnemies: bool = false
 
 signal all_done
 
@@ -22,6 +25,8 @@ var currentUnit:
 		return waveSet.waves[currentWaveIndex].corps[currentCorpsIndex].units[currentUnitIndex]
 
 func _ready():
+	if debugEnemies:
+		waveSet = debugWaveset
 	spawn_wave(currentWave)
 
 
@@ -65,7 +70,7 @@ func spawn_wave(wave: WaveData):
 		next_wave_timer.start()
 		await next_wave_timer.timeout
 
-		
+
 	currentWaveIndex-=1
 	print("out of waves")
 	all_done.emit()

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CorpsData" load_steps=9 format=3 uid="uid://87mij76axf0q"]
+
+[ext_resource type="Script" path="res://GameThings/WaveResources/CorpsResources/CorpsData.gd" id="1_incd5"]
+[ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="2_pjx6g"]
+[ext_resource type="Resource" uid="uid://q14u75308oo7" path="res://GameThings/WaveResources/EnemyResources/ExampleArmour.tres" id="3_375mj"]
+[ext_resource type="Resource" uid="uid://csu1kwtfrvm5f" path="res://GameThings/WaveResources/EnemyResources/ExampleFast.tres" id="4_g0cfj"]
+[ext_resource type="Resource" uid="uid://dkjk4hr3iihnd" path="res://GameThings/WaveResources/EnemyResources/ExampleHard.tres" id="5_el5sf"]
+[ext_resource type="Resource" uid="uid://bug31axb25b0c" path="res://GameThings/WaveResources/EnemyResources/ExamplePinata.tres" id="6_1nplo"]
+[ext_resource type="Resource" uid="uid://cu0rmq7ii36f2" path="res://GameThings/WaveResources/EnemyResources/ExampleSlow.tres" id="7_5qj82"]
+[ext_resource type="Resource" uid="uid://qgrerak0uqrv" path="res://GameThings/WaveResources/EnemyResources/ExampleNormal.tres" id="8_rbqig"]
+
+[resource]
+script = ExtResource("1_incd5")
+units = Array[ExtResource("2_pjx6g")]([ExtResource("6_1nplo"), ExtResource("4_g0cfj"), ExtResource("5_el5sf"), ExtResource("7_5qj82"), ExtResource("8_rbqig"), ExtResource("3_375mj")])
+unitInterval = 1.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=9 format=3 uid="uid://0wjxf4s3ct76"]
 
 [ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
-[ext_resource type="Texture2D" uid="uid://b26o4huku0mt1" path="res://Assets/Sprites/smiley.png" id="1_eo6st"]
 [ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_ejndl"]
+[ext_resource type="Texture2D" uid="uid://dclvyml5pwh6p" path="res://Assets/Sprites/Enemies/Germ.png" id="3_md6x7"]
+[ext_resource type="Texture2D" uid="uid://0ap8fe7kqpwc" path="res://Assets/Sprites/debuffparticle.png" id="4_wsixm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 24.0
@@ -22,29 +23,33 @@ health = 50.0
 
 [node name="EnemyVisuals" type="Node2D" parent="."]
 unique_name_in_owner = true
+visible = false
 script = ExtResource("2_ejndl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
+unique_name_in_owner = true
 texture_filter = 1
-texture = ExtResource("1_eo6st")
+texture = ExtResource("3_md6x7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_st7nf")
 
 [node name="LeftEye" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(7, -3)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-15, -9, -15, 5, -11, 1, -11, -14)
 
 [node name="RightEye" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(19, -3)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-15, -9, -15, 5, -11, 1, -11, -14)
 
 [node name="Mouth" type="Polygon2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, 11)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-16, -6, -13, 1, -8, 5, 0, 6, 9, 5, 14, 1, 17, -6)
@@ -75,3 +80,18 @@ theme_override_styles/background = SubResource("StyleBoxFlat_2rejq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_tsis1")
 rounded = true
 show_percentage = false
+
+[node name="DebuffParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+emitting = false
+randomness = 0.5
+texture = ExtResource("4_wsixm")
+emission_shape = 1
+emission_sphere_radius = 24.0
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.2

@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://qgrerak0uqrv"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://qgrerak0uqrv"]
 
 [ext_resource type="Script" path="res://GameThings/WaveResources/EnemyResources/UnitData.gd" id="1_xpfh8"]
+[ext_resource type="Texture2D" uid="uid://dclvyml5pwh6p" path="res://Assets/Sprites/Enemies/Germ.png" id="2_c4ukt"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_xpfh8")
 unitType = 0
 color = Color(1, 1, 0, 1)
-startSize = 24.0
+scaleMultiplier = 0.35
 startHealth = 50.0
 startSpeed = 100.0
+sprite = ExtResource("2_c4ukt")
