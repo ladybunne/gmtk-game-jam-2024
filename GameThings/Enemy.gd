@@ -87,7 +87,7 @@ func distance_to_base():
 
 func take_damage(damage: float, direction: Vector2):
 	if data.unitType==data.UnitType.Hardening:
-		damage *= clamp(hits_taken/100, 0, 0.5)
+		damage *= lerp(1.0,0.5,hits_taken/100.0)
 	elif data.unitType==data.UnitType.Armoured:
 		damage += hits_taken
 		damage -= 20
@@ -100,6 +100,9 @@ func take_damage(damage: float, direction: Vector2):
 	checkDead()
 	%ProgressBar.show()
 	update_healthbar()
+	if data.unitType==data.UnitType.Hardening:
+		sprite.material.set_shader_parameter("tint",Vector3(1,1 - hits_taken/100.0,1 - hits_taken/100.0))
+
 
 func debuff(damage: float):
 	update_speed(damage, false)

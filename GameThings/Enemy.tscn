@@ -1,9 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://0wjxf4s3ct76"]
+[gd_scene load_steps=11 format=3 uid="uid://0wjxf4s3ct76"]
 
 [ext_resource type="Script" path="res://GameThings/Enemy.gd" id="1_6ags1"]
 [ext_resource type="Script" path="res://GameThings/EnemyPolygon.gd" id="2_ejndl"]
+[ext_resource type="Shader" path="res://GameThings/Enemy.gdshader" id="3_5c3ra"]
 [ext_resource type="Texture2D" uid="uid://dclvyml5pwh6p" path="res://Assets/Sprites/Enemies/Germ.png" id="3_md6x7"]
 [ext_resource type="Texture2D" uid="uid://0ap8fe7kqpwc" path="res://Assets/Sprites/debuffparticle.png" id="4_wsixm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fpdyh"]
+shader = ExtResource("3_5c3ra")
+shader_parameter/tint = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 24.0
@@ -29,6 +34,7 @@ script = ExtResource("2_ejndl")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+material = SubResource("ShaderMaterial_fpdyh")
 texture = ExtResource("3_md6x7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
