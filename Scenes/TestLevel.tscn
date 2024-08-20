@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://dqx0tgwtfe1g8"]
 
 [ext_resource type="PackedScene" uid="uid://w6fk256glcoe" path="res://GameThings/Level.tscn" id="1_2db0s"]
-[ext_resource type="PackedScene" uid="uid://cqontydq58tyy" path="res://GameThings/Buildings.tscn" id="2_j408f"]
+[ext_resource type="PackedScene" path="res://GameThings/Buildings.tscn" id="2_j408f"]
 [ext_resource type="Shader" path="res://Scenes/BloodTiles.gdshader" id="3_bjl0c"]
 [ext_resource type="TileSet" uid="uid://bxu7rt05x3aw8" path="res://Assets/Tilesets/LevelTileSet.tres" id="4_txq3d"]
 

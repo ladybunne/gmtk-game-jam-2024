@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://0ap8fe7kqpwc" path="res://Assets/Sprites/debuffparticle.png" id="4_wsixm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fpdyh"]
+resource_local_to_scene = true
 shader = ExtResource("3_5c3ra")
 shader_parameter/tint = Vector3(1, 1, 1)
+shader_parameter/slowTint = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_st7nf"]
 radius = 24.0

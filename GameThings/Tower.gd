@@ -80,13 +80,17 @@ func updateStats():
 			splash_range *= 1 + (currentCost/12)
 			damage *= 1 + (currentCost/20)
 		TowerData.TowerType.Capacity:
-			ammo_capacity += currentCost
+			ammo_capacity += currentCost*1.1
+			damage += currentCost/20
+			cooldown += currentCost/40
 		TowerData.TowerType.Embiggen:
 			damage *= currentCost/4
 		TowerData.TowerType.Ensmallen:
 			damage *= currentCost/4
 		TowerData.TowerType.Sniper:
 			damage *= currentCost/8
+		TowerData.TowerType.Debuff:
+			damage *= 1 + (currentCost/8)
 
 
 func Setup():
@@ -173,17 +177,17 @@ func retarget():
 	if handle.resizing: return
 	for enemy in enemies_in_range:
 		if target == null:
-			target = null if isDebuff && enemy.isDebuffed else enemy
+			target = enemy
 		else:
 			match targeting_mode:
 				TargetingMode.FIRST:
-					target = target if isDebuff && first(enemy, target).isDebuffed else first(enemy, target)
+					target = first(enemy, target)
 				TargetingMode.LAST:
-					target = target if isDebuff && last(enemy, target).isDebuffed else last(enemy, target)
+					target = last(enemy, target)
 				TargetingMode.CLOSE:
-					target = target if isDebuff && close(enemy, target).isDebuffed else close(enemy, target)
+					target = close(enemy, target)
 				TargetingMode.STRONG:
-					target = target if isDebuff && strong(enemy, target).isDebuffed else strong(enemy, target)
+					target = strong(enemy, target)
 
 
 
@@ -242,10 +246,8 @@ func shoot(override_standard:bool = false):
 			TowerData.TowerType.Equalizer:
 				print("this shouldn't happen because equalizers don't target")
 			TowerData.TowerType.Debuff:
-				if !target.isDebuffed:
-					target.debuff(tower_data.damage)
-				else:
-					print("targeting an already debuffed enemy. BAD")
+				target.debuff(40)
+				target.take_damage(damage, directionToEnemy)
 			_:
 				print("how did we have NO TowerType?")
 		if isEqualizer:

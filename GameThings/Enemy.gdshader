@@ -1,13 +1,15 @@
 shader_type canvas_item;
 uniform vec3 tint = vec3(1,1,1);
+uniform vec3 slowTint = vec3(1,1,1);
+
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+  VERTEX.xy += vec2(sin((TIME/5.0)*VERTEX.y)/0.2,sin((TIME/8.0)*VERTEX.x)/0.2);
 }
 
 void fragment() {
 	vec4 color = texture(TEXTURE,UV);
-	COLOR = vec4(tint * color.rgb, color.a);
+	COLOR = vec4(slowTint * tint * color.rgb, color.a);
 }
 
 //void light() {

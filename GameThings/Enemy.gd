@@ -109,7 +109,7 @@ func debuff(damage: float):
 	isDebuffed = true
 	debuffParticles.emitting = true
 	debuffParticles.emission_sphere_radius *= data.scaleMultiplier
-	sprite.modulate = Color(0.8,1,0.8)
+	sprite.material.set_shader_parameter("slowTint",Vector3(0.8,1,0.8))
 
 
 func checkDead():
