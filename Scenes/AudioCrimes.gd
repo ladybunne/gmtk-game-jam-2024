@@ -1,6 +1,6 @@
 class_name AudioCrimes extends Node
 
-@export var normal_volume: int = -8 :
+@export var normal_volume: int = -80 :
 	set(p_normal_volume):
 		normal_volume = p_normal_volume
 		if is_node_ready():

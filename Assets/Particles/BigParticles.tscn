@@ -11,6 +11,7 @@ point_count = 2
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 lifetime = 3.0
+preprocess = 4.0
 texture = ExtResource("1_ya7oi")
 emission_shape = 1
 emission_sphere_radius = 32.0
@@ -21,6 +22,7 @@ scale_amount_curve = SubResource("Curve_si4vd")
 color = Color(1, 1, 1, 0.392157)
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+preprocess = 4.0
 texture = ExtResource("2_u8vj2")
 emission_shape = 1
 emission_sphere_radius = 64.0
