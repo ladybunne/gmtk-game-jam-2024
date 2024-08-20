@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://u2q37unjbsb"]
+[gd_scene load_steps=9 format=3 uid="uid://u2q37unjbsb"]
 
-[ext_resource type="Texture2D" uid="uid://3up2wimjbuxr" path="res://Assets/Sprites/spawner.png" id="1_3fsqp"]
 [ext_resource type="Script" path="res://GameThings/Spawner.gd" id="1_rky0c"]
 [ext_resource type="Resource" uid="uid://dt70iia72xli4" path="res://GameThings/WaveResources/AllWaves.tres" id="2_7puft"]
 [ext_resource type="Resource" uid="uid://dy656snnjs5yj" path="res://GameThings/WaveResources/AllEnemiesOnceWaveSet.tres" id="3_p6xlc"]
+[ext_resource type="Texture2D" uid="uid://cjbykr2t5wud6" path="res://Assets/Sprites/Enemies/spawner.png" id="4_h0egg"]
+[ext_resource type="Shader" path="res://GameThings/Squiggly.gdshader" id="4_opao4"]
+[ext_resource type="Texture2D" uid="uid://bn481eamd1kjv" path="res://Assets/Sprites/whitecircle.png" id="6_k2voi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwwn4"]
+shader = ExtResource("4_opao4")
+
+[sub_resource type="Gradient" id="Gradient_qet7h"]
+offsets = PackedFloat32Array(0, 0.498507, 1)
+colors = PackedColorArray(1, 0.376471, 0, 1, 0.548798, 0, 0.107391, 1, 0.32549, 0, 1, 1)
 
 [node name="Spawner" type="Node2D" groups=["Spawner"]]
 script = ExtResource("1_rky0c")
@@ -12,7 +21,8 @@ debugWaveset = ExtResource("3_p6xlc")
 debugEnemies = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3fsqp")
+material = SubResource("ShaderMaterial_mwwn4")
+texture = ExtResource("4_h0egg")
 
 [node name="NextSpawnTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -25,3 +35,19 @@ one_shot = true
 [node name="NextWaveTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 100
+local_coords = true
+texture = ExtResource("6_k2voi")
+emission_shape = 2
+emission_sphere_radius = 64.0
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -100.0
+scale_amount_min = 0.05
+scale_amount_max = 0.05
+color = Color(1, 1, 1, 0.427451)
+color_ramp = SubResource("Gradient_qet7h")
