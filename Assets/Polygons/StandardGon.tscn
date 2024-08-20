@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://3dhxn4gh051q"]
+[gd_scene load_steps=2 format=3 uid="uid://3dhxn4gh051q"]
 
-[node name="Polygon2D" type="Polygon2D"]
+[ext_resource type="Texture2D" uid="uid://dqa47wp47q4vo" path="res://Assets/Sprites/Towers/Splash.png" id="1_22kej"]
+
+[node name="Polygon2D" type="Sprite2D"]
+z_index = 1
+texture_filter = 1
 scale = Vector2(0.8, 0.8)
-color = Color(0.678, 0.847, 0.902, 1)
-polygon = PackedVector2Array(32, 0, -32, 32, -16, 0, -32, -32)
+texture = ExtResource("1_22kej")
 
 [node name="FiringPoint" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(32, 0)
+position = Vector2(22.5, 0)

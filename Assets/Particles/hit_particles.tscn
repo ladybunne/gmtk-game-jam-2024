@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlivhmvd02qh8"]
+[gd_scene load_steps=3 format=3 uid="uid://dlivhmvd02qh8"]
 
 [ext_resource type="Texture2D" uid="uid://8sv5hxqnm3r6" path="res://Assets/Sprites/hitsprite.png" id="1_6ejum"]
+[ext_resource type="Script" path="res://Assets/Particles/HitParticle.gd" id="2_xvouw"]
 
 [node name="HitParticles" type="CPUParticles2D"]
 emitting = false
@@ -15,3 +16,6 @@ initial_velocity_min = 200.0
 initial_velocity_max = 500.0
 linear_accel_min = -1.0
 linear_accel_max = -1.0
+script = ExtResource("2_xvouw")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

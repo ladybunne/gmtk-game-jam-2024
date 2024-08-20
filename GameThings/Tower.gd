@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Tower
 
-@onready var polygon: Polygon2D
+@onready var polygon: Sprite2D
 @onready var shot_timer: Timer = %ShotTimer
 @onready var firing_point: Node2D:
 	get:
@@ -78,7 +78,7 @@ func updateStats():
 			damage *= 1 + (currentCost/8)
 		TowerData.TowerType.Splash:
 			splash_range *= 1 + (currentCost/12)
-			damage *= 1 + (currentCost/20)
+			damage *= 1 + (currentCost/18)
 		TowerData.TowerType.Capacity:
 			ammo_capacity += currentCost*1.1
 			damage += currentCost/20
@@ -88,7 +88,8 @@ func updateStats():
 		TowerData.TowerType.Ensmallen:
 			damage *= currentCost/4
 		TowerData.TowerType.Sniper:
-			damage *= currentCost/8
+			damage *= currentCost/16			
+			cooldown -=  2 * (1 - (1 / (1 +currentCost/40)))
 		TowerData.TowerType.Debuff:
 			damage *= 1 + (currentCost/8)
 
@@ -134,6 +135,9 @@ func _process(delta: float) -> void:
 	queue_redraw()
 	if target != null:
 		sprite.look_at(target.position)
+		var rot = (roundi(sprite.rotation_degrees) + 720) % 360
+		print(rot )
+		sprite.flip_v = rot > 90 and rot < 270
 		#shooting mechanics and rules
 		if shooting_volley:
 			#shoot the next bullet in the volley when the timer goes off
@@ -147,10 +151,12 @@ func _process(delta: float) -> void:
 			buffer_shot = false
 
 func _draw() -> void:
+	return
 	if target != null && !isEqualizer:
 		draw_line(to_local(firing_point.global_position),to_local(target.position), polygon.color, 2)
 
 func recolor():
+	return
 	match targeting_mode:
 		TargetingMode.FIRST:
 			polygon.color = Color.SLATE_BLUE

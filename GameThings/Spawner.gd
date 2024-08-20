@@ -65,7 +65,7 @@ func spawn_wave(wave: WaveData):
 	while currentWaveIndex < waveSet.waves.size():
 		await spawn_all_corps(currentCorps)
 		currentWaveIndex+=1
-		GameManager.availableTowers += 0.5
+		GameManager.availableTowers += 0.6
 		next_wave_timer.wait_time = waveSet.waveInterval
 		next_wave_timer.start()
 		await next_wave_timer.timeout

@@ -9,7 +9,6 @@
 script = ExtResource("1_rky0c")
 waveSet = ExtResource("2_7puft")
 debugWaveset = ExtResource("3_p6xlc")
-debugEnemies = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3fsqp")

@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="1_syrjk"]
 
 [resource]
-resource_local_to_scene = true
 script = ExtResource("1_syrjk")
-damage = 9.0
+damage = 18.0
 cooldown = 3.0
 target_range = 170.0
 splash_range = 50.0
