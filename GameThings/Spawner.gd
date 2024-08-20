@@ -37,7 +37,7 @@ func _process(_delta: float):
 func spawn_units():
 	while currentUnitIndex < currentCorps.units.size():
 		create_enemy(currentUnit)
-		next_unit_spawn_timer.wait_time = currentCorps.unitInterval
+		next_unit_spawn_timer.wait_time = max(currentCorps.unitInterval,0.01)
 		next_unit_spawn_timer.start()
 		await next_unit_spawn_timer.timeout
 		currentUnitIndex+=1
