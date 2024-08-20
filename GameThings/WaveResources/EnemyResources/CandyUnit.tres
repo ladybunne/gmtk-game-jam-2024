@@ -8,5 +8,5 @@ script = ExtResource("1_leajk")
 unitType = 0
 color = Color(1, 1, 1, 1)
 startSize = 10.0
-startHealth = 10.0
-startSpeed = 300.0
+startHealth = 25.0
+startSpeed = 225.0

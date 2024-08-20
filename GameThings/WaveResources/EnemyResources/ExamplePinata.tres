@@ -8,5 +8,5 @@ script = ExtResource("1_ny5w3")
 unitType = 5
 color = Color(0.935508, 0.0794211, 1, 1)
 startSize = 35.0
-startHealth = 300.0
-startSpeed = 50.0
+startHealth = 500.0
+startSpeed = 45.0
