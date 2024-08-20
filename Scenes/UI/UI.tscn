@@ -265,7 +265,6 @@ data = SubResource("Resource_bbqsi")
 text = "Slow Tower"
 
 [node name="Button4" parent="TowerCreateUI/Panel/Container" groups=["bigButton"] instance=ExtResource("9_0k1bh")]
-visible = false
 layout_mode = 2
 data = SubResource("Resource_fokb6")
 pool = true
@@ -293,7 +292,6 @@ texture = ExtResource("4_2nsox")
 expand_mode = 1
 
 [node name="Button5" parent="TowerCreateUI/Panel/Container" groups=["smallButton"] instance=ExtResource("9_0k1bh")]
-visible = false
 layout_mode = 2
 data = SubResource("Resource_g6oy1")
 pool = true
