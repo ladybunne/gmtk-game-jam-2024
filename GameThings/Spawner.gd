@@ -65,6 +65,7 @@ func spawn_wave(wave: WaveData):
 		next_wave_timer.start()
 		await next_wave_timer.timeout
 
+		
 	currentWaveIndex-=1
 	print("out of waves")
 	all_done.emit()
