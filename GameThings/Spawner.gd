@@ -46,11 +46,12 @@ func create_enemy(data: UnitData):
 func spawn_all_corps(corps: CorpsData):
 	while currentCorpsIndex < currentWave.corps.size():
 		print("Wave "+str(currentWaveIndex+1) + ", Corps "+str(currentCorpsIndex+1))
-		spawn_units()
+		await spawn_units()
+		currentCorpsIndex+=1
 		next_corps_spawn_timer.wait_time = currentWave.corpsInterval
 		next_corps_spawn_timer.start()
 		await next_corps_spawn_timer.timeout
-		currentCorpsIndex+=1
+
 	currentCorpsIndex = 0
 
 func spawn_wave(wave: WaveData):

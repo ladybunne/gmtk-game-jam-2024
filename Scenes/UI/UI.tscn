@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c7f6l47krk6xs"]
+[gd_scene load_steps=23 format=3 uid="uid://c7f6l47krk6xs"]
 
 [ext_resource type="Texture2D" uid="uid://bowofkro0eiv4" path="res://Assets/Sprites/barUnder.png" id="1_yl4kl"]
 [ext_resource type="Texture2D" uid="uid://cehcu8y4e3uyn" path="res://Assets/Sprites/barOver.png" id="2_u31s5"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dw0t4n08wc5g5" path="res://GameThings/TowerButton.tscn" id="9_0k1bh"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/BaseHealthUI.tscn" id="9_8ccqo"]
 [ext_resource type="Script" path="res://GameThings/TowerResources/TowerData.gd" id="11_2auba"]
+[ext_resource type="Resource" uid="uid://d28j28j2kco5y" path="res://GameThings/TowerResources/DebuffTower.tres" id="12_abu4k"]
 [ext_resource type="Texture2D" uid="uid://bbq5xgac2stx0" path="res://Assets/Sprites/blueSquare.png" id="12_epqg0"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="12_wid68"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/EndScreenUI.tscn" id="17_icfck"]
@@ -245,6 +246,13 @@ data = SubResource("Resource_0cst8")
 [node name="Label" parent="TowerCreateUI/Panel/Container/Button6" index="1"]
 text = "Sniper Tower"
 
+[node name="Button7" parent="TowerCreateUI/Panel/Container" instance=ExtResource("9_0k1bh")]
+layout_mode = 2
+data = ExtResource("12_abu4k")
+
+[node name="Label" parent="TowerCreateUI/Panel/Container/Button7" index="1"]
+text = "Slow Tower"
+
 [node name="Button4" parent="TowerCreateUI/Panel/Container" groups=["bigButton"] instance=ExtResource("9_0k1bh")]
 layout_mode = 2
 data = SubResource("Resource_fokb6")
@@ -340,6 +348,7 @@ text = "Wave: 1/5
 [editable path="TowerCreateUI/Panel/Container/Button2"]
 [editable path="TowerCreateUI/Panel/Container/Button3"]
 [editable path="TowerCreateUI/Panel/Container/Button6"]
+[editable path="TowerCreateUI/Panel/Container/Button7"]
 [editable path="TowerCreateUI/Panel/Container/Button4"]
 [editable path="TowerCreateUI/Panel/Container/Button5"]
 [editable path="TowerCreateUI/Panel/Container/Sell Tower"]

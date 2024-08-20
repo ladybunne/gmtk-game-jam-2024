@@ -11,7 +11,9 @@ var baseSpeed: float = 100
 @onready var enemyScene: PackedScene = preload("res://GameThings/Enemy.tscn")
 @onready var bigness: float = health
 @onready var startBigness: float = health
+var isDebuffed: bool = false
 var hits_taken: int = 0
+@onready var mouth: Polygon2D = %Mouth
 
 #var spawner: Spawner
 @onready var hitParticles: PackedScene = preload("res://Assets/Particles/hit_particles.tscn")
@@ -97,6 +99,10 @@ func take_damage(damage: float, direction: Vector2):
 	%ProgressBar.show()
 	update_healthbar()
 
+func debuff(damage: float):
+	update_speed(damage, false)
+	isDebuffed = true
+	mouth.rotate(PI)
 
 
 func checkDead():
