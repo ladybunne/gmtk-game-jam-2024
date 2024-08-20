@@ -122,8 +122,8 @@ func Setup():
 		TowerData.TowerType.Sniper:
 			%BaseSprite.texture = sniperTex
 			polygon = sniper_gon.instantiate()
-			add_child(polygon)			
-			
+			add_child(polygon)
+
 			polygon.get_child(0).add_child(sniper_gon2.instantiate())
 		TowerData.TowerType.Debuff:
 			%BaseSprite.texture = slowTex
