@@ -13,6 +13,7 @@
 
 [node name="AudioCrimes" type="Node"]
 script = ExtResource("1_pdrw7")
+normal_volume = -20
 
 [node name="Base" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
