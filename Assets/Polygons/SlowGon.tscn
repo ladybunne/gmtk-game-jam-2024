@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvycgh66vm4um"]
+
+[ext_resource type="Texture2D" uid="uid://by652r3hsd57b" path="res://Assets/Sprites/Towers/SlowTower.png" id="1_o7h2n"]
+
+[node name="Polygon2D" type="Sprite2D"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_o7h2n")
+
+[node name="FiringPoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(32, 0)

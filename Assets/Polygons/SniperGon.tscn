@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://g31n45x5l267"]
 
-[ext_resource type="Texture2D" uid="uid://dqa47wp47q4vo" path="res://Assets/Sprites/Towers/Splash.png" id="1_q7tas"]
+[ext_resource type="Texture2D" uid="uid://daxy3d36j48id" path="res://Assets/Sprites/Towers/SniperTowerStatic.png" id="1_j4auh"]
 
 [node name="Polygon2D" type="Sprite2D"]
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_q7tas")
+texture = ExtResource("1_j4auh")
 
 [node name="FiringPoint" type="Node2D" parent="."]
 unique_name_in_owner = true

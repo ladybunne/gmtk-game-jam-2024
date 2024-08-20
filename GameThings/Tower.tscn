@@ -1,12 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx6o8vnri4fmf"]
+[gd_scene load_steps=20 format=3 uid="uid://dx6o8vnri4fmf"]
 
 [ext_resource type="Script" path="res://GameThings/Tower.gd" id="1_k4d5n"]
 [ext_resource type="Script" path="res://GameThings/HandleFixed.gd" id="2_8oltv"]
 [ext_resource type="Resource" uid="uid://iydmf0cu1hhj" path="res://GameThings/TowerResources/StandardTower.tres" id="2_8p3ue"]
 [ext_resource type="Texture2D" uid="uid://b6il0gqcgnvj7" path="res://Assets/Sprites/handle.png" id="2_l3qcl"]
 [ext_resource type="Script" path="res://GameThings/DetectEnemy.gd" id="2_t1qxj"]
+[ext_resource type="Texture2D" uid="uid://b1mrvanddojfw" path="res://Assets/Sprites/Towers/StandardField.png" id="3_uvoii"]
 [ext_resource type="Texture2D" uid="uid://c7wsooxicpfxa" path="res://Assets/Sprites/handle2.png" id="4_105yb"]
 [ext_resource type="Texture2D" uid="uid://m8qqfepdgxlp" path="res://Assets/Sprites/Towers/SplashField.png" id="4_esqqk"]
+[ext_resource type="Texture2D" uid="uid://bpygwly2s3g17" path="res://Assets/Sprites/Towers/BurstField.png" id="5_wcu5c"]
+[ext_resource type="Texture2D" uid="uid://bofw08incowwc" path="res://Assets/Sprites/Towers/SnipeField.png" id="6_oqnbw"]
+[ext_resource type="Texture2D" uid="uid://bdlksmt0b0g" path="res://Assets/Sprites/Towers/SlowField.png" id="7_je74a"]
 [ext_resource type="Texture2D" uid="uid://jo7838087we1" path="res://Assets/Sprites/funkySquare.png" id="7_k7s4i"]
 [ext_resource type="Shader" path="res://GameThings/TowerRadius.gdshader" id="7_ygpkm"]
 
@@ -44,6 +48,11 @@ shader_parameter/speed = 12.0
 z_index = 1
 script = ExtResource("1_k4d5n")
 tower_data = ExtResource("2_8p3ue")
+standardTex = ExtResource("3_uvoii")
+splashTex = ExtResource("4_esqqk")
+burstTex = ExtResource("5_wcu5c")
+sniperTex = ExtResource("6_oqnbw")
+slowTex = ExtResource("7_je74a")
 rangeHitboxes = [NodePath("Area2D"), NodePath("Area2D2"), NodePath("Area2D3"), NodePath("Area2D4"), NodePath("Area2D5")]
 
 [node name="Area2D" type="Area2D" parent="."]

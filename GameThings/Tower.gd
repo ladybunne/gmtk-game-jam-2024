@@ -15,6 +15,7 @@ class_name Tower
 @onready var capacity_gon: PackedScene = preload("res://Assets/Polygons/CapacityGon.tscn")
 @onready var splash_gon: PackedScene = preload("res://Assets/Polygons/SplashGon.tscn")
 @onready var sniper_gon: PackedScene = preload("res://Assets/Polygons/SniperGon.tscn")
+@onready var slow_gon: PackedScene = preload("res://Assets/Polygons/SlowGon.tscn")
 @onready var sprite: Node2D:
 	get:
 		return polygon
@@ -93,27 +94,37 @@ func updateStats():
 		TowerData.TowerType.Debuff:
 			damage *= 1 + (currentCost/8)
 
+@export var standardTex :Texture
+@export var splashTex :Texture
+@export var burstTex :Texture
+@export var sniperTex :Texture
+@export var slowTex :Texture
 
 func Setup():
 	setup = true
 	match tower_data.type:
 		TowerData.TowerType.Standard:
+			%BaseSprite.texture = standardTex
 			polygon = standard_gon.instantiate()
 			add_child(polygon)
 			move_child(polygon,6)
 		TowerData.TowerType.Capacity:
+			%BaseSprite.texture = burstTex
 			polygon = capacity_gon.instantiate()
 			add_child(polygon)
 			move_child(polygon,6)
 		TowerData.TowerType.Splash:
+			%BaseSprite.texture = splashTex
 			polygon = splash_gon.instantiate()
 			add_child(polygon)
 			move_child(polygon,6)
 		TowerData.TowerType.Sniper:
+			%BaseSprite.texture = sniperTex
 			polygon = sniper_gon.instantiate()
 			add_child(polygon)
 		TowerData.TowerType.Debuff:
-			polygon = sniper_gon.instantiate()
+			%BaseSprite.texture = slowTex
+			polygon = slow_gon.instantiate()
 			add_child(polygon)
 			move_child(polygon,6)
 		_:
